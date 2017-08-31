@@ -80,12 +80,9 @@
 			isa = PBXGroup;
 			children = (
 				3BBE81291F57CD3000042E14 /* AppDelegate.swift */,
-				3BBE812B1F57CD3000042E14 /* ViewController.swift */,
-				3BBE812D1F57CD3000042E14 /* Main.storyboard */,
-				3BBE81331F57CD3000042E14 /* Assets.xcassets */,
-				3BBE81351F57CD3000042E14 /* LaunchScreen.storyboard */,
-				3BBE81381F57CD3000042E14 /* Info.plist */,
-				3BBE81301F57CD3000042E14 /* CMDb.xcdatamodeld */,
+				3BBE81541F57DA9300042E14 /* Storyboards */,
+				3BBE814C1F57D9BE00042E14 /* Classes */,
+				3BBE81531F57DA7D00042E14 /* SupportingFiles */,
 			);
 			path = CMDb;
 			sourceTree = "<group>";
@@ -97,6 +94,73 @@
 				3BBE81431F57CD3000042E14 /* Info.plist */,
 			);
 			path = CMDbTests;
+			sourceTree = "<group>";
+		};
+		3BBE814C1F57D9BE00042E14 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE814D1F57D9BE00042E14 /* Controllers */,
+				3BBE814E1F57D9BE00042E14 /* Models */,
+				3BBE814F1F57D9BE00042E14 /* ViewModels */,
+				3BBE81501F57D9BE00042E14 /* Views */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3BBE814D1F57D9BE00042E14 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE812B1F57CD3000042E14 /* ViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3BBE814E1F57D9BE00042E14 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE81511F57DA0000042E14 /* CoreData */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3BBE814F1F57D9BE00042E14 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3BBE81501F57D9BE00042E14 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		3BBE81511F57DA0000042E14 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE81301F57CD3000042E14 /* CMDb.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		3BBE81531F57DA7D00042E14 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE81331F57CD3000042E14 /* Assets.xcassets */,
+				3BBE81381F57CD3000042E14 /* Info.plist */,
+			);
+			name = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		3BBE81541F57DA9300042E14 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3BBE812D1F57CD3000042E14 /* Main.storyboard */,
+				3BBE81351F57CD3000042E14 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
