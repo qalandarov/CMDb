@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3B0FF0AE1F589A9D00D9CEB7 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0AD1F589A9D00D9CEB7 /* Search.swift */; };
+		3B0FF0B41F589C2700D9CEB7 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B01F589C2700D9CEB7 /* NetworkEngine.swift */; };
+		3B0FF0B51F589C2700D9CEB7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B11F589C2700D9CEB7 /* Result.swift */; };
+		3B0FF0B61F589C2700D9CEB7 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B31F589C2700D9CEB7 /* Error.swift */; };
 		3BBE812A1F57CD3000042E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81291F57CD3000042E14 /* AppDelegate.swift */; };
 		3BBE812F1F57CD3000042E14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE812D1F57CD3000042E14 /* Main.storyboard */; };
 		3BBE81321F57CD3000042E14 /* CMDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81301F57CD3000042E14 /* CMDb.xcdatamodeld */; };
@@ -74,6 +77,9 @@
 
 /* Begin PBXFileReference section */
 		3B0FF0AD1F589A9D00D9CEB7 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
+		3B0FF0B01F589C2700D9CEB7 /* NetworkEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
+		3B0FF0B11F589C2700D9CEB7 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		3B0FF0B31F589C2700D9CEB7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		3BBE81261F57CD3000042E14 /* CMDb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMDb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBE81291F57CD3000042E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BBE812E1F57CD3000042E14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -147,6 +153,23 @@
 				D2DF7D89C1AA3A060705FD93 /* Pods-CMDbTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		3B0FF0AF1F589C2700D9CEB7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				3B0FF0B01F589C2700D9CEB7 /* NetworkEngine.swift */,
+				3B0FF0B11F589C2700D9CEB7 /* Result.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		3B0FF0B21F589C2700D9CEB7 /* ErrorHandling */ = {
+			isa = PBXGroup;
+			children = (
+				3B0FF0B31F589C2700D9CEB7 /* Error.swift */,
+			);
+			path = ErrorHandling;
 			sourceTree = "<group>";
 		};
 		3BBE811D1F57CD3000042E14 = {
@@ -301,6 +324,8 @@
 			isa = PBXGroup;
 			children = (
 				3BBE818B1F588D8500042E14 /* Models */,
+				3B0FF0AF1F589C2700D9CEB7 /* Networking */,
+				3B0FF0B21F589C2700D9CEB7 /* ErrorHandling */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -617,7 +642,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BBE81841F588B9800042E14 /* C.swift in Sources */,
+				3B0FF0B51F589C2700D9CEB7 /* Result.swift in Sources */,
 				3B0FF0AE1F589A9D00D9CEB7 /* Search.swift in Sources */,
+				3B0FF0B41F589C2700D9CEB7 /* NetworkEngine.swift in Sources */,
+				3B0FF0B61F589C2700D9CEB7 /* Error.swift in Sources */,
 				3BBE818D1F588DA400042E14 /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
