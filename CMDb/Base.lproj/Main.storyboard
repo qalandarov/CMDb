@@ -35,7 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Etz-rf-dSg">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Etz-rf-dSg" customClass="iCarousel">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="378"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
@@ -64,7 +64,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MovieSectionTableCell" selectionStyle="default" indentationWidth="10" rowHeight="227" id="Rcl-vn-JI3" customClass="MovieSectionTableCell" customModule="CMDb" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MovieSectionTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieSectionTableCell" rowHeight="227" id="Rcl-vn-JI3" customClass="MovieSectionTableCell" customModule="CMDb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="406" width="320" height="227"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rcl-vn-JI3" id="ghf-j1-UHb">
@@ -77,7 +77,7 @@
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                         </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mW9-ws-V2M">
+                                        <view contentMode="scaleToFill" restorationIdentifier="MovieCellCarousel" translatesAutoresizingMaskIntoConstraints="NO" id="mW9-ws-V2M" customClass="iCarousel">
                                             <rect key="frame" x="0.0" y="46.5" width="320" height="180"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
@@ -96,6 +96,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="carousel" destination="mW9-ws-V2M" id="agc-xk-uhz"/>
+                                    <outlet property="titleButton" destination="33G-L7-4gm" id="1wY-O4-czJ"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -105,6 +109,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="CMDb" id="0sb-EG-6nf"/>
                     <connections>
+                        <outlet property="carousel" destination="Etz-rf-dSg" id="ndf-H2-EDd"/>
                         <outlet property="placeholderView" destination="3e2-lI-cjo" id="4J6-vz-2sP"/>
                         <outlet property="playButton" destination="du0-us-tel" id="wyG-o5-8zW"/>
                     </connections>
