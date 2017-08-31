@@ -30,7 +30,7 @@
         <!--CMDb-->
         <scene sceneID="xfK-HC-z6V">
             <objects>
-                <tableViewController id="JKH-93-WwZ" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HomeTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JKH-93-WwZ" customClass="HomeTVC" customModule="CMDb" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bD8-S7-vhq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -64,7 +64,7 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="227" id="Rcl-vn-JI3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MovieSectionTableCell" selectionStyle="default" indentationWidth="10" rowHeight="227" id="Rcl-vn-JI3" customClass="MovieSectionTableCell" customModule="CMDb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="406" width="320" height="227"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rcl-vn-JI3" id="ghf-j1-UHb">
@@ -104,6 +104,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="CMDb" id="0sb-EG-6nf"/>
+                    <connections>
+                        <outlet property="placeholderView" destination="3e2-lI-cjo" id="4J6-vz-2sP"/>
+                        <outlet property="playButton" destination="du0-us-tel" id="wyG-o5-8zW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nh1-KT-KPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
