@@ -8,11 +8,11 @@
 
 import Foundation
 
-protocol ErrorType: Swift.Error {
+public protocol ErrorType: Swift.Error {
     var string: String { get }
 }
 
-enum Error: ErrorType {
+public enum Error: ErrorType {
     case general(errorMsg: String)
     case incorrectResponse
     
@@ -20,7 +20,7 @@ enum Error: ErrorType {
         self = Error.general(errorMsg: errorMsg)
     }
     
-    var string: String {
+    public var string: String {
         switch self {
         case .general(let errorMsg):
             return errorMsg

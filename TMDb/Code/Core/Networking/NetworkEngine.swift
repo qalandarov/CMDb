@@ -8,17 +8,19 @@
 
 import Foundation
 
-typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
+public typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
 
-class NetworkEngine {
+public class NetworkEngine {
     
     var currentTask: URLSessionDataTask?
+    
+    public init() {}
     
     deinit {
         currentTask?.cancel()
     }
 
-    func fetch<T: Decodable>(completion: @escaping ResultCompletionGeneric<T>) {
+    public func fetch<T: Decodable>(completion: @escaping ResultCompletionGeneric<T>) {
         let requestURL = URL(string: C.BaseURLString)!
         var request = URLRequest(url: requestURL)
         request.httpMethod = "GET"

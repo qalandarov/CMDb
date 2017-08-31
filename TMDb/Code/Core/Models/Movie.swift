@@ -8,20 +8,20 @@
 
 import Foundation
 
-struct Movie: Decodable {
-    let id: Int
-    let title: String
-    let originalTitle: String
-    let releaseDate: String
-    let posterPath: String
-    let backdropPath: String
-    let genreIDs: [Int]
-    let voteCount: Int
-    let voteAvg: Int
-    let popularity: Double
-    let overview: String
-    let isVideo: Bool
-    
+public struct Movie: Decodable {
+    public let id: Int
+    public let title: String
+    public let originalTitle: String
+    public let releaseDate: String
+    public let posterPath: String
+    public let backdropPath: String
+    public let genres: [MovieGenre]
+    public let voteCount: Int
+    public let voteAvg: CGFloat
+    public let popularity: CGFloat
+    public let overview: String
+    public let isVideo: Bool
+
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -29,7 +29,7 @@ struct Movie: Decodable {
         case releaseDate    = "release_date"
         case posterPath     = "poster_path"
         case backdropPath   = "backdrop_path"
-        case genreIDs       = "genre_ids"
+        case genres         = "genre_ids"
         case voteCount      = "vote_count"
         case voteAvg        = "vote_average"
         case popularity

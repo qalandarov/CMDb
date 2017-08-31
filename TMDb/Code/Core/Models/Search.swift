@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Search<T: Decodable> {
-    let page: Int
-    let totalPages: Int
-    let totalResults: Int
-    let results: [T]
+public struct Search<T: Decodable> {
+    public let page: Int
+    public let totalPages: Int
+    public let totalResults: Int
+    public let results: [T]
     
     enum CodingKeys: String, CodingKey {
         case page
