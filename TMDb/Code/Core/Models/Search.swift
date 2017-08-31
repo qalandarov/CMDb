@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Search<T: Decodable> {
+public struct Search<T: Decodable>: Decodable {
     public let page: Int
     public let totalPages: Int
     public let totalResults: Int
