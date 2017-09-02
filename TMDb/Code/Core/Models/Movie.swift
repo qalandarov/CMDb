@@ -13,8 +13,8 @@ public struct Movie: Decodable {
     public let title: String
     public let originalTitle: String
     public let releaseDate: String
-    public let posterPath: String
-    public let backdropPath: String
+    public let posterPath: String?
+    public let backdropPath: String?
     public let genres: [MovieGenre]
     public let voteCount: Int
     public let voteAvg: CGFloat
