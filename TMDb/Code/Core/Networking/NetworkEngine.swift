@@ -32,8 +32,17 @@ public class NetworkEngine {
                 return
             }
             
-            guard let data = data, let result = try? JSONDecoder().decode(T.self, from: data) else {
+            guard let data = data else {
                 completion(.failure(.incorrectResponse))
+                return
+            }
+            
+            guard let result = try? JSONDecoder().decode(T.self, from: data) else {
+                if let contentError = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                    completion(.failure(.general(errorMsg: contentError.message)))
+                } else {
+                    completion(.failure(.incorrectResponse))
+                }
                 return
             }
             
