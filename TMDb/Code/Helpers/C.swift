@@ -8,7 +8,12 @@
 
 import Foundation
 
+func += <K, V> (left: inout [K:V], right: [K:V]) {
+    for (k, v) in right {
+        left[k] = v
+    }
+}
+
 struct C {
-    private static let APIKey = "2696829a81b1b5827d515ff121700838"
-    static let BaseURLString = "https://api.themoviedb.org/3/search/movie?api_key=\(APIKey)&query=batman"
+    
 }

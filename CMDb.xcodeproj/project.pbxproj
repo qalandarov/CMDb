@@ -28,6 +28,8 @@
 		3BBE81841F588B9800042E14 /* C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81831F588B9800042E14 /* C.swift */; };
 		3BBE818D1F588DA400042E14 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE818C1F588DA400042E14 /* Movie.swift */; };
 		3BF8C7FC1F5B3BA0009AF0F9 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8C7FB1F5B3BA0009AF0F9 /* ErrorResponse.swift */; };
+		3BF8C7FF1F5B3CA5009AF0F9 /* URLEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8C7FD1F5B3CA5009AF0F9 /* URLEncoder.swift */; };
+		3BF8C8001F5B3CA5009AF0F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8C7FE1F5B3CA5009AF0F9 /* Router.swift */; };
 		7636E3BFD94BD1FB4C6F9586 /* Pods_CMDbTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6FD5D4D53668FA3DAB0CD1 /* Pods_CMDbTests.framework */; };
 		C7B8FFB84F4D73B918BEDBDD /* Pods_CMDb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655D940839D3E9E5F2E6E44A /* Pods_CMDb.framework */; };
 /* End PBXBuildFile section */
@@ -104,6 +106,8 @@
 		3BBE81831F588B9800042E14 /* C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = C.swift; sourceTree = "<group>"; };
 		3BBE818C1F588DA400042E14 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3BF8C7FB1F5B3BA0009AF0F9 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		3BF8C7FD1F5B3CA5009AF0F9 /* URLEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncoder.swift; sourceTree = "<group>"; };
+		3BF8C7FE1F5B3CA5009AF0F9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		4B1EF73B1F56324832B194BA /* Pods-CMDb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMDb.release.xcconfig"; path = "Pods/Target Support Files/Pods-CMDb/Pods-CMDb.release.xcconfig"; sourceTree = "<group>"; };
 		4F6FD5D4D53668FA3DAB0CD1 /* Pods_CMDbTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMDbTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		655D940839D3E9E5F2E6E44A /* Pods_CMDb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMDb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -164,6 +168,8 @@
 			children = (
 				3B0FF0B01F589C2700D9CEB7 /* NetworkEngine.swift */,
 				3B0FF0B11F589C2700D9CEB7 /* Result.swift */,
+				3BF8C7FE1F5B3CA5009AF0F9 /* Router.swift */,
+				3BF8C7FD1F5B3CA5009AF0F9 /* URLEncoder.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -649,7 +655,9 @@
 			files = (
 				3BBE81841F588B9800042E14 /* C.swift in Sources */,
 				3B0FF0B51F589C2700D9CEB7 /* Result.swift in Sources */,
+				3BF8C8001F5B3CA5009AF0F9 /* Router.swift in Sources */,
 				3B0FF0AE1F589A9D00D9CEB7 /* Search.swift in Sources */,
+				3BF8C7FF1F5B3CA5009AF0F9 /* URLEncoder.swift in Sources */,
 				3B0FF0B41F589C2700D9CEB7 /* NetworkEngine.swift in Sources */,
 				3B0FF0B61F589C2700D9CEB7 /* Error.swift in Sources */,
 				3BBE818D1F588DA400042E14 /* Movie.swift in Sources */,
