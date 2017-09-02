@@ -15,6 +15,7 @@ public protocol ErrorType: Swift.Error {
 public enum Error: ErrorType {
     case general(errorMsg: String)
     case incorrectResponse
+    case incorrectRequest
     
     init(_ errorMsg: String) {
         self = Error.general(errorMsg: errorMsg)
@@ -25,7 +26,9 @@ public enum Error: ErrorType {
         case .general(let errorMsg):
             return errorMsg
         case .incorrectResponse:
-            return "Incorrect data"
+            return "Unexpected response received from the server"
+        case .incorrectRequest:
+            return "Something is wrong with the configurations"
         }
     }
 }
