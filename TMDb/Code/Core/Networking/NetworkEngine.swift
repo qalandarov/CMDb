@@ -9,6 +9,7 @@
 import Foundation
 
 public typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
+public typealias ResultCompletionGenericSearch<T: Decodable> = (Result<Search<T>>) -> Void
 
 public class NetworkEngine {
     
@@ -20,11 +21,15 @@ public class NetworkEngine {
         currentTask?.cancel()
     }
 
-    public func fetch<T: Decodable>(completion: @escaping ResultCompletionGeneric<T>) {
-        let requestURL = URL(string: C.BaseURLString)!
-        var request = URLRequest(url: requestURL)
-        request.httpMethod = "GET"
-        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+    public func searchMovie(query: String, page: Int = 1, completion: @escaping ResultCompletionGenericSearch<Movie>) {
+        fetch(resource: .searchMovie(query: query, page: page), completion: completion)
+    }
+    
+    func fetch<T: Decodable>(resource: Router, completion: @escaping ResultCompletionGeneric<T>) {
+        guard let request = resource.request else {
+            completion(.failure(.incorrectRequest))
+            return
+        }
         
         currentTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if let error = error {
