@@ -8,76 +8,98 @@
 
 import UIKit
 import iCarousel
+import TMDb
+import Kingfisher
 
 class HomeTVC: UITableViewController {
 
+    @IBOutlet weak var bgCarousel: iCarousel!
     @IBOutlet weak var carousel: iCarousel!
     @IBOutlet weak var placeholderView: UIView!
-    @IBOutlet weak var playButton: UIButton!
+    
+    private var movies: [Movie]? {
+        didSet {
+            carousel.reloadData()
+            bgCarousel.reloadData()
+            carousel.currentItemIndex = Int(moviesCount / 2)
+        }
+    }
+    
+    private var moviesCount: Int {
+        return movies?.count ?? 0
+    }
+    
+    private let network = NetworkEngine()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bgCarousel.bounces = false
+        bgCarousel.delegate = self
+        bgCarousel.dataSource = self
+        
+        carousel.type = .coverFlow
+        carousel.delegate = self
+        carousel.dataSource = self
+        
         placeholderView.backgroundColor = .clear
+        
+        let invisibleFrame = CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude)
+        tableView.tableFooterView = UIView(frame: invisibleFrame)
+        
+        networkCall()
+    }
+    
+    private func networkCall() {
+        network.searchMovie(query: "batman") { [weak self] (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let search):
+                    self?.movies = search.results.filter { $0.posterPath != nil }
+                case .failure(let error):
+                    print("error: \(error.string)")
+                }
+            }
+        }
     }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return moviesCount
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieSectionTableCell", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        return tableView.dequeueReusableCell(withIdentifier: "MovieSectionTableCell", for: indexPath)
     }
+    
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+extension HomeTVC: iCarouselDataSource {
+    func numberOfItems(in carousel: iCarousel) -> Int {
+        return moviesCount
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
+        let bg = carousel == bgCarousel
+        let frame = bg ? carousel.frame : placeholderView.frame
+        let posterView = view as? UIImageView ?? UIImageView(frame: frame)
+        posterView.setImage(with: movies![index])
+        return posterView
     }
-    */
+}
 
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+extension HomeTVC: iCarouselDelegate {
+    func carouselDidScroll(_ carousel: iCarousel) {
+        bgCarousel.scrollOffset = carousel.scrollOffset
     }
-    */
+}
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+extension UIImageView {
+    func setImage(with movie: Movie) {
+        kf.cancelDownloadTask()
+        let url = movie.posterURL(width: .w185)
+        kf.indicatorType = .activity
+        kf.setImage(with: url)
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

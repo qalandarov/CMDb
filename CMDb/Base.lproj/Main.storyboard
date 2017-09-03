@@ -35,32 +35,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="Etz-rf-dSg" customClass="iCarousel">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="Etz-rf-dSg">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="378"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e2-lI-cjo">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fZ-2o-UW3" customClass="iCarousel">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="378"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="boB-UZ-oOv">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="378"/>
+                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="E5x-RD-tbk">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="378"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </view>
+                                    <blurEffect style="light"/>
+                                </visualEffectView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L7U-yZ-pzA" customClass="iCarousel">
+                                    <rect key="frame" x="0.0" y="50" width="320" height="278"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e2-lI-cjo">
                                     <rect key="frame" x="67.5" y="50" width="185" height="278"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="du0-us-tel">
-                                            <rect key="frame" x="133" y="226" width="44" height="44"/>
-                                            <state key="normal" image="play"/>
-                                        </button>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="185" id="161-wn-1DG"/>
-                                        <constraint firstAttribute="bottom" secondItem="du0-us-tel" secondAttribute="bottom" constant="8" id="2CI-Tm-pms"/>
                                         <constraint firstAttribute="height" constant="278" id="4aa-xg-w6s"/>
-                                        <constraint firstAttribute="trailing" secondItem="du0-us-tel" secondAttribute="trailing" constant="8" id="75Z-u3-Ke0"/>
                                     </constraints>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="L7U-yZ-pzA" secondAttribute="trailing" id="D97-9U-qaO"/>
+                                <constraint firstItem="L7U-yZ-pzA" firstAttribute="bottom" secondItem="3e2-lI-cjo" secondAttribute="bottom" id="Dts-bk-k9W"/>
+                                <constraint firstItem="boB-UZ-oOv" firstAttribute="top" secondItem="6fZ-2o-UW3" secondAttribute="top" id="IL9-zJ-PL2"/>
+                                <constraint firstItem="L7U-yZ-pzA" firstAttribute="leading" secondItem="Etz-rf-dSg" secondAttribute="leading" id="JGh-JC-NGo"/>
                                 <constraint firstItem="3e2-lI-cjo" firstAttribute="top" secondItem="Etz-rf-dSg" secondAttribute="top" constant="50" id="OBX-SK-ugA"/>
+                                <constraint firstItem="6fZ-2o-UW3" firstAttribute="top" secondItem="Etz-rf-dSg" secondAttribute="top" id="PXS-n7-Ekg"/>
+                                <constraint firstItem="boB-UZ-oOv" firstAttribute="trailing" secondItem="6fZ-2o-UW3" secondAttribute="trailing" id="Q5C-UW-O4c"/>
                                 <constraint firstItem="3e2-lI-cjo" firstAttribute="centerX" secondItem="Etz-rf-dSg" secondAttribute="centerX" id="S88-vD-fOJ"/>
+                                <constraint firstItem="L7U-yZ-pzA" firstAttribute="top" secondItem="3e2-lI-cjo" secondAttribute="top" id="XJy-55-hFD"/>
+                                <constraint firstItem="6fZ-2o-UW3" firstAttribute="leading" secondItem="Etz-rf-dSg" secondAttribute="leading" id="bGH-ml-uNb"/>
+                                <constraint firstAttribute="bottom" secondItem="6fZ-2o-UW3" secondAttribute="bottom" id="ctm-gr-3Tz"/>
                                 <constraint firstAttribute="bottom" secondItem="3e2-lI-cjo" secondAttribute="bottom" constant="50" id="k2J-Ze-IQW"/>
+                                <constraint firstItem="boB-UZ-oOv" firstAttribute="leading" secondItem="6fZ-2o-UW3" secondAttribute="leading" id="k9j-0T-YVZ"/>
+                                <constraint firstItem="boB-UZ-oOv" firstAttribute="bottom" secondItem="6fZ-2o-UW3" secondAttribute="bottom" id="nVh-lg-3hR"/>
+                                <constraint firstAttribute="trailing" secondItem="6fZ-2o-UW3" secondAttribute="trailing" id="wDq-v9-K9f"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -109,9 +129,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="CMDb" id="0sb-EG-6nf"/>
                     <connections>
-                        <outlet property="carousel" destination="Etz-rf-dSg" id="ndf-H2-EDd"/>
+                        <outlet property="bgCarousel" destination="6fZ-2o-UW3" id="86s-BG-YKz"/>
+                        <outlet property="carousel" destination="L7U-yZ-pzA" id="WTt-Ed-cUm"/>
                         <outlet property="placeholderView" destination="3e2-lI-cjo" id="4J6-vz-2sP"/>
-                        <outlet property="playButton" destination="du0-us-tel" id="wyG-o5-8zW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nh1-KT-KPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -119,7 +139,4 @@
             <point key="canvasLocation" x="532.5" y="167.95774647887325"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="play" width="44" height="44"/>
-    </resources>
 </document>
