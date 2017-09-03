@@ -13,6 +13,9 @@
 		3B0FF0B61F589C2700D9CEB7 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B31F589C2700D9CEB7 /* Error.swift */; };
 		3B26A4601F5B4E63009D8089 /* ImageDownloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26A45F1F5B4E63009D8089 /* ImageDownloadable.swift */; };
 		3B28A52C1F58AD17001AB217 /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28A52B1F58AD17001AB217 /* MovieGenre.swift */; };
+		3BA002BD1F5C0897003BF855 /* ImageWidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA002BC1F5C0897003BF855 /* ImageWidthTests.swift */; };
+		3BA002C01F5C0B34003BF855 /* ContantsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA002BF1F5C0B33003BF855 /* ContantsTests.swift */; };
+		3BA002C21F5C0B8B003BF855 /* ImageDownloadableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA002C11F5C0B8B003BF855 /* ImageDownloadableTests.swift */; };
 		3BBE812A1F57CD3000042E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81291F57CD3000042E14 /* AppDelegate.swift */; };
 		3BBE812F1F57CD3000042E14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE812D1F57CD3000042E14 /* Main.storyboard */; };
 		3BBE81321F57CD3000042E14 /* CMDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81301F57CD3000042E14 /* CMDb.xcdatamodeld */; };
@@ -88,6 +91,9 @@
 		3B0FF0B31F589C2700D9CEB7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		3B26A45F1F5B4E63009D8089 /* ImageDownloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadable.swift; sourceTree = "<group>"; };
 		3B28A52B1F58AD17001AB217 /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
+		3BA002BC1F5C0897003BF855 /* ImageWidthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidthTests.swift; sourceTree = "<group>"; };
+		3BA002BF1F5C0B33003BF855 /* ContantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContantsTests.swift; sourceTree = "<group>"; };
+		3BA002C11F5C0B8B003BF855 /* ImageDownloadableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadableTests.swift; sourceTree = "<group>"; };
 		3BBE81261F57CD3000042E14 /* CMDb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMDb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBE81291F57CD3000042E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BBE812E1F57CD3000042E14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -184,6 +190,16 @@
 				3B0FF0B31F589C2700D9CEB7 /* Error.swift */,
 			);
 			path = ErrorHandling;
+			sourceTree = "<group>";
+		};
+		3BA002BE1F5C0B10003BF855 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				3BA002BF1F5C0B33003BF855 /* ContantsTests.swift */,
+				3BA002C11F5C0B8B003BF855 /* ImageDownloadableTests.swift */,
+				3BA002BC1F5C0897003BF855 /* ImageWidthTests.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		3BBE811D1F57CD3000042E14 = {
@@ -313,6 +329,7 @@
 			children = (
 				3BBE81711F5889D800042E14 /* TMDbTests.swift */,
 				3BBE81731F5889D800042E14 /* Info.plist */,
+				3BA002BE1F5C0B10003BF855 /* Helpers */,
 			);
 			path = TMDbTests;
 			sourceTree = "<group>";
@@ -678,6 +695,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BA002BD1F5C0897003BF855 /* ImageWidthTests.swift in Sources */,
+				3BA002C21F5C0B8B003BF855 /* ImageDownloadableTests.swift in Sources */,
+				3BA002C01F5C0B34003BF855 /* ContantsTests.swift in Sources */,
 				3BBE81721F5889D800042E14 /* TMDbTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
