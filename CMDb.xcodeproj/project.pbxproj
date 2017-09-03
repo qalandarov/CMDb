@@ -15,10 +15,10 @@
 		3B28A52C1F58AD17001AB217 /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28A52B1F58AD17001AB217 /* MovieGenre.swift */; };
 		3B44DDF51F5C3301003D72E7 /* search-one-movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002D21F5C1A7F003BF855 /* search-one-movie.json */; };
 		3B44DDF61F5C3301003D72E7 /* search-two-movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002D11F5C1A7F003BF855 /* search-two-movies.json */; };
-		3B44DDF71F5C3304003D72E7 /* Movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002D01F5C1A0A003BF855 /* Movie.json */; };
-		3B44DDF81F5C3304003D72E7 /* Movie-null-poster.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002CE1F5C1A0A003BF855 /* Movie-null-poster.json */; };
-		3B44DDF91F5C3304003D72E7 /* Movie-null-backdrop.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002CF1F5C1A0A003BF855 /* Movie-null-backdrop.json */; };
-		3B44DDFA1F5C3304003D72E7 /* Movie-null-poster-and-backdrop.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002CD1F5C1A0A003BF855 /* Movie-null-poster-and-backdrop.json */; };
+		3B44DDF71F5C3304003D72E7 /* movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002D01F5C1A0A003BF855 /* movie.json */; };
+		3B44DDF81F5C3304003D72E7 /* movie-null-poster.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002CE1F5C1A0A003BF855 /* movie-null-poster.json */; };
+		3B44DDF91F5C3304003D72E7 /* movie-null-backdrop.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002CF1F5C1A0A003BF855 /* movie-null-backdrop.json */; };
+		3B44DDFA1F5C3304003D72E7 /* movie-null-poster-and-backdrop.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002CD1F5C1A0A003BF855 /* movie-null-poster-and-backdrop.json */; };
 		3B44DDFC1F5C3363003D72E7 /* StubRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44DDFB1F5C3362003D72E7 /* StubRequestable.swift */; };
 		3B44DE051F5C342E003D72E7 /* SearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44DE041F5C342B003D72E7 /* SearchTests.swift */; };
 		3BA002BD1F5C0897003BF855 /* ImageWidthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA002BC1F5C0897003BF855 /* ImageWidthTests.swift */; };
@@ -106,10 +106,10 @@
 		3BA002BF1F5C0B33003BF855 /* ContantsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContantsTests.swift; sourceTree = "<group>"; };
 		3BA002C11F5C0B8B003BF855 /* ImageDownloadableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadableTests.swift; sourceTree = "<group>"; };
 		3BA002C31F5C1596003BF855 /* ErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTests.swift; sourceTree = "<group>"; };
-		3BA002CD1F5C1A0A003BF855 /* Movie-null-poster-and-backdrop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Movie-null-poster-and-backdrop.json"; sourceTree = "<group>"; };
-		3BA002CE1F5C1A0A003BF855 /* Movie-null-poster.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Movie-null-poster.json"; sourceTree = "<group>"; };
-		3BA002CF1F5C1A0A003BF855 /* Movie-null-backdrop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "Movie-null-backdrop.json"; sourceTree = "<group>"; };
-		3BA002D01F5C1A0A003BF855 /* Movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Movie.json; sourceTree = "<group>"; };
+		3BA002CD1F5C1A0A003BF855 /* movie-null-poster-and-backdrop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "movie-null-poster-and-backdrop.json"; sourceTree = "<group>"; };
+		3BA002CE1F5C1A0A003BF855 /* movie-null-poster.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "movie-null-poster.json"; sourceTree = "<group>"; };
+		3BA002CF1F5C1A0A003BF855 /* movie-null-backdrop.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "movie-null-backdrop.json"; sourceTree = "<group>"; };
+		3BA002D01F5C1A0A003BF855 /* movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = movie.json; sourceTree = "<group>"; };
 		3BA002D11F5C1A7F003BF855 /* search-two-movies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "search-two-movies.json"; sourceTree = "<group>"; };
 		3BA002D21F5C1A7F003BF855 /* search-one-movie.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "search-one-movie.json"; sourceTree = "<group>"; };
 		3BBE81261F57CD3000042E14 /* CMDb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMDb.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -266,10 +266,10 @@
 		3BA002CC1F5C19F8003BF855 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
-				3BA002D01F5C1A0A003BF855 /* Movie.json */,
-				3BA002CE1F5C1A0A003BF855 /* Movie-null-poster.json */,
-				3BA002CF1F5C1A0A003BF855 /* Movie-null-backdrop.json */,
-				3BA002CD1F5C1A0A003BF855 /* Movie-null-poster-and-backdrop.json */,
+				3BA002D01F5C1A0A003BF855 /* movie.json */,
+				3BA002CE1F5C1A0A003BF855 /* movie-null-poster.json */,
+				3BA002CF1F5C1A0A003BF855 /* movie-null-backdrop.json */,
+				3BA002CD1F5C1A0A003BF855 /* movie-null-poster-and-backdrop.json */,
 			);
 			path = Movie;
 			sourceTree = "<group>";
@@ -629,10 +629,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B44DDFA1F5C3304003D72E7 /* Movie-null-poster-and-backdrop.json in Resources */,
-				3B44DDF81F5C3304003D72E7 /* Movie-null-poster.json in Resources */,
-				3B44DDF71F5C3304003D72E7 /* Movie.json in Resources */,
-				3B44DDF91F5C3304003D72E7 /* Movie-null-backdrop.json in Resources */,
+				3B44DDFA1F5C3304003D72E7 /* movie-null-poster-and-backdrop.json in Resources */,
+				3B44DDF81F5C3304003D72E7 /* movie-null-poster.json in Resources */,
+				3B44DDF71F5C3304003D72E7 /* movie.json in Resources */,
+				3B44DDF91F5C3304003D72E7 /* movie-null-backdrop.json in Resources */,
 				3B44DDF51F5C3301003D72E7 /* search-one-movie.json in Resources */,
 				3B44DDF61F5C3301003D72E7 /* search-two-movies.json in Resources */,
 			);
