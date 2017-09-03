@@ -1,0 +1,19 @@
+{
+    "adult": false,
+    "backdrop_path": null,
+    "genre_ids": [
+        14,
+        28
+    ],
+    "id": 268,
+    "original_language": "en",
+    "original_title": "Batman",
+    "overview": "The Dark Knight of Gotham City begins his war on crime with his first major enemy being the clownishly homicidal Joker, who has seized control of Gotham's underworld.",
+    "popularity": 11.032138,
+    "poster_path": "/kBf3g9crrADGMc2AMAMlLBgSm2h.jpg",
+    "release_date": "1989-06-23",
+    "title": "Batman",
+    "video": false,
+    "vote_average": 7,
+    "vote_count": 2012
+}
