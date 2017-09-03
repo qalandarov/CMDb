@@ -11,6 +11,7 @@
 		3B0FF0B41F589C2700D9CEB7 /* NetworkEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B01F589C2700D9CEB7 /* NetworkEngine.swift */; };
 		3B0FF0B51F589C2700D9CEB7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B11F589C2700D9CEB7 /* Result.swift */; };
 		3B0FF0B61F589C2700D9CEB7 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B31F589C2700D9CEB7 /* Error.swift */; };
+		3B26A4601F5B4E63009D8089 /* ImageDownloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26A45F1F5B4E63009D8089 /* ImageDownloadable.swift */; };
 		3B28A52C1F58AD17001AB217 /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28A52B1F58AD17001AB217 /* MovieGenre.swift */; };
 		3BBE812A1F57CD3000042E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81291F57CD3000042E14 /* AppDelegate.swift */; };
 		3BBE812F1F57CD3000042E14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE812D1F57CD3000042E14 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		3BF8C7FC1F5B3BA0009AF0F9 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8C7FB1F5B3BA0009AF0F9 /* ErrorResponse.swift */; };
 		3BF8C7FF1F5B3CA5009AF0F9 /* URLEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8C7FD1F5B3CA5009AF0F9 /* URLEncoder.swift */; };
 		3BF8C8001F5B3CA5009AF0F9 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8C7FE1F5B3CA5009AF0F9 /* Router.swift */; };
+		3BF8C8071F5B4481009AF0F9 /* ImageWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF8C8061F5B4481009AF0F9 /* ImageWidth.swift */; };
 		7636E3BFD94BD1FB4C6F9586 /* Pods_CMDbTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6FD5D4D53668FA3DAB0CD1 /* Pods_CMDbTests.framework */; };
 		C7B8FFB84F4D73B918BEDBDD /* Pods_CMDb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 655D940839D3E9E5F2E6E44A /* Pods_CMDb.framework */; };
 /* End PBXBuildFile section */
@@ -84,6 +86,7 @@
 		3B0FF0B01F589C2700D9CEB7 /* NetworkEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkEngine.swift; sourceTree = "<group>"; };
 		3B0FF0B11F589C2700D9CEB7 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3B0FF0B31F589C2700D9CEB7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		3B26A45F1F5B4E63009D8089 /* ImageDownloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadable.swift; sourceTree = "<group>"; };
 		3B28A52B1F58AD17001AB217 /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
 		3BBE81261F57CD3000042E14 /* CMDb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMDb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBE81291F57CD3000042E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		3BF8C7FB1F5B3BA0009AF0F9 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		3BF8C7FD1F5B3CA5009AF0F9 /* URLEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncoder.swift; sourceTree = "<group>"; };
 		3BF8C7FE1F5B3CA5009AF0F9 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		3BF8C8061F5B4481009AF0F9 /* ImageWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidth.swift; sourceTree = "<group>"; };
 		4B1EF73B1F56324832B194BA /* Pods-CMDb.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CMDb.release.xcconfig"; path = "Pods/Target Support Files/Pods-CMDb/Pods-CMDb.release.xcconfig"; sourceTree = "<group>"; };
 		4F6FD5D4D53668FA3DAB0CD1 /* Pods_CMDbTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMDbTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		655D940839D3E9E5F2E6E44A /* Pods_CMDb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CMDb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -326,6 +330,8 @@
 			isa = PBXGroup;
 			children = (
 				3BBE81831F588B9800042E14 /* C.swift */,
+				3B26A45F1F5B4E63009D8089 /* ImageDownloadable.swift */,
+				3BF8C8061F5B4481009AF0F9 /* ImageWidth.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -657,9 +663,11 @@
 				3B0FF0B51F589C2700D9CEB7 /* Result.swift in Sources */,
 				3BF8C8001F5B3CA5009AF0F9 /* Router.swift in Sources */,
 				3B0FF0AE1F589A9D00D9CEB7 /* Search.swift in Sources */,
+				3BF8C8071F5B4481009AF0F9 /* ImageWidth.swift in Sources */,
 				3BF8C7FF1F5B3CA5009AF0F9 /* URLEncoder.swift in Sources */,
 				3B0FF0B41F589C2700D9CEB7 /* NetworkEngine.swift in Sources */,
 				3B0FF0B61F589C2700D9CEB7 /* Error.swift in Sources */,
+				3B26A4601F5B4E63009D8089 /* ImageDownloadable.swift in Sources */,
 				3BBE818D1F588DA400042E14 /* Movie.swift in Sources */,
 				3B28A52C1F58AD17001AB217 /* MovieGenre.swift in Sources */,
 				3BF8C7FC1F5B3BA0009AF0F9 /* ErrorResponse.swift in Sources */,

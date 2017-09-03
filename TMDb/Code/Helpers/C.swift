@@ -15,5 +15,5 @@ func += <K, V> (left: inout [K:V], right: [K:V]) {
 }
 
 struct C {
-    
+    static let BaseImageURLString = "https://image.tmdb.org/t/p"
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Movie: Decodable {
+public struct Movie: Decodable, ImageDownloadable {
     public let id: Int
     public let title: String
     public let originalTitle: String
