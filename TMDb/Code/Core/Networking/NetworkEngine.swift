@@ -22,6 +22,10 @@ public class NetworkEngine {
     }
 
     public func searchMovie(query: String, page: Int = 1, completion: @escaping ResultCompletionGenericSearch<Movie>) {
+        guard !query.isEmpty else {
+            completion(.failure(.general(errorMsg: "Query must be provided")))
+            return
+        }
         fetch(resource: .searchMovie(query: query, page: page), completion: completion)
     }
     
