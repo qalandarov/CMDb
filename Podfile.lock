@@ -1,12 +1,25 @@
 PODS:
   - iCarousel (1.8.3)
+  - Kingfisher (3.10.4)
 
 DEPENDENCIES:
   - iCarousel
+  - Kingfisher (from `https://github.com/onevcat/Kingfisher`, branch `swift4`)
+
+EXTERNAL SOURCES:
+  Kingfisher:
+    :branch: swift4
+    :git: https://github.com/onevcat/Kingfisher
+
+CHECKOUT OPTIONS:
+  Kingfisher:
+    :commit: 8adf42e4ab95741238b6d42c1ce0b682555afab5
+    :git: https://github.com/onevcat/Kingfisher
 
 SPEC CHECKSUMS:
   iCarousel: d782f635afac190c49bb8ee455882284cff8b85f
+  Kingfisher: dbfac2b5dec4a531822e0ba8b571ce6010616075
 
-PODFILE CHECKSUM: bacfd11e217f40daefd4fc53f2b2333d253e69c0
+PODFILE CHECKSUM: e9a708a4ed2c8dae3a5fe8c2510361c99926f764
 
 COCOAPODS: 1.2.0
