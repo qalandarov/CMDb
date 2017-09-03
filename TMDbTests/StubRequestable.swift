@@ -29,4 +29,16 @@ extension StubRequestable {
         
         return nil
     }
+    
+    func decodable<T: Decodable>(from fileName: String) -> T? {
+        guard
+            let jsonData = requestJSONStub(with: fileName),
+            let decodable = try? JSONDecoder().decode(T.self, from: jsonData)
+            else {
+                assertionFailure("Couldn't get the stub")
+                return nil
+        }
+        
+        return decodable
+    }
 }

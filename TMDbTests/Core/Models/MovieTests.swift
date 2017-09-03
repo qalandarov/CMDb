@@ -12,7 +12,7 @@ import XCTest
 class MovieTests: XCTestCase, StubRequestable {
     
     func testMovie_Basic() {
-        guard let movie = self.movie(from: "movie") else { return }
+        guard let movie: Movie = decodable(from: "movie") else { return }
         
         XCTAssert(movie.id == 268)
         XCTAssert(movie.title == "Batman")
@@ -29,7 +29,7 @@ class MovieTests: XCTestCase, StubRequestable {
     }
     
     func testMovie_NilPoster() {
-        guard let movie = self.movie(from: "movie-null-poster") else { return }
+        guard let movie: Movie = decodable(from: "movie-null-poster") else { return }
         
         XCTAssert(movie.id == 268)
         XCTAssert(movie.title == "Batman")
@@ -46,7 +46,7 @@ class MovieTests: XCTestCase, StubRequestable {
     }
     
     func testMovie_NilBackdrop() {
-        guard let movie = self.movie(from: "movie-null-backdrop") else { return }
+        guard let movie: Movie = decodable(from: "movie-null-backdrop") else { return }
         
         XCTAssert(movie.id == 268)
         XCTAssert(movie.title == "Batman")
@@ -63,7 +63,7 @@ class MovieTests: XCTestCase, StubRequestable {
     }
     
     func testMovie_NilPosterAndBackdrop() {
-        guard let movie = self.movie(from: "movie-null-poster-and-backdrop") else { return }
+        guard let movie: Movie = decodable(from: "movie-null-poster-and-backdrop") else { return }
         
         XCTAssert(movie.id == 268)
         XCTAssert(movie.title == "Batman")
@@ -77,18 +77,6 @@ class MovieTests: XCTestCase, StubRequestable {
         XCTAssert(movie.popularity == 11.032138)
         XCTAssert(movie.overview == "The Dark Knight of Gotham City blah-blah-blah...")
         XCTAssert(movie.isVideo == false)
-    }
-    
-    private func movie(from fileName: String) -> Movie? {
-        guard
-            let jsonData = requestJSONStub(with: fileName),
-            let movie = try? JSONDecoder().decode(Movie.self, from: jsonData)
-            else {
-                XCTFail("Couldn't get the stub")
-                return nil
-        }
-        
-        return movie
     }
     
 }
