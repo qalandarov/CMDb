@@ -13,6 +13,7 @@
 		3B0FF0B61F589C2700D9CEB7 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0FF0B31F589C2700D9CEB7 /* Error.swift */; };
 		3B26A4601F5B4E63009D8089 /* ImageDownloadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B26A45F1F5B4E63009D8089 /* ImageDownloadable.swift */; };
 		3B28A52C1F58AD17001AB217 /* MovieGenre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28A52B1F58AD17001AB217 /* MovieGenre.swift */; };
+		3B33A3621F5C3693004DE594 /* MovieTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B33A3611F5C3693004DE594 /* MovieTests.swift */; };
 		3B44DDF51F5C3301003D72E7 /* search-one-movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002D21F5C1A7F003BF855 /* search-one-movie.json */; };
 		3B44DDF61F5C3301003D72E7 /* search-two-movies.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002D11F5C1A7F003BF855 /* search-two-movies.json */; };
 		3B44DDF71F5C3304003D72E7 /* movie.json in Resources */ = {isa = PBXBuildFile; fileRef = 3BA002D01F5C1A0A003BF855 /* movie.json */; };
@@ -100,6 +101,7 @@
 		3B0FF0B31F589C2700D9CEB7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		3B26A45F1F5B4E63009D8089 /* ImageDownloadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadable.swift; sourceTree = "<group>"; };
 		3B28A52B1F58AD17001AB217 /* MovieGenre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieGenre.swift; sourceTree = "<group>"; };
+		3B33A3611F5C3693004DE594 /* MovieTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTests.swift; sourceTree = "<group>"; };
 		3B44DDFB1F5C3362003D72E7 /* StubRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRequestable.swift; sourceTree = "<group>"; };
 		3B44DE041F5C342B003D72E7 /* SearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTests.swift; sourceTree = "<group>"; };
 		3BA002BC1F5C0897003BF855 /* ImageWidthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWidthTests.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				3B44DE041F5C342B003D72E7 /* SearchTests.swift */,
+				3B33A3611F5C3693004DE594 /* MovieTests.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -782,6 +785,7 @@
 				3B44DE051F5C342E003D72E7 /* SearchTests.swift in Sources */,
 				3BA002C41F5C1596003BF855 /* ErrorTests.swift in Sources */,
 				3BBE81721F5889D800042E14 /* TMDbTests.swift in Sources */,
+				3B33A3621F5C3693004DE594 /* MovieTests.swift in Sources */,
 				3B44DDFC1F5C3363003D72E7 /* StubRequestable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
