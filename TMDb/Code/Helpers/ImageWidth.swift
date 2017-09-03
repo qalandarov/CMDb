@@ -20,7 +20,7 @@ public enum ImageWidth: String {
         }
     }
     
-    public var height: Int {
+    public var posterHeight: Int {
         switch self {
         case .w92:  return 135
         case .w185: return 278
@@ -29,7 +29,20 @@ public enum ImageWidth: String {
         }
     }
     
-    public var size: CGSize {
-        return CGSize(width: width, height: height)
+    public var backdropHeight: Int {
+        switch self {
+        case .w92:  return 52
+        case .w185: return 104
+        case .w500: return 281
+        case .w780: return 439
+        }
+    }
+    
+    public var posterSize: CGSize {
+        return CGSize(width: width, height: posterHeight)
+    }
+    
+    public var backdropSize: CGSize {
+        return CGSize(width: width, height: backdropHeight)
     }
 }

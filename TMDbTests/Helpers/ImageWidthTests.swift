@@ -18,30 +18,58 @@ class ImageWidthTests: XCTestCase {
         XCTAssert(ImageWidth.w780.rawValue == "w780")
     }
     
-    func test92() {
-        validate(.w92, width: 92, height: 135)
+    // Poster
+    func test92Poster() {
+        validatePoster(.w92, width: 92, height: 135)
     }
     
-    func test185() {
-        validate(.w185, width: 185, height: 278)
+    func test185Poster() {
+        validatePoster(.w185, width: 185, height: 278)
     }
     
-    func test500() {
-        validate(.w500, width: 500, height: 735)
+    func test500Poster() {
+        validatePoster(.w500, width: 500, height: 735)
     }
     
-    func test780() {
-        validate(.w780, width: 780, height: 1147)
+    func test780Poster() {
+        validatePoster(.w780, width: 780, height: 1147)
     }
     
-    private func validate(_ imageWidth: ImageWidth, width: Int, height: Int) {
+    private func validatePoster(_ imageWidth: ImageWidth, width: Int, height: Int) {
         XCTAssert(imageWidth.width == width)
-        XCTAssert(imageWidth.height == height)
-        XCTAssert(imageWidth.size == CGSize(width: width, height: height))
+        XCTAssert(imageWidth.posterHeight == height)
+        XCTAssert(imageWidth.posterSize == CGSize(width: width, height: height))
         
         XCTAssertFalse(imageWidth.width == 123)
-        XCTAssertFalse(imageWidth.height == 456)
-        XCTAssertFalse(imageWidth.size == CGSize(width: 123, height: 456))
+        XCTAssertFalse(imageWidth.posterHeight == 456)
+        XCTAssertFalse(imageWidth.posterSize == CGSize(width: 123, height: 456))
+    }
+    
+    // Backdrop
+    func test92Backdrop() {
+        validateBackdrop(.w92, width: 92, height: 52)
+    }
+    
+    func test185Backdrop() {
+        validateBackdrop(.w185, width: 185, height: 104)
+    }
+    
+    func test500Backdrop() {
+        validateBackdrop(.w500, width: 500, height: 281)
+    }
+    
+    func test780Backdrop() {
+        validateBackdrop(.w780, width: 780, height: 439)
+    }
+    
+    private func validateBackdrop(_ imageWidth: ImageWidth, width: Int, height: Int) {
+        XCTAssert(imageWidth.width == width)
+        XCTAssert(imageWidth.backdropHeight == height)
+        XCTAssert(imageWidth.backdropSize == CGSize(width: width, height: height))
+        
+        XCTAssertFalse(imageWidth.width == 123)
+        XCTAssertFalse(imageWidth.backdropHeight == 456)
+        XCTAssertFalse(imageWidth.backdropSize == CGSize(width: 123, height: 456))
     }
     
 }
