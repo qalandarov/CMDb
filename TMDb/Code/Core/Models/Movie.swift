@@ -8,6 +8,11 @@
 
 import Foundation
 
+/*
+ *  Assuming that only posterPath and backdropPath properties are optional
+ *  and assuming that the data types are correct
+ */
+
 public struct Movie: Decodable, ImageDownloadable {
     public let id: Int
     public let title: String

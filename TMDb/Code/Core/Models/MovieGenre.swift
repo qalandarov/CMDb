@@ -8,6 +8,11 @@
 
 import Foundation
 
+/*
+ *  Assuming that this list covers all of the genres
+ *  If the server returns something that's not in this list - parsing will fail
+ */
+
 public enum MovieGenre: Int, Decodable {
     case action = 28
     case adventure = 12
