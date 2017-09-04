@@ -11,6 +11,36 @@ import iCarousel
 import TMDb
 import Kingfisher
 
+enum MovieSection: Int {
+    case topRated
+    case popular
+    
+    var title: String {
+        switch self {
+        case .topRated:     return "Top Rated >"
+        case .popular:      return "Popular >"
+        }
+    }
+    
+    var urls: [URL]? {
+        switch self {
+        case .topRated:     return urls(from: MovieSection.topRatedMovies)
+        case .popular:      return urls(from: MovieSection.popularMovies)
+        }
+    }
+    
+    private func urls(from movies: [Movie]?) -> [URL]? {
+        return movies?.flatMap({ $0.backdropURL(width: .w500) })
+    }
+    
+    static var all: [MovieSection] {
+        return [.topRated, .popular]
+    }
+    
+    static var topRatedMovies: [Movie]?
+    static var popularMovies: [Movie]?
+}
+
 class HomeTVC: UITableViewController {
 
     @IBOutlet weak var bgCarousel: iCarousel!
@@ -48,6 +78,7 @@ class HomeTVC: UITableViewController {
         tableView.tableFooterView = UIView(frame: invisibleFrame)
         
         networkCall()
+        fetchAllSections()
     }
     
     private func networkCall() {
@@ -62,15 +93,40 @@ class HomeTVC: UITableViewController {
             }
         }
     }
+    
+    func fetchAllSections() {
+        movies(type: .toprated) { MovieSection.topRatedMovies = $0.value }
+        movies(type: .popular)  { MovieSection.popularMovies = $0.value }
+    }
+    
+    private func movies(type: MovieSectionType, completion: @escaping ResultCompletionMovies) {
+        network.movies(type: type) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let search):
+                    let movies = search.results.filter { $0.backdropPath != nil }
+                    completion(.success(movies))
+                    self?.tableView.reloadData()
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
 
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moviesCount
+        return MovieSection.all.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableView.dequeueReusableCell(withIdentifier: "MovieSectionTableCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieSectionTableCell", for: indexPath) as! MovieSectionTableCell
+        
+        let section = MovieSection(rawValue: indexPath.row)
+        cell.configure(with: section)
+        
+        return cell
     }
     
 }
