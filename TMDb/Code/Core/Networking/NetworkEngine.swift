@@ -9,6 +9,7 @@
 import Foundation
 
 public typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
+public typealias ResultCompletionMovies = (Result<[Movie]>) -> Void
 public typealias ResultCompletionSearchMovie = (Result<Search<Movie>>) -> Void
 public typealias ResultCompletionGenericSearch<T: Decodable> = (Result<Search<T>>) -> Void
 
