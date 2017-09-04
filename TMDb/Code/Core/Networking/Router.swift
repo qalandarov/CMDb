@@ -22,6 +22,7 @@ enum Router {
     private static var apiKey = "2696829a81b1b5827d515ff121700838"
     
     case searchMovie(query: String, page: Int)
+    case movies(type: MovieSectionType)
     
     private var method: HTTPMethod {
         return .get
@@ -35,6 +36,8 @@ enum Router {
         switch self {
         case .searchMovie:
             return "/search/movie"
+        case .movies(let type):
+            return "/movie/" + type.rawValue
         }
     }
     
@@ -44,6 +47,8 @@ enum Router {
         switch self {
         case .searchMovie(let query, let page):
             params += ["query" : query, "page" : page]
+        case .movies:
+            break
         }
         
         return params
