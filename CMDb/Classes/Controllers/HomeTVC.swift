@@ -84,7 +84,7 @@ extension HomeTVC: iCarouselDataSource {
         let bg = carousel == bgCarousel
         let frame = bg ? carousel.frame : placeholderView.frame
         let posterView = view as? UIImageView ?? UIImageView(frame: frame)
-        posterView.setImage(with: movies![index])
+        posterView.setPosterImage(with: movies![index])
         return posterView
     }
 }
@@ -96,9 +96,16 @@ extension HomeTVC: iCarouselDelegate {
 }
 
 extension UIImageView {
-    func setImage(with movie: Movie) {
+    func setPosterImage(with movie: Movie, width: ImageWidth = .w185) {
+        setImage(with: movie.posterURL(width: width))
+    }
+    
+    func setBackdropImage(with movie: Movie, width: ImageWidth = .w500) {
+        setImage(with: movie.backdropURL(width: width))
+    }
+    
+    func setImage(with url: URL?) {
         kf.cancelDownloadTask()
-        let url = movie.posterURL(width: .w185)
         kf.indicatorType = .activity
         kf.setImage(with: url)
     }
