@@ -83,13 +83,11 @@ class HomeTVC: UITableViewController {
     
     private func networkCall() {
         network.movies(type: .upcoming) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let search):
-                    self?.movies = search.results.filter { $0.posterPath != nil }
-                case .failure(let error):
-                    print("error: \(error.string)")
-                }
+            switch result {
+            case .success(let search):
+                self?.movies = search.results.filter { $0.posterPath != nil }
+            case .failure(let error):
+                print("error: \(error.string)")
             }
         }
     }
@@ -101,15 +99,13 @@ class HomeTVC: UITableViewController {
     
     private func movies(type: MovieSectionType, completion: @escaping ResultCompletionMovies) {
         network.movies(type: type) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let search):
-                    let movies = search.results.filter { $0.backdropPath != nil }
-                    completion(.success(movies))
-                    self?.tableView.reloadData()
-                case .failure(let error):
-                    completion(.failure(error))
-                }
+            switch result {
+            case .success(let search):
+                let movies = search.results.filter { $0.backdropPath != nil }
+                completion(.success(movies))
+                self?.tableView.reloadData()
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
