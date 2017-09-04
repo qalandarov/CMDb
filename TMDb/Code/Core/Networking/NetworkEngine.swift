@@ -9,6 +9,7 @@
 import Foundation
 
 public typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
+public typealias ResultCompletionSearchMovie = (Result<Search<Movie>>) -> Void
 public typealias ResultCompletionGenericSearch<T: Decodable> = (Result<Search<T>>) -> Void
 
 public class NetworkEngine {
@@ -27,6 +28,10 @@ public class NetworkEngine {
             return
         }
         fetch(resource: .searchMovie(query: query, page: page), completion: completion)
+    }
+    
+    public func movies(type: MovieSectionType, completion: @escaping ResultCompletionSearchMovie) {
+        fetch(resource: .movies(type: type), completion: completion)
     }
     
     func fetch<T: Decodable>(resource: Router, completion: @escaping ResultCompletionGeneric<T>) {
