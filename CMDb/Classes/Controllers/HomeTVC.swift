@@ -51,7 +51,7 @@ class HomeTVC: UITableViewController {
     }
     
     private func networkCall() {
-        network.searchMovie(query: "batman") { [weak self] (result) in
+        network.movies(type: .upcoming) { [weak self] result in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let search):
