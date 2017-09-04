@@ -23,6 +23,24 @@ public enum Result<T> {
         return !isSuccess
     }
     
+    public var value: T? {
+        switch self {
+        case .success(let value):
+            return value
+        case .failure:
+            return nil
+        }
+    }
+    
+    public var error: Error? {
+        switch self {
+        case .success:
+            return nil
+        case .failure(let error):
+            return error
+        }
+    }
+    
     // f is a function that when proccessed returns a specific value (U)
     public func map<U>(_ f: (T) -> U) -> Result<U> {
         switch self {
