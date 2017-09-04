@@ -31,7 +31,7 @@
         <scene sceneID="xfK-HC-z6V">
             <objects>
                 <tableViewController storyboardIdentifier="HomeTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JKH-93-WwZ" customClass="HomeTVC" customModule="CMDb" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bD8-S7-vhq">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bD8-S7-vhq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -84,41 +84,87 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MovieSectionTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieSectionTableCell" rowHeight="227" id="Rcl-vn-JI3" customClass="MovieSectionTableCell" customModule="CMDb" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="406" width="320" height="227"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MovieSectionTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieSectionTableCell" rowHeight="224" id="Rcl-vn-JI3" customClass="MovieSectionTableCell" customModule="CMDb" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="406" width="320" height="224"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rcl-vn-JI3" id="ghf-j1-UHb">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="226.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33G-L7-4gm">
-                                            <rect key="frame" x="15" y="8" width="290" height="30.5"/>
-                                            <state key="normal" title="Section &gt;">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                        <view contentMode="scaleToFill" restorationIdentifier="MovieCellCarousel" translatesAutoresizingMaskIntoConstraints="NO" id="mW9-ws-V2M" customClass="iCarousel">
-                                            <rect key="frame" x="0.0" y="46.5" width="320" height="180"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <view contentMode="scaleToFill" restorationIdentifier="MovieCellCarousel" translatesAutoresizingMaskIntoConstraints="NO" id="mW9-ws-V2M">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v0y-NM-dxj" customClass="iCarousel">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ie-ni-CB9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+                                                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="4ns-Vf-aTQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vHn-Cs-BkQ">
+                                                                <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="voL-i7-VeO">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="224"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                </view>
+                                                                <vibrancyEffect>
+                                                                    <blurEffect style="light"/>
+                                                                </vibrancyEffect>
+                                                            </visualEffectView>
+                                                        </subviews>
+                                                    </view>
+                                                    <blurEffect style="light"/>
+                                                </visualEffectView>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33G-L7-4gm">
+                                                    <rect key="frame" x="15" y="8" width="290" height="30"/>
+                                                    <state key="normal" title="Section &gt;">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RDh-Ja-bGX" customClass="iCarousel">
+                                                    <rect key="frame" x="15" y="46" width="290" height="163"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="RDh-Ja-bGX" secondAttribute="height" multiplier="16:9" id="apF-cj-vtV"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" secondItem="mW9-ws-V2M" secondAttribute="height" multiplier="16:9" id="T5T-1m-HCP"/>
+                                                <constraint firstItem="33G-L7-4gm" firstAttribute="top" secondItem="mW9-ws-V2M" secondAttribute="top" constant="8" id="8D6-VW-80b"/>
+                                                <constraint firstItem="v0y-NM-dxj" firstAttribute="top" secondItem="mW9-ws-V2M" secondAttribute="top" id="E7u-gA-aJy"/>
+                                                <constraint firstItem="1Ie-ni-CB9" firstAttribute="top" secondItem="v0y-NM-dxj" secondAttribute="top" id="F5p-M3-CEu"/>
+                                                <constraint firstAttribute="bottom" secondItem="v0y-NM-dxj" secondAttribute="bottom" id="Fz0-v3-rbT"/>
+                                                <constraint firstItem="RDh-Ja-bGX" firstAttribute="leading" secondItem="33G-L7-4gm" secondAttribute="leading" id="GVG-Ci-1d5"/>
+                                                <constraint firstAttribute="trailing" secondItem="33G-L7-4gm" secondAttribute="trailing" constant="15" id="g39-82-Q3S"/>
+                                                <constraint firstItem="1Ie-ni-CB9" firstAttribute="trailing" secondItem="v0y-NM-dxj" secondAttribute="trailing" id="mtU-sj-GOc"/>
+                                                <constraint firstAttribute="bottom" secondItem="RDh-Ja-bGX" secondAttribute="bottom" constant="15" id="njM-fF-cHc"/>
+                                                <constraint firstItem="1Ie-ni-CB9" firstAttribute="bottom" secondItem="v0y-NM-dxj" secondAttribute="bottom" id="oDL-UY-QR5"/>
+                                                <constraint firstItem="1Ie-ni-CB9" firstAttribute="leading" secondItem="v0y-NM-dxj" secondAttribute="leading" id="q3f-ss-bLP"/>
+                                                <constraint firstItem="RDh-Ja-bGX" firstAttribute="top" secondItem="33G-L7-4gm" secondAttribute="bottom" constant="8" symbolic="YES" id="quO-bw-KIs"/>
+                                                <constraint firstItem="RDh-Ja-bGX" firstAttribute="trailing" secondItem="33G-L7-4gm" secondAttribute="trailing" id="sTN-hu-Wii"/>
+                                                <constraint firstAttribute="trailing" secondItem="v0y-NM-dxj" secondAttribute="trailing" id="yT1-nR-Hrs"/>
+                                                <constraint firstItem="33G-L7-4gm" firstAttribute="leading" secondItem="mW9-ws-V2M" secondAttribute="leading" constant="15" id="ycy-Ug-2NN"/>
+                                                <constraint firstItem="v0y-NM-dxj" firstAttribute="leading" secondItem="mW9-ws-V2M" secondAttribute="leading" id="yr3-1R-74a"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="mW9-ws-V2M" secondAttribute="bottom" id="1ll-PI-lRk"/>
-                                        <constraint firstItem="mW9-ws-V2M" firstAttribute="top" secondItem="33G-L7-4gm" secondAttribute="bottom" constant="8" symbolic="YES" id="2Dk-tV-SQM"/>
-                                        <constraint firstItem="33G-L7-4gm" firstAttribute="leading" secondItem="ghf-j1-UHb" secondAttribute="leading" constant="15" id="6GY-XJ-yWg"/>
-                                        <constraint firstItem="33G-L7-4gm" firstAttribute="top" secondItem="ghf-j1-UHb" secondAttribute="top" constant="8" id="EoE-qM-dy0"/>
-                                        <constraint firstAttribute="trailing" secondItem="33G-L7-4gm" secondAttribute="trailing" constant="15" id="Ev9-uf-cYD"/>
                                         <constraint firstItem="mW9-ws-V2M" firstAttribute="leading" secondItem="ghf-j1-UHb" secondAttribute="leading" id="J5q-iB-P4o"/>
+                                        <constraint firstItem="mW9-ws-V2M" firstAttribute="top" secondItem="ghf-j1-UHb" secondAttribute="top" id="Lgu-DN-FTh"/>
                                         <constraint firstAttribute="trailing" secondItem="mW9-ws-V2M" secondAttribute="trailing" id="TTA-8s-NKs"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="carousel" destination="mW9-ws-V2M" id="agc-xk-uhz"/>
-                                    <outlet property="titleButton" destination="33G-L7-4gm" id="1wY-O4-czJ"/>
+                                    <outlet property="bgCarousel" destination="v0y-NM-dxj" id="cis-N5-ZGv"/>
+                                    <outlet property="carousel" destination="RDh-Ja-bGX" id="YYz-RO-zcS"/>
+                                    <outlet property="titleButton" destination="33G-L7-4gm" id="kBS-yo-8at"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

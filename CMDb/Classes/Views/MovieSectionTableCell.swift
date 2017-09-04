@@ -12,6 +12,7 @@ import iCarousel
 class MovieSectionTableCell: UITableViewCell {
     
     @IBOutlet weak var titleButton: UIButton!
+    @IBOutlet weak var bgCarousel: iCarousel!
     @IBOutlet weak var carousel: iCarousel!
     
 }
