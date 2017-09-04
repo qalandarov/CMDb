@@ -55,6 +55,12 @@
                                     <rect key="frame" x="0.0" y="50" width="320" height="278"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfr-8u-mY0">
+                                    <rect key="frame" x="118" y="336" width="84" height="30"/>
+                                    <state key="normal" title="Upcoming &gt;">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
                                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3e2-lI-cjo">
                                     <rect key="frame" x="67.5" y="50" width="185" height="278"/>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -68,8 +74,10 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="L7U-yZ-pzA" secondAttribute="trailing" id="D97-9U-qaO"/>
                                 <constraint firstItem="L7U-yZ-pzA" firstAttribute="bottom" secondItem="3e2-lI-cjo" secondAttribute="bottom" id="Dts-bk-k9W"/>
+                                <constraint firstItem="Tfr-8u-mY0" firstAttribute="top" secondItem="L7U-yZ-pzA" secondAttribute="bottom" constant="8" symbolic="YES" id="Fom-Fr-fys"/>
                                 <constraint firstItem="boB-UZ-oOv" firstAttribute="top" secondItem="6fZ-2o-UW3" secondAttribute="top" id="IL9-zJ-PL2"/>
                                 <constraint firstItem="L7U-yZ-pzA" firstAttribute="leading" secondItem="Etz-rf-dSg" secondAttribute="leading" id="JGh-JC-NGo"/>
+                                <constraint firstItem="Tfr-8u-mY0" firstAttribute="centerX" secondItem="Etz-rf-dSg" secondAttribute="centerX" id="Nuh-rq-4Cn"/>
                                 <constraint firstItem="3e2-lI-cjo" firstAttribute="top" secondItem="Etz-rf-dSg" secondAttribute="top" constant="50" id="OBX-SK-ugA"/>
                                 <constraint firstItem="6fZ-2o-UW3" firstAttribute="top" secondItem="Etz-rf-dSg" secondAttribute="top" id="PXS-n7-Ekg"/>
                                 <constraint firstItem="boB-UZ-oOv" firstAttribute="trailing" secondItem="6fZ-2o-UW3" secondAttribute="trailing" id="Q5C-UW-O4c"/>
