@@ -14,11 +14,11 @@ public protocol ImageDownloadable {
 }
 
 extension ImageDownloadable {
-    public func posterURL(width: ImageWidth) -> URL? {
+    public func posterURL(width: ImageWidth = .w185) -> URL? {
         return url(for: posterPath, width: width)
     }
     
-    public func backdropURL(width: ImageWidth) -> URL? {
+    public func backdropURL(width: ImageWidth = .w500) -> URL? {
         return url(for: backdropPath, width: width)
     }
     
