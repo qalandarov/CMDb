@@ -41,7 +41,7 @@ enum MovieSection: Int {
     static var popularMovies: [Movie]?
 }
 
-class HomeTVC: UITableViewController {
+class HomeTVC: UITableViewController, SegueHandlerType {
 
     @IBOutlet weak var bgCarousel: iCarousel!
     @IBOutlet weak var carousel: iCarousel!
@@ -52,6 +52,12 @@ class HomeTVC: UITableViewController {
             carousel.reloadData()
             bgCarousel.reloadData()
             carousel.currentItemIndex = Int(moviesCount / 2)
+        }
+    }
+    
+    private var selectedMovie: Movie? {
+        didSet {
+            performSegue(.movieDetails, sender: self)
         }
     }
     
@@ -109,6 +115,35 @@ class HomeTVC: UITableViewController {
             }
         }
     }
+    
+    // MARK: - Navigation
+    
+    enum SegueIdentifier: String, SegueValidatable {
+        case movieDetails
+        
+        var expectedType: UIViewController.Type {
+            switch self {
+            case .movieDetails: return MovieDetailsVC.self
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueID = segueIdentifier(for: segue) else { return }
+        
+        switch segueID {
+        case .movieDetails:
+            guard
+                let movie = selectedMovie,
+                let detailsVC = segueID.destination(from: segue, as: MovieDetailsVC.self)
+                else {
+                    return
+            }
+            
+            detailsVC.title = movie.title
+            detailsVC.imageURL = movie.backdropURL()
+        }
+    }
 
     // MARK: - Table view data source
 
@@ -144,6 +179,12 @@ extension HomeTVC: iCarouselDataSource {
 extension HomeTVC: iCarouselDelegate {
     func carouselDidScroll(_ carousel: iCarousel) {
         bgCarousel.scrollOffset = carousel.scrollOffset
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        if index == carousel.currentItemIndex {
+            selectedMovie = movies?[index]
+        }
     }
 }
 
