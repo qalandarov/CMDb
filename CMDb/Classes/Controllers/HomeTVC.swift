@@ -30,7 +30,7 @@ enum MovieSection: Int {
     }
     
     private func urls(from movies: [Movie]?) -> [URL]? {
-        return movies?.flatMap({ $0.backdropURL(width: .w500) })
+        return movies?.flatMap({ $0.backdropURL() })
     }
     
     static var all: [MovieSection] {
