@@ -9,13 +9,6 @@
 
 import UIKit
 
-/// Protocol that helps to validate if a segue is valid and that a view controller has handled it
-protocol SegueValidatable: RawRepresentable {
-    var expectedType: UIViewController.Type { get }
-    func isValid(_ segue: UIStoryboardSegue) -> Bool
-    func destination<T: UIViewController>(from segue: UIStoryboardSegue) -> T?
-}
-
 /// Protocol that enforces a conforming type to have SegueIdentifer (enum) which would help to handle segues
 protocol SegueHandlerType {
     associatedtype SegueIdentifier: SegueValidatable
