@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13156.2"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -186,11 +187,54 @@
                         <outlet property="bgCarousel" destination="6fZ-2o-UW3" id="86s-BG-YKz"/>
                         <outlet property="carousel" destination="L7U-yZ-pzA" id="WTt-Ed-cUm"/>
                         <outlet property="placeholderView" destination="3e2-lI-cjo" id="4J6-vz-2sP"/>
+                        <segue destination="Ttc-wH-APZ" kind="show" identifier="movieDetails" id="Z2A-LC-y1N"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nh1-KT-KPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="532.5" y="167.95774647887325"/>
+        </scene>
+        <!--Movie Details-->
+        <scene sceneID="8vQ-Bx-RfK">
+            <objects>
+                <viewController id="Ttc-wH-APZ" customClass="MovieDetailsVC" customModule="CMDb" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tri-VC-dMV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LEj-BB-7sc">
+                                <rect key="frame" x="0.0" y="64" width="320" height="180"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ret-X9-GPF">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Ret-X9-GPF" firstAttribute="leading" secondItem="LEj-BB-7sc" secondAttribute="leading" id="Kn6-Ks-Jo9"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ret-X9-GPF" secondAttribute="bottom" id="cst-1C-Ung"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ret-X9-GPF" secondAttribute="trailing" id="dWG-Vd-fya"/>
+                                    <constraint firstItem="Ret-X9-GPF" firstAttribute="top" secondItem="LEj-BB-7sc" secondAttribute="top" id="j5K-wV-KRk"/>
+                                    <constraint firstAttribute="width" secondItem="LEj-BB-7sc" secondAttribute="height" multiplier="16:9" id="vDx-pc-MnP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LEj-BB-7sc" firstAttribute="top" secondItem="IJg-Q9-8yI" secondAttribute="top" id="2fu-ht-WTe"/>
+                            <constraint firstItem="LEj-BB-7sc" firstAttribute="leading" secondItem="IJg-Q9-8yI" secondAttribute="leading" id="RnV-rC-4jd"/>
+                            <constraint firstItem="IJg-Q9-8yI" firstAttribute="trailing" secondItem="LEj-BB-7sc" secondAttribute="trailing" id="ZjC-0Q-lal"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="IJg-Q9-8yI"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Movie Details" id="cgY-20-ZK4"/>
+                    <connections>
+                        <outlet property="imageView" destination="Ret-X9-GPF" id="p63-Ff-OQd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cqW-2H-Mto" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1313" y="168"/>
         </scene>
     </scenes>
 </document>
