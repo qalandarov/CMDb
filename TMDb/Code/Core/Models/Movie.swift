@@ -26,6 +26,11 @@ public struct Movie: Decodable, ImageDownloadable {
     public let popularity: CGFloat
     public let overview: String
     public let isVideo: Bool
+    
+    // Temp solution, release date should be date
+    public var releaseYear: String {
+        return String(releaseDate.prefix(4))
+    }
 
     enum CodingKeys: String, CodingKey {
         case id
