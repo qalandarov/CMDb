@@ -7,16 +7,27 @@
 //
 
 import UIKit
+import TMDb
 
 class MovieDetailsVC: UIViewController {
     
+    @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     
-    var imageURL: URL?
+    var movie: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.setImage(with: imageURL)
+        prepareUI()
+    }
+    
+    private func prepareUI() {
+        guard let movie = movie else { return }
+        
+        title = movie.title + " (\(movie.releaseYear))" // title + (YYYY)
+        
+        bgImageView.setPosterImage(with: movie)
+        imageView.setBackdropImage(with: movie)
     }
     
 }

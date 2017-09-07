@@ -140,8 +140,7 @@ class HomeTVC: UITableViewController, SegueHandlerType {
                     return
             }
             
-            detailsVC.title = movie.title
-            detailsVC.imageURL = movie.backdropURL()
+            detailsVC.movie = movie
         }
     }
 
