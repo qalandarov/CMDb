@@ -8,6 +8,158 @@
         "poster_path": "/uumu3Xj1ME1632SCsyVJwITgOKZ.jpg"
     },
     "budget": 0,
+    "credits": {
+        "cast": [
+            {
+                "cast_id": 0,
+                "character": "Johnny Rico (voice)",
+                "credit_id": "5936e2759251417256000754",
+                "gender": 2,
+                "id": 27763,
+                "name": "Casper Van Dien",
+                "order": 1,
+                "profile_path": "/ktJIgsilxxQeOvA9I789veHnDnt.jpg"
+            },
+            {
+                "cast_id": 1,
+                "character": "Dizzy Flores (voice)",
+                "credit_id": "5936e28fc3a3684c28000764",
+                "gender": 1,
+                "id": 2133,
+                "name": "Dina Meyer",
+                "order": 2,
+                "profile_path": "/a208ijs7X3u8lPzKWHeXSp3PiMd.jpg"
+            },
+            {
+                "cast_id": 4,
+                "character": "One-Oh-One (voice)",
+                "credit_id": "59934127925141540e002308",
+                "gender": 2,
+                "id": 11827,
+                "name": "DeRay Davis",
+                "order": 3,
+                "profile_path": "/w2JYPRLwXhNCpxpJc2v4UQYyMv8.jpg"
+            },
+            {
+                "cast_id": 6,
+                "character": "Carl Jenkins",
+                "credit_id": "599c355592514126ae00ae56",
+                "gender": 2,
+                "id": 149565,
+                "name": "Justin Doran",
+                "order": 4,
+                "profile_path": "/7vSQC6f5GPUfKRvx1WhmfXYDYmv.jpg"
+            },
+            {
+                "cast_id": 7,
+                "character": "Carmen Ibanez",
+                "credit_id": "599c356bc3a36878b300958d",
+                "gender": 0,
+                "id": 201838,
+                "name": "Luci Christian",
+                "order": 5,
+                "profile_path": "/ceYu0OkR0NkjqaLQDlmQsUXjycl.jpg"
+            },
+            {
+                "cast_id": 8,
+                "character": "Sky Marshal Amy Snapp",
+                "credit_id": "599c35919251410e67013a6d",
+                "gender": 0,
+                "id": 1081918,
+                "name": "Emily Neves",
+                "order": 6,
+                "profile_path": "/5cgt8tnzpTZwVFtTDq6Ujz9FCip.jpg"
+            },
+            {
+                "cast_id": 9,
+                "character": "Lieutenant Baba",
+                "credit_id": "599c35cf9251410e2101447c",
+                "gender": 0,
+                "id": 1874467,
+                "name": "Scott Gibbs",
+                "order": 7,
+                "profile_path": null
+            },
+            {
+                "cast_id": 10,
+                "character": "Camacho",
+                "credit_id": "599c35f39251410e67013b91",
+                "gender": 0,
+                "id": 1467456,
+                "name": "Juliet Simmons",
+                "order": 8,
+                "profile_path": null
+            },
+            {
+                "cast_id": 11,
+                "character": "Dutch",
+                "credit_id": "599c36109251410e32013431",
+                "gender": 0,
+                "id": 1874468,
+                "name": "Chris Gibson",
+                "order": 9,
+                "profile_path": null
+            },
+            {
+                "cast_id": 12,
+                "character": "Ratzass",
+                "credit_id": "599c362fc3a368228c013987",
+                "gender": 0,
+                "id": 1466426,
+                "name": "Leraldo Anzaldua",
+                "order": 10,
+                "profile_path": null
+            },
+            {
+                "cast_id": 13,
+                "character": "Geo",
+                "credit_id": "599c3643c3a36823260134ff",
+                "gender": 0,
+                "id": 181905,
+                "name": "Greg Ayres",
+                "order": 11,
+                "profile_path": "/hT9qE6svXN7zBOjwOikIhKwYLhe.jpg"
+            }
+        ],
+        "crew": [
+            {
+                "credit_id": "5993415cc3a3687eda0022ed",
+                "department": "Directing",
+                "gender": 0,
+                "id": 1870387,
+                "job": "Co-Director",
+                "name": "Masaru Matsumoto",
+                "profile_path": null
+            },
+            {
+                "credit_id": "598a7471c3a36824e20147e5",
+                "department": "Directing",
+                "gender": 0,
+                "id": 70100,
+                "job": "Director",
+                "name": "Shinji Aramaki",
+                "profile_path": "/o55bdhuHfQeSoCihjUD8Jml6Ngz.jpg"
+            },
+            {
+                "credit_id": "598a74b29251414bb40233b2",
+                "department": "Writing",
+                "gender": 2,
+                "id": 7722,
+                "job": "Writer",
+                "name": "Edward Neumeier",
+                "profile_path": null
+            },
+            {
+                "credit_id": "599c36969251410e210146b7",
+                "department": "Sound",
+                "gender": 0,
+                "id": 1083854,
+                "job": "Music",
+                "name": "Tetsuya Takahashi",
+                "profile_path": null
+            }
+        ]
+    },
     "genres": [
         {
             "id": 28,
