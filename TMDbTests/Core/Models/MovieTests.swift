@@ -49,7 +49,24 @@ class MovieTests: XCTestCase, StubRequestable {
         XCTAssert(movie.isVideo == false)
         
         // Credits
-        XCTAssertNil(movie.credits)
+        let credits = movie.credits!
+        XCTAssert(credits.cast.count == 11)
+        XCTAssert(credits.cast[0].profilePath == "/ktJIgsilxxQeOvA9I789veHnDnt.jpg")
+        XCTAssert(credits.cast[1].profilePath == "/a208ijs7X3u8lPzKWHeXSp3PiMd.jpg")
+        XCTAssert(credits.cast[2].profilePath == "/w2JYPRLwXhNCpxpJc2v4UQYyMv8.jpg")
+        XCTAssert(credits.cast[3].profilePath == "/7vSQC6f5GPUfKRvx1WhmfXYDYmv.jpg")
+        XCTAssert(credits.cast[4].profilePath == "/ceYu0OkR0NkjqaLQDlmQsUXjycl.jpg")
+        XCTAssert(credits.cast[5].profilePath == "/5cgt8tnzpTZwVFtTDq6Ujz9FCip.jpg")
+        XCTAssert(credits.cast[6].profilePath == nil)
+        XCTAssert(credits.cast[7].profilePath == nil)
+        XCTAssert(credits.cast[8].profilePath == nil)
+        XCTAssert(credits.cast[9].profilePath == nil)
+        XCTAssert(credits.cast[10].profilePath == "/hT9qE6svXN7zBOjwOikIhKwYLhe.jpg")
+        XCTAssert(credits.crew.count == 4)
+        XCTAssert(credits.crew[0].profilePath == nil)
+        XCTAssert(credits.crew[1].profilePath == "/o55bdhuHfQeSoCihjUD8Jml6Ngz.jpg")
+        XCTAssert(credits.crew[2].profilePath == nil)
+        XCTAssert(credits.crew[3].profilePath == nil)
         
         // Images
         let images = movie.images!
