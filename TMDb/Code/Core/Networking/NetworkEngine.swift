@@ -9,6 +9,7 @@
 import Foundation
 
 public typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
+public typealias ResultCompletionMovie = (Result<Movie>) -> Void
 public typealias ResultCompletionMovies = (Result<[Movie]>) -> Void
 public typealias ResultCompletionSearchMovie = (Result<Search<Movie>>) -> Void
 public typealias ResultCompletionGenericSearch<T: Decodable> = (Result<Search<T>>) -> Void
@@ -35,6 +36,13 @@ public class NetworkEngine {
     
     public func movies(type: MovieSectionType, completion: @escaping ResultCompletionSearchMovie) {
         fetch(resource: .movies(type: type)) { result in
+            DispatchQueue.main.async { completion(result) }
+        }
+    }
+    
+    public func movieDetails(id: Int, completion: @escaping ResultCompletionMovie) {
+        let detailTypes: [DetailType] = [.images, .videos]
+        fetch(resource: .movieDetails(id: id, detailTypes: detailTypes)) { result in
             DispatchQueue.main.async { completion(result) }
         }
     }
