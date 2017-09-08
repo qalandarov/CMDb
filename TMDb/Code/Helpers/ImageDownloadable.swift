@@ -15,18 +15,10 @@ public protocol ImageDownloadable {
 
 extension ImageDownloadable {
     public func posterURL(width: ImageWidth = .w185) -> URL? {
-        return url(for: posterPath, width: width)
+        return width.url(for: posterPath)
     }
     
     public func backdropURL(width: ImageWidth = .w500) -> URL? {
-        return url(for: backdropPath, width: width)
-    }
-    
-    private func url(for path: String?, width: ImageWidth) -> URL? {
-        guard let path = path else { return nil }
-        var url = URL(string: C.BaseImageURLString)
-        url?.appendPathComponent(width.rawValue)
-        url?.appendPathComponent(path)
-        return url
+        return width.url(for: backdropPath)
     }
 }

@@ -45,4 +45,12 @@ public enum ImageWidth: String {
     public var backdropSize: CGSize {
         return CGSize(width: width, height: backdropHeight)
     }
+    
+    func url(for path: String?) -> URL? {
+        guard let path = path else { return nil }
+        var url = URL(string: C.BaseImageURLString)
+        url?.appendPathComponent(rawValue)
+        url?.appendPathComponent(path)
+        return url
+    }
 }

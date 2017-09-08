@@ -18,6 +18,21 @@ class ImageWidthTests: XCTestCase {
         XCTAssert(ImageWidth.w780.rawValue == "w780")
     }
     
+    func testURL() {
+        var w = ImageWidth.w92
+        
+        XCTAssert(w.url(for: "/abc.jpg")!.absoluteString == "https://image.tmdb.org/t/p/w92/abc.jpg")
+        
+        w = .w185
+        XCTAssert(w.url(for: "/xyz.jpg")!.absoluteString == "https://image.tmdb.org/t/p/w185/xyz.jpg")
+        
+        w = .w500
+        XCTAssert(w.url(for: "/a")!.absoluteString == "https://image.tmdb.org/t/p/w500/a")
+        
+        w = .w780
+        XCTAssert(w.url(for: "random.jpg")!.absoluteString == "https://image.tmdb.org/t/p/w780/random.jpg")
+    }
+    
     // Poster
     func test92Poster() {
         validatePoster(.w92, width: 92, height: 135)
