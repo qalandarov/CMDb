@@ -20,16 +20,24 @@ public struct Movie: Decodable, ImageDownloadable {
     public let releaseDate: String
     public let posterPath: String?
     public let backdropPath: String?
-    public let genres: [MovieGenre]
     public let voteCount: Int
     public let voteAvg: CGFloat
     public let popularity: CGFloat
     public let overview: String
     public let isVideo: Bool
-    
     public let credits: Credits?
     public let images: Artwork?
     public let videos: Trailer?
+    
+    let genreIDs: [Int]?
+    let genreObjects: [GenreObject]?
+    
+    public var genres: [MovieGenre]? {
+        guard let ids = genreIDs ?? genreObjects?.flatMap({ $0.id }) else {
+            return nil
+        }
+        return ids.flatMap { MovieGenre(rawValue: $0) }
+    }
     
     // Temp solution, release date should be date
     public var releaseYear: String {
@@ -43,15 +51,16 @@ public struct Movie: Decodable, ImageDownloadable {
         case releaseDate    = "release_date"
         case posterPath     = "poster_path"
         case backdropPath   = "backdrop_path"
-        case genres         = "genre_ids"
         case voteCount      = "vote_count"
         case voteAvg        = "vote_average"
         case popularity
         case overview
         case isVideo        = "video"
-        
         case credits
         case images
         case videos
+        
+        case genreIDs       = "genre_ids"
+        case genreObjects   = "genres"
     }
 }

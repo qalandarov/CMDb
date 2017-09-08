@@ -10,7 +10,7 @@ import Foundation
 
 /*
  *  Assuming that this list covers all of the genres
- *  If the server returns something that's not in this list - parsing will fail
+ *  If the server returns something that's not in this list - it will be ignored
  */
 
 public enum MovieGenre: Int, Decodable {
