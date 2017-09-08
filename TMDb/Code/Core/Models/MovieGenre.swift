@@ -34,4 +34,29 @@ public enum MovieGenre: Int, Decodable {
     case thriller       = 53
     case war            = 10752
     case western        = 37
+    
+    public var name: String {
+        switch self {
+        case .action:           return "Action"
+        case .adventure:        return "Adventure"
+        case .animation:        return "Animation"
+        case .comedy:           return "Comedy"
+        case .crime:            return "Crime"
+        case .documentary:      return "Documentary"
+        case .drama:            return "Drama"
+        case .family:           return "Family"
+        case .fantasy:          return "Fantasy"
+        case .foreign:          return "Foreign"
+        case .history:          return "History"
+        case .horror:           return "Horror"
+        case .music:            return "Music"
+        case .mystery:          return "Mystery"
+        case .romance:          return "Romance"
+        case .scienceFiction:   return "Science Fiction"
+        case .thriller:         return "Thriller"
+        case .tvMovie:          return "TV Show"
+        case .war:              return "War"
+        case .western:          return "Western"
+        }
+    }
 }
