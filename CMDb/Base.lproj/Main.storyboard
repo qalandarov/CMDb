@@ -321,10 +321,10 @@
             </objects>
             <point key="canvasLocation" x="1312.5" y="167.95774647887325"/>
         </scene>
-        <!--Collection View Controller-->
+        <!--Profiles CollectionVC-->
         <scene sceneID="z3G-O8-HPD">
             <objects>
-                <collectionViewController id="rpl-cI-TYz" sceneMemberID="viewController">
+                <collectionViewController id="rpl-cI-TYz" customClass="ProfilesCollectionVC" customModule="CMDb" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceHorizontal="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="aTu-iL-RcY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="190"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -336,7 +336,7 @@
                             <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="vgu-rP-R81">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileCollectionCell" id="vgu-rP-R81" customClass="ProfileCollectionCell" customModule="CMDb" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="92" height="170"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -376,6 +376,11 @@
                                     <constraint firstItem="kQK-K3-dpR" firstAttribute="top" secondItem="vgu-rP-R81" secondAttribute="top" id="rAv-y5-nWT"/>
                                     <constraint firstItem="CH5-j7-WYx" firstAttribute="leading" secondItem="kQK-K3-dpR" secondAttribute="leading" constant="2" id="y9p-RP-jMG"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="characterLabel" destination="kdr-xl-TWp" id="HoS-ok-Xiz"/>
+                                    <outlet property="nameLabel" destination="CH5-j7-WYx" id="94J-fT-p3c"/>
+                                    <outlet property="profileImageView" destination="kQK-K3-dpR" id="f57-pK-V77"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
