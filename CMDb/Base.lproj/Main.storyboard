@@ -271,7 +271,7 @@
                                             <constraint firstAttribute="height" constant="190" id="xdv-Wf-ZZM"/>
                                         </constraints>
                                         <connections>
-                                            <segue destination="rpl-cI-TYz" kind="embed" id="LVI-1T-sNO"/>
+                                            <segue destination="rpl-cI-TYz" kind="embed" identifier="casts" id="LVI-1T-sNO"/>
                                         </connections>
                                     </containerView>
                                 </subviews>
@@ -330,33 +330,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cJp-f2-bUm">
-                            <size key="itemSize" width="92" height="170"/>
+                            <size key="itemSize" width="92" height="180"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProfileCollectionCell" id="vgu-rP-R81" customClass="ProfileCollectionCell" customModule="CMDb" customModuleProvider="target">
-                                <rect key="frame" x="10" y="10" width="92" height="170"/>
+                                <rect key="frame" x="10" y="0.0" width="92" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                    <rect key="frame" x="0.0" y="0.0" width="92" height="170"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="92" height="180"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kQK-K3-dpR">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="kQK-K3-dpR">
                                             <rect key="frame" x="0.0" y="0.0" width="92" height="135"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="135" id="XgP-C7-beC"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CH5-j7-WYx">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="CH5-j7-WYx">
                                             <rect key="frame" x="2" y="137" width="88" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Character)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdr-xl-TWp" userLabel="Character">
-                                            <rect key="frame" x="2" y="153.5" width="88" height="14.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="(Character)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="kdr-xl-TWp" userLabel="Character">
+                                            <rect key="frame" x="2" y="153.5" width="88" height="12"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -368,7 +368,6 @@
                                     <constraint firstItem="kdr-xl-TWp" firstAttribute="trailing" secondItem="CH5-j7-WYx" secondAttribute="trailing" id="7uw-GQ-idg"/>
                                     <constraint firstItem="kQK-K3-dpR" firstAttribute="leading" secondItem="vgu-rP-R81" secondAttribute="leading" id="9YL-U7-E23"/>
                                     <constraint firstItem="kQK-K3-dpR" firstAttribute="trailing" secondItem="CH5-j7-WYx" secondAttribute="trailing" constant="2" id="CKj-NO-c4O"/>
-                                    <constraint firstAttribute="bottom" secondItem="kdr-xl-TWp" secondAttribute="bottom" constant="2" id="O2J-0K-3wD"/>
                                     <constraint firstItem="kdr-xl-TWp" firstAttribute="leading" secondItem="CH5-j7-WYx" secondAttribute="leading" id="UvS-h6-8qg"/>
                                     <constraint firstItem="kdr-xl-TWp" firstAttribute="top" secondItem="CH5-j7-WYx" secondAttribute="bottom" constant="2" id="XB6-jT-ayf"/>
                                     <constraint firstItem="CH5-j7-WYx" firstAttribute="top" secondItem="kQK-K3-dpR" secondAttribute="bottom" constant="2" id="YVG-wj-7AJ"/>
