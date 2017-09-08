@@ -9,13 +9,15 @@
 import UIKit
 import TMDb
 
-class MovieDetailsVC: UIViewController {
+class MovieDetailsVC: UIViewController, SegueHandlerType {
     
     @IBOutlet weak var bgImageView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
+    
+    private var castCollectionVC: ProfilesCollectionVC?
     
     var movie: Movie?
     
@@ -32,6 +34,31 @@ class MovieDetailsVC: UIViewController {
         
         bgImageView.setPosterImage(with: movie)
         imageView.setBackdropImage(with: movie)
+        
+        if let casts = movie.credits?.cast {
+            castCollectionVC?.casts = casts
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    enum SegueIdentifier: String, SegueValidatable {
+        case casts
+        
+        var expectedType: UIViewController.Type {
+            switch self {
+            case .casts: return ProfilesCollectionVC.self
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueID = segueIdentifier(for: segue) else { return }
+        
+        switch segueID {
+        case .casts:
+            castCollectionVC = segueID.destination(from: segue, as: ProfilesCollectionVC.self)
+        }
     }
     
 }
