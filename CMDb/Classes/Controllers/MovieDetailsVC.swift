@@ -15,7 +15,6 @@ class MovieDetailsVC: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
     
     var movie: Movie?
@@ -28,7 +27,8 @@ class MovieDetailsVC: UIViewController {
     private func prepareUI() {
         guard let movie = movie else { return }
         
-        title = movie.title + " (\(movie.releaseYear))" // title + (YYYY)
+        titleLabel.text = movie.title + " (\(movie.releaseYear))" // title + (YYYY)
+        genreLabel.text = movie.genres?.map({ $0.name }).joined(separator: ", ")
         
         bgImageView.setPosterImage(with: movie)
         imageView.setBackdropImage(with: movie)
