@@ -9,7 +9,7 @@
 import Foundation
 
 public struct Credits: Decodable {
-    let id: Int
-    let cast: [Cast]
-    let crew: [Crew]
+    public let id: Int?
+    public let cast: [Cast]
+    public let crew: [Crew]
 }
