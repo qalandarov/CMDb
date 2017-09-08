@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct Crew: Decodable {
-    let id: Int
-    let name: String
-    let department: String
-    let gender: Gender
-    let job: String
-    let profilePath: String
-    let creditID: String
+public struct Crew: Decodable, ProfileDownloadable {
+    public let id: Int
+    public let name: String
+    public let department: String
+    public let gender: Gender
+    public let job: String
+    public let creditID: String
+    public let profilePath: String?
     
     enum CodingKeys: String, CodingKey {
         case id

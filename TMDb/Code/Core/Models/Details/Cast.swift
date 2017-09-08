@@ -8,15 +8,15 @@
 
 import Foundation
 
-public struct Cast: Decodable {
-    let id: Int
-    let order: Int
-    let name: String
-    let character: String
-    let gender: Gender
-    let profilePath: String
-    let creditID: String
-    let castID: Int?
+public struct Cast: Decodable, ProfileDownloadable {
+    public let id: Int
+    public let order: Int
+    public let name: String
+    public let character: String
+    public let gender: Gender
+    public let creditID: String
+    public let profilePath: String?
+    public let castID: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
