@@ -7,26 +7,35 @@
 //
 
 import UIKit
+import TMDb
 
 class ProfilesCollectionVC: UICollectionViewController {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    var casts: [Cast]? {
+        didSet {
+            collectionView?.reloadData()
+        }
+    }
+    
+    var castsCount: Int {
+        return casts?.count ?? 0
     }
     
     // MARK: UICollectionViewDataSource
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return castsCount
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionCell", for: indexPath) as! ProfileCollectionCell
         
-        cell.nameLabel.text = "Test"
-        cell.characterLabel.text = "Char"
-    
+        if castsCount > indexPath.item, let cast = casts?[indexPath.item] {
+            cell.profileImageView.setImage(with: cast.profileURL())
+            cell.nameLabel.text = cast.name
+            cell.characterLabel.text = cast.character
+        }
+        
         return cell
     }
     
