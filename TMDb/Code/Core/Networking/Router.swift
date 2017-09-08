@@ -23,6 +23,7 @@ enum Router {
     
     case searchMovie(query: String, page: Int)
     case movies(type: MovieSectionType)
+    case movieDetails(id: Int, detailTypes: [DetailType])
     
     private var method: HTTPMethod {
         return .get
@@ -38,6 +39,8 @@ enum Router {
             return "/search/movie"
         case .movies(let type):
             return "/movie/" + type.rawValue
+        case .movieDetails(let id, _):
+            return "/movie/\(id)"
         }
     }
     
@@ -49,6 +52,8 @@ enum Router {
             params += ["query" : query, "page" : page]
         case .movies:
             break
+        case .movieDetails(let id, let detailTypes):
+            params += ["id" : id, "append_to_response": detailTypes.csv]
         }
         
         return params
