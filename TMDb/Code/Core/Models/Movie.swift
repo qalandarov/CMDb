@@ -27,6 +27,10 @@ public struct Movie: Decodable, ImageDownloadable {
     public let overview: String
     public let isVideo: Bool
     
+    public let credits: Credits?
+    public let images: Artwork?
+    public let videos: Trailer?
+    
     // Temp solution, release date should be date
     public var releaseYear: String {
         return String(releaseDate.prefix(4))
@@ -45,5 +49,9 @@ public struct Movie: Decodable, ImageDownloadable {
         case popularity
         case overview
         case isVideo        = "video"
+        
+        case credits
+        case images
+        case videos
     }
 }
