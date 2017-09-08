@@ -1,0 +1,164 @@
+{
+    "adult": false,
+    "backdrop_path": "/u3hiCBwJ2yGCiJb3kOoqXThTQ7Z.jpg",
+    "belongs_to_collection": {
+        "backdrop_path": "/hwZXCuY6GVw50o17nDGbSR8WMFJ.jpg",
+        "id": 10522,
+        "name": "Starship Troopers Collection",
+        "poster_path": "/uumu3Xj1ME1632SCsyVJwITgOKZ.jpg"
+    },
+    "budget": 0,
+    "genres": [
+        {
+            "id": 28,
+            "name": "Action"
+        },
+        {
+            "id": 16,
+            "name": "Animation"
+        },
+        {
+            "id": 878,
+            "name": "Science Fiction"
+        }
+    ],
+    "homepage": "",
+    "id": 460790,
+    "images": {
+        "backdrops": [
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/u3hiCBwJ2yGCiJb3kOoqXThTQ7Z.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/27nKWPZFGcCDWYJkCwrJOzjD26q.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/nqyORVM3MzHvhWax4QqV4HkZUQh.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 5.172,
+                "vote_count": 1,
+                "width": 1920
+            },
+            {
+                "aspect_ratio": 1.777777777777778,
+                "file_path": "/iIl26f9PTOwjFthNwiODoaMekAM.jpg",
+                "height": 1080,
+                "iso_639_1": null,
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 1920
+            }
+        ],
+        "posters": [
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/dzqEq8Jbvb5SYGoYPqLyIRrt6Cm.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.384,
+                "vote_count": 2,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/xvLjHhlqouwqaXtah8SKv6JxOZN.jpg",
+                "height": 1500,
+                "iso_639_1": "en",
+                "vote_average": 5.312,
+                "vote_count": 1,
+                "width": 1000
+            },
+            {
+                "aspect_ratio": 0.7062615101289135,
+                "file_path": "/JVyw64f6NUpGTdBibBA2f1TsNV.jpg",
+                "height": 1086,
+                "iso_639_1": "pt",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 767
+            },
+            {
+                "aspect_ratio": 0.6666666666666666,
+                "file_path": "/oZynvwkA2S80jOBbXH1Akhd7khn.jpg",
+                "height": 1440,
+                "iso_639_1": "th",
+                "vote_average": 0.0,
+                "vote_count": 0,
+                "width": 960
+            }
+        ]
+    },
+    "imdb_id": "tt6977240",
+    "original_language": "en",
+    "original_title": "Starship Troopers: Traitor of Mars",
+    "overview": "Federation trooper Johnny Rico is ordered to work with a group of new recruits on a satellite station on Mars, where giant bugs have decided to target their next attack.",
+    "popularity": 43.270812,
+    "poster_path": "/dzqEq8Jbvb5SYGoYPqLyIRrt6Cm.jpg",
+    "production_companies": [
+        {
+            "id": 5752,
+            "name": "Sony Pictures Entertainment"
+        },
+        {
+            "id": 23333,
+            "name": "Sola Digital Arts"
+        },
+        {
+            "id": 23335,
+            "name": "Lucent Pictures Entertainment"
+        }
+    ],
+    "production_countries": [
+        {
+            "iso_3166_1": "US",
+            "name": "United States of America"
+        }
+    ],
+    "release_date": "2017-08-21",
+    "revenue": 0,
+    "runtime": 100,
+    "spoken_languages": [
+        {
+            "iso_639_1": "en",
+            "name": "English"
+        },
+        {
+            "iso_639_1": "pt",
+            "name": "Português"
+        }
+    ],
+    "status": "Released",
+    "tagline": "",
+    "title": "Starship Troopers: Traitor of Mars",
+    "video": false,
+    "videos": {
+        "results": [
+            {
+                "id": "596fd1939251412d3d029a27",
+                "iso_3166_1": "US",
+                "iso_639_1": "en",
+                "key": "8R0yLRoevnA",
+                "name": "Official Trailer",
+                "site": "YouTube",
+                "size": 1080,
+                "type": "Trailer"
+            }
+        ]
+    },
+    "vote_average": 5.9,
+    "vote_count": 33
+}
