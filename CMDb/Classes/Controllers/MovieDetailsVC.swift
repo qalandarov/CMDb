@@ -18,12 +18,14 @@ class MovieDetailsVC: UIViewController, SegueHandlerType {
     @IBOutlet weak var genreLabel: UILabel!
     
     private var castCollectionVC: ProfilesCollectionVC?
+    private let network = NetworkEngine()
     
     var movie: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
+        fetchDetails()
     }
     
     private func prepareUI() {
@@ -37,6 +39,20 @@ class MovieDetailsVC: UIViewController, SegueHandlerType {
         
         if let casts = movie.credits?.cast {
             castCollectionVC?.casts = casts
+        }
+    }
+    
+    private func fetchDetails() {
+        guard let id = movie?.id else { return }
+        
+        network.movieDetails(id: id) { [weak self] result in
+            switch result {
+            case .success(let movie):
+                self?.movie = movie
+                self?.prepareUI()
+            case .failure(let error):
+                print(error)
+            }
         }
     }
     
