@@ -41,7 +41,7 @@ public class NetworkEngine {
     }
     
     public func movieDetails(id: Int, completion: @escaping ResultCompletionMovie) {
-        let detailTypes: [DetailType] = [.images, .videos]
+        let detailTypes: [DetailType] = [.credits, .images, .videos]
         fetch(resource: .movieDetails(id: id, detailTypes: detailTypes)) { result in
             DispatchQueue.main.async { completion(result) }
         }
