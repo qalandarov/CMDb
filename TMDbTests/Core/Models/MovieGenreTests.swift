@@ -12,26 +12,59 @@ import XCTest
 class MovieGenreTests: XCTestCase {
     
     func testRawValues() {
-        XCTAssert(MovieGenre.action.rawValue            == 28)
-        XCTAssert(MovieGenre.adventure.rawValue         == 12)
-        XCTAssert(MovieGenre.animation.rawValue         == 16)
-        XCTAssert(MovieGenre.comedy.rawValue            == 35)
-        XCTAssert(MovieGenre.crime.rawValue             == 80)
-        XCTAssert(MovieGenre.documentary.rawValue       == 99)
-        XCTAssert(MovieGenre.drama.rawValue             == 18)
-        XCTAssert(MovieGenre.family.rawValue            == 10751)
-        XCTAssert(MovieGenre.fantasy.rawValue           == 14)
-        XCTAssert(MovieGenre.foreign.rawValue           == 10769)
-        XCTAssert(MovieGenre.history.rawValue           == 36)
-        XCTAssert(MovieGenre.horror.rawValue            == 27)
-        XCTAssert(MovieGenre.music.rawValue             == 10402)
-        XCTAssert(MovieGenre.mystery.rawValue           == 9648)
-        XCTAssert(MovieGenre.romance.rawValue           == 10749)
-        XCTAssert(MovieGenre.scienceFiction.rawValue    == 878)
-        XCTAssert(MovieGenre.tvMovie.rawValue           == 10770)
-        XCTAssert(MovieGenre.thriller.rawValue          == 53)
-        XCTAssert(MovieGenre.war.rawValue               == 10752)
-        XCTAssert(MovieGenre.western.rawValue           == 37)
+        validateRawValue(of: .action,           against: 28)
+        validateRawValue(of: .adventure,        against: 12)
+        validateRawValue(of: .animation,        against: 16)
+        validateRawValue(of: .comedy,           against: 35)
+        validateRawValue(of: .crime,            against: 80)
+        validateRawValue(of: .documentary,      against: 99)
+        validateRawValue(of: .drama,            against: 18)
+        validateRawValue(of: .family,           against: 10751)
+        validateRawValue(of: .fantasy,          against: 14)
+        validateRawValue(of: .foreign,          against: 10769)
+        validateRawValue(of: .history,          against: 36)
+        validateRawValue(of: .horror,           against: 27)
+        validateRawValue(of: .music,            against: 10402)
+        validateRawValue(of: .mystery,          against: 9648)
+        validateRawValue(of: .romance,          against: 10749)
+        validateRawValue(of: .scienceFiction,   against: 878)
+        validateRawValue(of: .tvMovie,          against: 10770)
+        validateRawValue(of: .thriller,         against: 53)
+        validateRawValue(of: .war,              against: 10752)
+        validateRawValue(of: .western,          against: 37)
+    }
+    
+    func testNames() {
+        validateName(of: .action,               against: "Action")
+        validateName(of: .adventure,            against: "Adventure")
+        validateName(of: .animation,            against: "Animation")
+        validateName(of: .comedy,               against: "Comedy")
+        validateName(of: .crime,                against: "Crime")
+        validateName(of: .documentary,          against: "Documentary")
+        validateName(of: .drama,                against: "Drama")
+        validateName(of: .family,               against: "Family")
+        validateName(of: .fantasy,              against: "Fantasy")
+        validateName(of: .foreign,              against: "Foreign")
+        validateName(of: .history,              against: "History")
+        validateName(of: .horror,               against: "Horror")
+        validateName(of: .music,                against: "Music")
+        validateName(of: .mystery,              against: "Mystery")
+        validateName(of: .romance,              against: "Romance")
+        validateName(of: .scienceFiction,       against: "Science Fiction")
+        validateName(of: .thriller,             against: "Thriller")
+        validateName(of: .tvMovie,              against: "TV Show")
+        validateName(of: .war,                  against: "War")
+        validateName(of: .western,              against: "Western")
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func validateRawValue(of genre: MovieGenre, against value: Int) {
+        XCTAssert(genre.rawValue == value)
+    }
+    
+    private func validateName(of genre: MovieGenre, against name: String) {
+        XCTAssert(genre.name == name)
     }
     
 }
