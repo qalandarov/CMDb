@@ -29,12 +29,20 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     var movie: Movie?
     private let network = NetworkEngine()
     private var castCollectionVC: ProfilesCollectionVC?
+    private var originalOffsetY: CGFloat = 0
+    private var originalImageFrame: CGRect = .zero
     
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
         fetchDetails()
         tableView.sectionHeaderHeight = 16
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        originalOffsetY = tableView.contentOffset.y
+        originalImageFrame = imageView.frame
     }
     
     private func prepareUI() {
@@ -106,4 +114,17 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         view.tintColor = tableView.backgroundColor
     }
     
+}
+
+extension MovieDetailsTVC {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let delta = originalOffsetY - scrollView.contentOffset.y
+        
+        var frame = originalImageFrame
+        if delta > 0 {
+            frame.origin.y = -delta
+            frame.size.height += delta
+        }
+        imageView.frame = frame
+    }
 }
