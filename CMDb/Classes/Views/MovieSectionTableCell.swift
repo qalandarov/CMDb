@@ -9,6 +9,8 @@
 import UIKit
 import iCarousel
 
+private let sectionTitleLeadingGap: CGFloat = 15
+
 class MovieSectionTableCell: UITableViewCell {
     
     @IBOutlet weak var titleButton: UIButton!
@@ -49,8 +51,12 @@ extension MovieSectionTableCell: iCarouselDataSource {
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        let backdropView = view as? UIImageView ?? UIImageView(frame: carousel.frame)
+        var frame = carousel.frame
+        frame.size.width -= sectionTitleLeadingGap * 2 // gap
+        
+        let backdropView = view as? UIImageView ?? UIImageView(frame: frame)
         backdropView.contentMode = .scaleAspectFill
+        backdropView.clipsToBounds = true
         backdropView.setImage(with: backdropURLs![index])
         return backdropView
     }
@@ -63,7 +69,7 @@ extension MovieSectionTableCell: iCarouselDelegate {
     
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
         if (option == .spacing) {
-            return value * 1.1
+            return value * 1.025
         }
         return value
     }
