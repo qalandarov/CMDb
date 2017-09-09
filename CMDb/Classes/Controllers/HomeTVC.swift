@@ -123,7 +123,7 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         
         var expectedType: UIViewController.Type {
             switch self {
-            case .movieDetails: return MovieDetailsVC.self
+            case .movieDetails: return MovieDetailsTVC.self
             }
         }
     }
@@ -135,7 +135,7 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         case .movieDetails:
             guard
                 let movie = selectedMovie,
-                let detailsVC = segueID.destination(from: segue, as: MovieDetailsVC.self)
+                let detailsVC = segueID.destination(from: segue, as: MovieDetailsTVC.self)
                 else {
                     return
             }

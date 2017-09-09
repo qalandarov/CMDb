@@ -25,6 +25,7 @@
 		3B44DDFC1F5C3363003D72E7 /* StubRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44DDFB1F5C3362003D72E7 /* StubRequestable.swift */; };
 		3B44DE051F5C342E003D72E7 /* SearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B44DE041F5C342B003D72E7 /* SearchTests.swift */; };
 		3B82443E1F6385FD00949C4B /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B82443C1F6385FD00949C4B /* MovieDetails.storyboard */; };
+		3B8244401F638C9400949C4B /* MovieDetailsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B82443F1F638C9400949C4B /* MovieDetailsTVC.swift */; };
 		3B9F5BE21F5F9D48008AAF65 /* SegueHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9F5BE11F5F9D48008AAF65 /* SegueHandlerType.swift */; };
 		3B9F5BEA1F5FA581008AAF65 /* SegueValidatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9F5BE91F5FA581008AAF65 /* SegueValidatable.swift */; };
 		3B9F5BEC1F5FA658008AAF65 /* MovieDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9F5BEB1F5FA658008AAF65 /* MovieDetailsVC.swift */; };
@@ -128,6 +129,7 @@
 		3B44DDFB1F5C3362003D72E7 /* StubRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubRequestable.swift; sourceTree = "<group>"; };
 		3B44DE041F5C342B003D72E7 /* SearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTests.swift; sourceTree = "<group>"; };
 		3B82443D1F6385FD00949C4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MovieDetails.storyboard; sourceTree = "<group>"; };
+		3B82443F1F638C9400949C4B /* MovieDetailsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTVC.swift; sourceTree = "<group>"; };
 		3B9F5BE11F5F9D48008AAF65 /* SegueHandlerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueHandlerType.swift; sourceTree = "<group>"; };
 		3B9F5BE91F5FA581008AAF65 /* SegueValidatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueValidatable.swift; sourceTree = "<group>"; };
 		3B9F5BEB1F5FA658008AAF65 /* MovieDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsVC.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 			children = (
 				3BBE81551F5863BA00042E14 /* HomeTVC.swift */,
 				3B9F5BEB1F5FA658008AAF65 /* MovieDetailsVC.swift */,
+				3B82443F1F638C9400949C4B /* MovieDetailsTVC.swift */,
 				3BD116C61F6335B800131873 /* ProfilesCollectionVC.swift */,
 			);
 			path = Controllers;
@@ -832,6 +835,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B9F5BEA1F5FA581008AAF65 /* SegueValidatable.swift in Sources */,
+				3B8244401F638C9400949C4B /* MovieDetailsTVC.swift in Sources */,
 				3BBE81321F57CD3000042E14 /* CMDb.xcdatamodeld in Sources */,
 				3BBE81561F5863BA00042E14 /* HomeTVC.swift in Sources */,
 				3B9F5BE21F5F9D48008AAF65 /* SegueHandlerType.swift in Sources */,
