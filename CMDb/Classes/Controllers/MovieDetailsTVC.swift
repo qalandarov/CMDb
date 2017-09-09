@@ -48,7 +48,8 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     private func prepareUI() {
         guard let movie = movie else { return }
         
-        imageView.setBackdropImage(with: movie)
+        let url = movie.backdropURL() ?? movie.posterURL()
+        imageView.setImage(with: url)
         
         titleLabel.text = movie.title + " (\(movie.releaseYear))" // title + (YYYY)
         genreLabel.text = movie.genres?.map({ $0.name }).joined(separator: ", ")
