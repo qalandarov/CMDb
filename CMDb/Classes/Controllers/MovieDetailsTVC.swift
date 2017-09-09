@@ -34,9 +34,11 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareUI()
-        fetchDetails()
         tableView.sectionHeaderHeight = 16
+        prepareUI()
+        if movie?.credits?.cast == nil {
+            fetchDetails()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
