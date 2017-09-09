@@ -56,7 +56,7 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         
         textView.text = movie.overview
         
-        if let casts = movie.credits?.cast {
+        if let casts = movie.credits?.cast, !casts.isEmpty {
             castCollectionVC?.casts = casts
             tableView.beginUpdates()
             let indexSet = IndexSet(integer: TableSections.cast.rawValue)
