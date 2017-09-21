@@ -24,6 +24,7 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var genreLabel: UILabel!
+    @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     
     var movie: Movie?
@@ -53,9 +54,12 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         let url = movie.backdropURL() ?? movie.posterURL()
         imageView.setImage(with: url)
         
+        posterImageView.setPosterImage(with: movie, width: .w92)
+        
         titleLabel.text = movie.title + " (\(movie.releaseYear))" // title + (YYYY)
         genreLabel.text = movie.genres?.map({ $0.name }).joined(separator: ", ")
         
+        textView.textContainerInset = .zero
         textView.text = movie.overview
         
         if let casts = movie.credits?.cast, !casts.isEmpty {
