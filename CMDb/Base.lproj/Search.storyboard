@@ -69,6 +69,45 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="JRZ-AY-hFZ">
+                                <rect key="frame" x="0.0" y="179" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JRZ-AY-hFZ" id="mtd-GH-MnR">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O9V-lj-dlh">
+                                            <rect key="frame" x="136" y="0.0" width="103" height="43.5"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="GJq-ba-hfg">
+                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="43.5"/>
+                                                </activityIndicatorView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-Gp-ovd">
+                                                    <rect key="frame" x="28" y="0.0" width="75" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="GJq-ba-hfg" firstAttribute="leading" secondItem="O9V-lj-dlh" secondAttribute="leading" id="1FB-BD-EbA"/>
+                                                <constraint firstItem="bEb-Gp-ovd" firstAttribute="bottom" secondItem="GJq-ba-hfg" secondAttribute="bottom" id="Dtz-48-4iq"/>
+                                                <constraint firstAttribute="bottom" secondItem="GJq-ba-hfg" secondAttribute="bottom" id="XtR-Sw-0Ct"/>
+                                                <constraint firstItem="GJq-ba-hfg" firstAttribute="top" secondItem="O9V-lj-dlh" secondAttribute="top" id="cc9-OY-xHG"/>
+                                                <constraint firstAttribute="trailing" secondItem="bEb-Gp-ovd" secondAttribute="trailing" id="gMF-AH-hWJ"/>
+                                                <constraint firstItem="bEb-Gp-ovd" firstAttribute="leading" secondItem="GJq-ba-hfg" secondAttribute="trailing" constant="8" symbolic="YES" id="h4U-a0-3AI"/>
+                                                <constraint firstItem="bEb-Gp-ovd" firstAttribute="top" secondItem="GJq-ba-hfg" secondAttribute="top" id="uhe-t4-H9G"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="O9V-lj-dlh" firstAttribute="top" secondItem="mtd-GH-MnR" secondAttribute="top" id="348-1h-pJ6"/>
+                                        <constraint firstItem="O9V-lj-dlh" firstAttribute="centerX" secondItem="mtd-GH-MnR" secondAttribute="centerX" id="HH2-3Y-2je"/>
+                                        <constraint firstAttribute="bottom" secondItem="O9V-lj-dlh" secondAttribute="bottom" id="IJr-O1-7xb"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Ksu-eY-Xy3" id="JIU-9q-9wY"/>
