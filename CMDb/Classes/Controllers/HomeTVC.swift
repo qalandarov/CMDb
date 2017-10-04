@@ -12,11 +12,13 @@ import TMDb
 import Kingfisher
 
 enum MovieSection: Int {
+    case upcoming
     case topRated
     case popular
     
     var title: String {
         switch self {
+        case .upcoming:     return ""
         case .topRated:     return "Top Rated >"
         case .popular:      return "Popular >"
         }
@@ -24,6 +26,7 @@ enum MovieSection: Int {
     
     var urls: [URL]? {
         switch self {
+        case .upcoming:     return urls(from: MovieSection.upcomingMovies)
         case .topRated:     return urls(from: MovieSection.topRatedMovies)
         case .popular:      return urls(from: MovieSection.popularMovies)
         }
@@ -34,26 +37,25 @@ enum MovieSection: Int {
     }
     
     static var all: [MovieSection] {
-        return [.topRated, .popular]
+        return [.upcoming, .topRated, .popular]
     }
     
+    static var upcomingMovies: [Movie]?
     static var topRatedMovies: [Movie]?
     static var popularMovies: [Movie]?
 }
 
-class HomeTVC: UITableViewController, SegueHandlerType {
+protocol MoviePresentable {
+    func didSelectMovie(_ movie: Movie)
+}
 
-    @IBOutlet weak var bgCarousel: iCarousel!
-    @IBOutlet weak var carousel: iCarousel!
-    @IBOutlet weak var placeholderView: UIView!
-    
-    private var movies: [Movie]? {
-        didSet {
-            carousel.reloadData()
-            bgCarousel.reloadData()
-            carousel.currentItemIndex = Int(moviesCount / 2)
-        }
+extension HomeTVC: MoviePresentable {
+    func didSelectMovie(_ movie: Movie) {
+        selectedMovie = movie
     }
+}
+
+class HomeTVC: UITableViewController, SegueHandlerType {
     
     private var selectedMovie: Movie? {
         didSet {
@@ -61,54 +63,27 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         }
     }
     
-    private var moviesCount: Int {
-        return movies?.count ?? 0
-    }
-    
     private let network = NetworkEngine()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        bgCarousel.bounces = false
-        bgCarousel.delegate = self
-        bgCarousel.dataSource = self
-        
-        carousel.type = .coverFlow
-        carousel.delegate = self
-        carousel.dataSource = self
-        
-        placeholderView.backgroundColor = .clear
+        fetchAllSections()
         
         let invisibleFrame = CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude)
         tableView.tableFooterView = UIView(frame: invisibleFrame)
-        
-        networkCall()
-        fetchAllSections()
     }
     
-    private func networkCall() {
-        network.movies(type: .upcoming) { [weak self] result in
-            switch result {
-            case .success(let search):
-                self?.movies = search.results.filter { $0.posterPath != nil }
-            case .failure(let error):
-                print("error: \(error.string)")
-            }
-        }
-    }
-    
-    func fetchAllSections() {
-        movies(type: .toprated) { MovieSection.topRatedMovies = $0.value }
-        movies(type: .popular)  { MovieSection.popularMovies = $0.value }
+    private func fetchAllSections() {
+        movies(type: .upcoming) { MovieSection.upcomingMovies = $0.value?.filter { $0.posterPath != nil } }
+        movies(type: .toprated) { MovieSection.topRatedMovies = $0.value?.filter { $0.backdropPath != nil } }
+        movies(type: .popular)  { MovieSection.popularMovies  = $0.value?.filter { $0.backdropPath != nil } }
     }
     
     private func movies(type: MovieSectionType, completion: @escaping ResultCompletionMovies) {
         network.movies(type: type) { [weak self] result in
             switch result {
             case .success(let search):
-                let movies = search.results.filter { $0.backdropPath != nil }
-                completion(.success(movies))
+                completion(.success(search.results))
                 self?.tableView.reloadData()
             case .failure(let error):
                 completion(.failure(error))
@@ -139,7 +114,7 @@ class HomeTVC: UITableViewController, SegueHandlerType {
                 else {
                     return
             }
-            
+
             detailsVC.movie = movie
         }
     }
@@ -151,7 +126,18 @@ class HomeTVC: UITableViewController, SegueHandlerType {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieSectionTableCell", for: indexPath) as! MovieSectionTableCell
+        guard indexPath.row > 0 else {
+            let cell = tableView.dequeueReusableCell(for: indexPath) as FeaturedMoviesTableCell
+            
+            if let movies = MovieSection.upcomingMovies {
+                cell.configure(with: movies, presentor: self)
+            }
+            
+            return cell
+        }
+        
+        // prepare the rest
+        let cell = tableView.dequeueReusableCell(for: indexPath) as MovieSectionTableCell
         
         let section = MovieSection(rawValue: indexPath.row)
         cell.configure(with: section)
@@ -161,29 +147,10 @@ class HomeTVC: UITableViewController, SegueHandlerType {
     
 }
 
-extension HomeTVC: iCarouselDataSource {
-    func numberOfItems(in carousel: iCarousel) -> Int {
-        return moviesCount
-    }
-    
-    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        let bg = carousel == bgCarousel
-        let frame = bg ? carousel.frame : placeholderView.frame
-        let posterView = view as? UIImageView ?? UIImageView(frame: frame)
-        posterView.setPosterImage(with: movies![index])
-        return posterView
-    }
-}
-
-extension HomeTVC: iCarouselDelegate {
-    func carouselDidScroll(_ carousel: iCarousel) {
-        bgCarousel.scrollOffset = carousel.scrollOffset
-    }
-    
-    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
-        if index == carousel.currentItemIndex {
-            selectedMovie = movies?[index]
-        }
+extension UITableView {
+    func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {
+        let reuseID = String(describing: T.self)
+        return dequeueReusableCell(withIdentifier: reuseID, for: indexPath) as! T
     }
 }
 
