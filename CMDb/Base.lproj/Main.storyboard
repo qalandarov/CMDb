@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FeaturedMoviesTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeaturedMoviesTableCell" rowHeight="378" id="Rcl-vn-JI3" customClass="FeaturedMoviesTableCell" customModule="CMDb" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FeaturedMoviesTableCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeaturedMoviesTableCell" rowHeight="378" id="Rcl-vn-JI3" customClass="FeaturedMoviesTableCell" customModule="CMDb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="378"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rcl-vn-JI3" id="ghf-j1-UHb">
@@ -113,7 +113,7 @@
                                     <outlet property="placeholderView" destination="3e2-lI-cjo" id="Xai-DI-1Wi"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MovieSectionTableCell" selectionStyle="default" indentationWidth="10" reuseIdentifier="MovieSectionTableCell" rowHeight="224" id="CPk-32-l48" customClass="MovieSectionTableCell" customModule="CMDb" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="MovieSectionTableCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieSectionTableCell" rowHeight="224" id="CPk-32-l48" customClass="MovieSectionTableCell" customModule="CMDb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="406" width="320" height="224"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CPk-32-l48" id="gtT-J5-4R8">

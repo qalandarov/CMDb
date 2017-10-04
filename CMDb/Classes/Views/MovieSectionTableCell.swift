@@ -8,6 +8,7 @@
 
 import UIKit
 import iCarousel
+import TMDb
 
 private let sectionTitleLeadingGap: CGFloat = 15
 
@@ -17,7 +18,9 @@ class MovieSectionTableCell: UITableViewCell {
     @IBOutlet weak var bgCarousel: iCarousel!
     @IBOutlet weak var carousel: iCarousel!
     
-    private var backdropURLs: [URL]? {
+    var moviePresentor: MoviePresentable?
+    
+    var movies: [Movie] = [] {
         didSet {
             carousel.reloadData()
             bgCarousel.reloadData()
@@ -38,16 +41,17 @@ class MovieSectionTableCell: UITableViewCell {
         carousel.bounceDistance = 0.5
     }
     
-    func configure(with section: MovieSection?) {
-        backdropURLs = section?.urls
-        titleButton.setTitle(section?.title, for: .normal)
+    func configure(with movies: [Movie], title: String, presentor: MoviePresentable) {
+        self.movies = movies
+        moviePresentor = presentor
+        titleButton.setTitle(title, for: .normal)
     }
     
 }
 
 extension MovieSectionTableCell: iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return backdropURLs?.count ?? 0
+        return movies.count
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
@@ -57,7 +61,7 @@ extension MovieSectionTableCell: iCarouselDataSource {
         let backdropView = view as? UIImageView ?? UIImageView(frame: frame)
         backdropView.contentMode = .scaleAspectFill
         backdropView.clipsToBounds = true
-        backdropView.setImage(with: backdropURLs![index])
+        backdropView.setImage(with: movies[index].backdropURL())
         return backdropView
     }
 }
@@ -65,6 +69,11 @@ extension MovieSectionTableCell: iCarouselDataSource {
 extension MovieSectionTableCell: iCarouselDelegate {
     func carouselDidScroll(_ carousel: iCarousel) {
         bgCarousel.scrollOffset = carousel.scrollOffset
+    }
+    
+    func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
+        guard index == carousel.currentItemIndex else { return }
+        moviePresentor?.didSelectMovie(movies[index])
     }
     
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {

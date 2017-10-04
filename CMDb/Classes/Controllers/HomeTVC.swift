@@ -24,16 +24,12 @@ enum MovieSection: Int {
         }
     }
     
-    var urls: [URL]? {
+    var movies: [Movie]? {
         switch self {
-        case .upcoming:     return urls(from: MovieSection.upcomingMovies)
-        case .topRated:     return urls(from: MovieSection.topRatedMovies)
-        case .popular:      return urls(from: MovieSection.popularMovies)
+        case .upcoming:     return MovieSection.upcomingMovies
+        case .topRated:     return MovieSection.topRatedMovies
+        case .popular:      return MovieSection.popularMovies
         }
-    }
-    
-    private func urls(from movies: [Movie]?) -> [URL]? {
-        return movies?.flatMap({ $0.backdropURL() })
     }
     
     static var all: [MovieSection] {
@@ -126,10 +122,12 @@ class HomeTVC: UITableViewController, SegueHandlerType {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let section = MovieSection(rawValue: indexPath.row)
+        
         guard indexPath.row > 0 else {
             let cell = tableView.dequeueReusableCell(for: indexPath) as FeaturedMoviesTableCell
             
-            if let movies = MovieSection.upcomingMovies {
+            if let movies = section?.movies {
                 cell.configure(with: movies, presentor: self)
             }
             
@@ -139,8 +137,9 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         // prepare the rest
         let cell = tableView.dequeueReusableCell(for: indexPath) as MovieSectionTableCell
         
-        let section = MovieSection(rawValue: indexPath.row)
-        cell.configure(with: section)
+        if let movies = section?.movies, let title = section?.title {
+            cell.configure(with: movies, title: title, presentor: self)
+        }
         
         return cell
     }
