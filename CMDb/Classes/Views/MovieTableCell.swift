@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TMDb
 
 class MovieTableCell: UITableViewCell {
     
@@ -14,5 +15,20 @@ class MovieTableCell: UITableViewCell {
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var yearLabel: UILabel!
     @IBOutlet var overviewLabel: UILabel!
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        posterImageView.image = nil
+        titleLabel.text = nil
+        yearLabel.text = nil
+        overviewLabel.text = nil
+    }
+    
+    func configure(with movie: Movie) {
+        posterImageView.setImage(with: movie.posterURL(width: .w92))
+        titleLabel.text = movie.title
+        yearLabel.text = movie.releaseYear
+        overviewLabel.text = movie.overview
+    }
     
 }
