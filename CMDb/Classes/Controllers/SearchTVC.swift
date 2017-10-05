@@ -57,18 +57,14 @@ class SearchTVC: UITableViewController {
     }
     
     private func process(_ search: Search<Movie>, for query: String) {
-        guard search.isValid else {
-            print("invalid search")
-            return
-        }
-        
-        guard search.hasNextPage else {
+        guard search.isValid && search.hasNextPage else {
             deleteLoadingCell()
             return
         }
         
         let startingPoint = searchResults[query]?.results.count ?? 0
         let existingSearch = searchResults[query]?.combined(with: search) ?? search
+        
         searchResults[query] = existingSearch
         
         insertRows(range: startingPoint..<existingSearch.results.count)
