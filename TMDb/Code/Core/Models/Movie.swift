@@ -13,6 +13,12 @@ import Foundation
  *  and assuming that the data types are correct
  */
 
+extension Movie: Equatable {
+    public static func ==(lhs: Movie, rhs: Movie) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
 public struct Movie: Decodable, ImageDownloadable {
     public let id: Int
     public let title: String
