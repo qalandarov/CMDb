@@ -12,7 +12,7 @@ public typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
 public typealias ResultCompletionMovie = (Result<Movie>) -> Void
 public typealias ResultCompletionMovies = (Result<[Movie]>) -> Void
 public typealias ResultCompletionSearchMovie = (Result<Search<Movie>>) -> Void
-public typealias ResultCompletionGenericSearch<T: Decodable> = (Result<Search<T>>) -> Void
+public typealias ResultCompletionGenericSearch<T: Decodable & Equatable> = (Result<Search<T>>) -> Void
 
 public class NetworkEngine {
     
