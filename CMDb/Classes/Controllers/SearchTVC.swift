@@ -29,7 +29,7 @@ class SearchTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.prefetchDataSource = self
         let invisibleFrame = CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude)
         tableView.tableFooterView = UIView(frame: invisibleFrame)
     }
@@ -97,6 +97,11 @@ class SearchTVC: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return processedCell(from: tableView, at: indexPath)
+    }
+    
+    @discardableResult
+    private func processedCell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         guard let movies = self.movies, indexPath.row < movies.count else {
             searchNext()
             return tableView.dequeueReusableCell(withIdentifier: "LoadingTableCell", for: indexPath)
@@ -107,6 +112,15 @@ class SearchTVC: UITableViewController {
         return cell
     }
     
+}
+
+extension SearchTVC: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach {
+            print("prefetching row: \($0.row)")
+            processedCell(from: tableView, at: $0)
+        }
+    }
 }
 
 extension SearchTVC: UISearchControllerDelegate {
