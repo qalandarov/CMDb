@@ -117,7 +117,6 @@ class SearchTVC: UITableViewController {
 extension SearchTVC: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach {
-            print("prefetching row: \($0.row)")
             processedCell(from: tableView, at: $0)
         }
     }
