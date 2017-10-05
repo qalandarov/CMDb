@@ -29,6 +29,10 @@ class SearchTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         tableView.prefetchDataSource = self
         let invisibleFrame = CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude)
         tableView.tableFooterView = UIView(frame: invisibleFrame)
@@ -62,30 +66,14 @@ class SearchTVC: UITableViewController {
             return
         }
         
-        let startingPoint = searchResults[query]?.results.count ?? 0
         let existingSearch = searchResults[query]?.combined(with: search) ?? search
-        
         searchResults[query] = existingSearch
-        
-        insertRows(range: startingPoint..<existingSearch.results.count)
-    }
-    
-    private func insertRows(range: CountableRange<Int>) {
-        let indexPaths = range.map { IndexPath(row: $0, section: 0) }
-        
-        tableView.beginUpdates()
-        tableView.insertRows(at: indexPaths, with: .automatic)
-        tableView.endUpdates()
+        tableView.reloadData()
     }
     
     private func deleteLoadingCell() {
         shouldShowLoading = false
-        
-        let lastRow = movies?.count ?? 1
-        let indexPath = IndexPath(row: lastRow, section: 0)
-        tableView.beginUpdates()
-        tableView.deleteRows(at: [indexPath], with: .automatic)
-        tableView.endUpdates()
+        tableView.reloadData()
     }
     
     // MARK: - Table view data source
