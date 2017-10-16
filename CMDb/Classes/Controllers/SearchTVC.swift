@@ -9,11 +9,19 @@
 import UIKit
 import TMDb
 
+protocol SearchTVCDelegate: class {
+    func didSelect(_ movie: Movie)
+}
+
 class SearchTVC: UITableViewController {
     
-    var query = "robin" {
+    weak var delegate: SearchTVCDelegate?
+    
+    var query = "" {
         didSet {
-            searchNext()
+            if oldValue != query {
+                searchIfNeeded()
+            }
         }
     }
     
@@ -23,19 +31,34 @@ class SearchTVC: UITableViewController {
         return searchResults[query]?.results
     }
     
-    private var shouldShowLoading = true
+    private var shouldShowLoading = false
     
     private lazy var network = NetworkEngine()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Hide extra gap under the search bar
+        tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+        
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.prefetchDataSource = self
+        
+        // Hide the empty cells
         let invisibleFrame = CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude)
         tableView.tableFooterView = UIView(frame: invisibleFrame)
+    }
+    
+    private func searchIfNeeded() {
+        shouldShowLoading = !query.isEmpty
+        
+        if !query.isEmpty {
+            searchNext()
+        }
+        
+        tableView.reloadData()
     }
     
     private func searchNext() {
@@ -61,9 +84,12 @@ class SearchTVC: UITableViewController {
     }
     
     private func process(_ search: Search<Movie>, for query: String) {
-        guard search.isValid && search.hasNextPage else {
+        if !search.isValid || !search.hasNextPage {
             deleteLoadingCell()
-            return
+            
+            if !search.isValid {
+                alert("No movies found for: \(query)")
+            }
         }
         
         let existingSearch = searchResults[query]?.combined(with: search) ?? search
@@ -74,6 +100,12 @@ class SearchTVC: UITableViewController {
     private func deleteLoadingCell() {
         shouldShowLoading = false
         tableView.reloadData()
+    }
+    
+    private func alert(_ msg: String) {
+        let alertController = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alertController, animated: true)
     }
     
     // MARK: - Table view data source
@@ -92,7 +124,7 @@ class SearchTVC: UITableViewController {
     private func processedCell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         guard let movies = self.movies, indexPath.row < movies.count else {
             searchNext()
-            return tableView.dequeueReusableCell(withIdentifier: "LoadingTableCell", for: indexPath)
+            return tableView.dequeueReusableCell(for: indexPath) as LoadingTableCell
         }
         
         let cell = tableView.dequeueReusableCell(for: indexPath) as MovieTableCell
@@ -100,6 +132,16 @@ class SearchTVC: UITableViewController {
         return cell
     }
     
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let movie = movies?[indexPath.row] else {
+            return
+        }
+        
+        delegate?.didSelect(movie)
+    }
 }
 
 extension SearchTVC: UITableViewDataSourcePrefetching {

@@ -61,12 +61,31 @@ class HomeTVC: UITableViewController, SegueHandlerType {
     
     private let network = NetworkEngine()
     
+    private lazy var searchController: UISearchController? = {
+        guard let searchTVC: SearchTVC = Storyboard.search.viewController() else {
+            return nil
+        }
+
+        searchTVC.delegate = self
+        definesPresentationContext = true
+
+        let controller = UISearchController(searchResultsController: searchTVC)
+        controller.dimsBackgroundDuringPresentation = true
+        controller.searchResultsUpdater = self
+        controller.searchBar.tintColor = .white
+        controller.searchBar.barStyle = .black
+
+        return controller
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchAllSections()
         
-        let invisibleFrame = CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude)
-        tableView.tableFooterView = UIView(frame: invisibleFrame)
+        // Adding the search bar and hiding it behind the nav bar
+        tableView.tableHeaderView = searchController?.searchBar
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     }
     
     private func fetchAllSections() {
@@ -80,11 +99,18 @@ class HomeTVC: UITableViewController, SegueHandlerType {
             switch result {
             case .success(let search):
                 completion(.success(search.results))
-                self?.tableView.reloadData()
+                self?.refreshTableView()
             case .failure(let error):
                 completion(.failure(error))
             }
         }
+    }
+    
+    private func refreshTableView() {
+        let indexSet = IndexSet(integer: 0)
+        tableView.beginUpdates()
+        tableView.reloadSections(indexSet, with: .none)
+        tableView.endUpdates()
     }
     
     // MARK: - Navigation
@@ -146,6 +172,20 @@ class HomeTVC: UITableViewController, SegueHandlerType {
     
 }
 
+extension HomeTVC: SearchTVCDelegate {
+    func didSelect(_ movie: Movie) {
+        selectedMovie = movie
+    }
+}
+
+extension HomeTVC: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchTVC = searchController.searchResultsController as? SearchTVC else { return }
+        searchTVC.view.isHidden = false
+        searchTVC.query = searchController.searchBar.text ?? ""
+    }
+}
+
 extension UITableView {
     func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {
         let reuseID = String(describing: T.self)
@@ -165,6 +205,7 @@ extension UIImageView {
     func setImage(with url: URL?) {
         kf.cancelDownloadTask()
         kf.indicatorType = .activity
+        (kf.indicator?.view as? UIActivityIndicatorView)?.color = .white
         kf.setImage(with: url)
     }
 }

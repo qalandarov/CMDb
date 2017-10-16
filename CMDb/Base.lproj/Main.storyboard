@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,7 +13,7 @@
         <!--Navigation Controller-->
         <scene sceneID="HSu-7K-ya3">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V25-zQ-F1R" sceneMemberID="viewController">
+                <navigationController id="V25-zQ-F1R" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="39j-PK-vSJ">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
@@ -30,11 +31,11 @@
         <!--CMDb-->
         <scene sceneID="xfK-HC-z6V">
             <objects>
-                <tableViewController storyboardIdentifier="HomeTVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JKH-93-WwZ" customClass="HomeTVC" customModule="CMDb" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="HomeTVC" extendedLayoutIncludesOpaqueBars="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JKH-93-WwZ" customClass="HomeTVC" customModule="CMDb" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bD8-S7-vhq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FeaturedMoviesTableCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="FeaturedMoviesTableCell" rowHeight="378" id="Rcl-vn-JI3" customClass="FeaturedMoviesTableCell" customModule="CMDb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="320" height="378"/>
@@ -202,12 +203,22 @@
                             <outlet property="delegate" destination="JKH-93-WwZ" id="uzh-XX-k6w"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="CMDb" id="0sb-EG-6nf"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="u9b-Am-tqG" id="Awh-5q-LQ9"/>
                         <segue destination="GyF-RG-e1r" kind="show" identifier="movieDetails" id="Z2A-LC-y1N"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nh1-KT-KPr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="u9b-Am-tqG">
+                    <connections>
+                        <outlet property="delegate" destination="JKH-93-WwZ" id="b1l-Nb-t44"/>
+                        <outlet property="searchContentsController" destination="JKH-93-WwZ" id="Syn-g7-QcN"/>
+                        <outlet property="searchResultsDataSource" destination="JKH-93-WwZ" id="T8U-HR-XS7"/>
+                        <outlet property="searchResultsDelegate" destination="JKH-93-WwZ" id="HBH-RZ-Cfe"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="532.5" y="167.95774647887325"/>
         </scene>
