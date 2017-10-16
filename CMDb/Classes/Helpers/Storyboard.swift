@@ -10,6 +10,7 @@ import UIKit
 
 enum Storyboard {
     case search
+    case details
     
     func viewController<T: UIViewController>() -> T? {
         let vcName = String(describing: T.self)
@@ -25,6 +26,7 @@ enum Storyboard {
     private var name: String {
         switch self {
         case .search: return "Search"
+        case .details: return "MovieDetails"
         }
     }
 }
