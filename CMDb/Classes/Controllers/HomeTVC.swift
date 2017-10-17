@@ -9,7 +9,6 @@
 import UIKit
 import iCarousel
 import TMDb
-import Kingfisher
 
 enum MovieSection: Int {
     case upcoming
@@ -195,22 +194,5 @@ extension UITableView {
     func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {
         let reuseID = String(describing: T.self)
         return dequeueReusableCell(withIdentifier: reuseID, for: indexPath) as! T
-    }
-}
-
-extension UIImageView {
-    func setPosterImage(with movie: Movie, width: ImageWidth = .w185) {
-        setImage(with: movie.posterURL(width: width))
-    }
-    
-    func setBackdropImage(with movie: Movie, width: ImageWidth = .w500) {
-        setImage(with: movie.backdropURL(width: width))
-    }
-    
-    func setImage(with url: URL?) {
-        kf.cancelDownloadTask()
-        kf.indicatorType = .activity
-        (kf.indicator?.view as? UIActivityIndicatorView)?.color = .white
-        kf.setImage(with: url)
     }
 }
