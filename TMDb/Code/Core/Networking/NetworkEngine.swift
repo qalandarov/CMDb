@@ -29,22 +29,16 @@ public class NetworkEngine {
             completion(.failure(.general(errorMsg: "Query must be provided")))
             return
         }
-        fetch(resource: .searchMovie(query: query, page: page)) { result in
-            DispatchQueue.main.async { completion(result) }
-        }
+        fetch(resource: .searchMovie(query: query, page: page), completion: completion)
     }
     
     public func movies(type: MovieSectionType, completion: @escaping ResultCompletionSearchMovie) {
-        fetch(resource: .movies(type: type)) { result in
-            DispatchQueue.main.async { completion(result) }
-        }
+        fetch(resource: .movies(type: type), completion: completion)
     }
     
     public func movieDetails(id: Int, completion: @escaping ResultCompletionMovie) {
         let detailTypes: [DetailType] = [.credits, .images, .videos]
-        fetch(resource: .movieDetails(id: id, detailTypes: detailTypes)) { result in
-            DispatchQueue.main.async { completion(result) }
-        }
+        fetch(resource: .movieDetails(id: id, detailTypes: detailTypes), completion: completion)
     }
     
     func fetch<T: Decodable>(resource: Router, completion: @escaping ResultCompletionGeneric<T>) {
