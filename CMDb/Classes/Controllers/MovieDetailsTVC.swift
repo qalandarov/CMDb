@@ -75,12 +75,14 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         guard let id = movie?.id else { return }
         
         network.movieDetails(id: id) { [weak self] result in
-            switch result {
-            case .success(let movie):
-                self?.movie = movie
-                self?.prepareUI()
-            case .failure(let error):
-                print(error)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let movie):
+                    self?.movie = movie
+                    self?.prepareUI()
+                case .failure(let error):
+                    print(error)
+                }
             }
         }
     }
