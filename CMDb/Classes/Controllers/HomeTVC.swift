@@ -72,6 +72,7 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         let controller = UISearchController(searchResultsController: searchTVC)
         controller.dimsBackgroundDuringPresentation = true
         controller.searchResultsUpdater = self
+        controller.searchBar.delegate = searchTVC
         controller.searchBar.tintColor = .white
         controller.searchBar.barStyle = .black
 
@@ -173,6 +174,12 @@ class HomeTVC: UITableViewController, SegueHandlerType {
 }
 
 extension HomeTVC: SearchTVCDelegate {
+    func didSelect(_ query: String) {
+        searchController?.searchBar.text = query
+        guard let searchTVC = searchController?.searchResultsController as? SearchTVC else { return }
+        searchTVC.query = query
+    }
+    
     func didSelect(_ movie: Movie) {
         selectedMovie = movie
     }
@@ -180,9 +187,7 @@ extension HomeTVC: SearchTVCDelegate {
 
 extension HomeTVC: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        guard let searchTVC = searchController.searchResultsController as? SearchTVC else { return }
-        searchTVC.view.isHidden = false
-        searchTVC.query = searchController.searchBar.text ?? ""
+        searchController.searchResultsController?.view.isHidden = false
     }
 }
 

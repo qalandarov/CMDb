@@ -10,6 +10,7 @@ import UIKit
 import TMDb
 
 protocol SearchTVCDelegate: class {
+    func didSelect(_ query: String)
     func didSelect(_ movie: Movie)
 }
 
@@ -31,6 +32,10 @@ class SearchTVC: UITableViewController {
         return searchResults[query]?.results
     }
     
+    private var previousSearches: [String] {
+        return searchResults.keys.map { $0 }
+    }
+    
     private var shouldShowLoading = false
     
     private lazy var network = NetworkEngine()
@@ -47,8 +52,12 @@ class SearchTVC: UITableViewController {
         tableView.prefetchDataSource = self
         
         // Hide the empty cells
-        let invisibleFrame = CGRect(x: 0, y: 0, width: 0, height: CGFloat.leastNormalMagnitude)
-        tableView.tableFooterView = UIView(frame: invisibleFrame)
+        tableView.tableFooterView = UIView()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        query = "" // clear search
     }
     
     private func searchIfNeeded() {
@@ -111,6 +120,10 @@ class SearchTVC: UITableViewController {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard !query.isEmpty else {
+            return previousSearches.count
+        }
+        
         let movieRows = movies?.count ?? 0
         let loadingRows = shouldShowLoading ? 1 : 0
         return movieRows + loadingRows
@@ -122,6 +135,12 @@ class SearchTVC: UITableViewController {
     
     @discardableResult
     private func processedCell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        guard !query.isEmpty else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PreviousSearchCell", for: indexPath)
+            cell.textLabel?.text = previousSearches[indexPath.row]
+            return cell
+        }
+        
         guard let movies = self.movies, indexPath.row < movies.count else {
             searchNext()
             return tableView.dequeueReusableCell(for: indexPath) as LoadingTableCell
@@ -136,6 +155,14 @@ class SearchTVC: UITableViewController {
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard !query.isEmpty else {
+            let cell = tableView.cellForRow(at: indexPath)
+            delegate?.didSelect(cell?.textLabel?.text ?? "")
+            return
+        }
+        
         guard let movie = movies?[indexPath.row] else {
             return
         }
@@ -152,12 +179,15 @@ extension SearchTVC: UITableViewDataSourcePrefetching {
     }
 }
 
-extension SearchTVC: UISearchControllerDelegate {
-    
-}
-
-extension SearchTVC: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
+extension SearchTVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.isHidden = false
+        query = searchBar.text ?? ""
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            query = ""
+        }
     }
 }
