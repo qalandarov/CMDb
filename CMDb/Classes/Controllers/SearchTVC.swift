@@ -79,8 +79,8 @@ class SearchTVC: UITableViewController {
     }
     
     private func process(_ error: TMDb.Error) {
-        print(error.string)
         deleteLoadingCell()
+        alert(error.string)
     }
     
     private func process(_ search: Search<Movie>, for query: String) {
