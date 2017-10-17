@@ -136,10 +136,3 @@ extension HomeTVC: UISearchResultsUpdating {
         searchController.searchResultsController?.view.isHidden = false
     }
 }
-
-extension UITableView {
-    func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {
-        let reuseID = String(describing: T.self)
-        return dequeueReusableCell(withIdentifier: reuseID, for: indexPath) as! T
-    }
-}
