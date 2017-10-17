@@ -10,36 +10,6 @@ import UIKit
 import iCarousel
 import TMDb
 
-enum MovieSection: Int {
-    case upcoming
-    case topRated
-    case popular
-    
-    var title: String {
-        switch self {
-        case .upcoming:     return ""
-        case .topRated:     return "Top Rated >"
-        case .popular:      return "Popular >"
-        }
-    }
-    
-    var movies: [Movie]? {
-        switch self {
-        case .upcoming:     return MovieSection.upcomingMovies
-        case .topRated:     return MovieSection.topRatedMovies
-        case .popular:      return MovieSection.popularMovies
-        }
-    }
-    
-    static var all: [MovieSection] {
-        return [.upcoming, .topRated, .popular]
-    }
-    
-    static var upcomingMovies: [Movie]?
-    static var topRatedMovies: [Movie]?
-    static var popularMovies: [Movie]?
-}
-
 protocol MoviePresentable {
     func didSelectMovie(_ movie: Movie)
 }
@@ -57,8 +27,6 @@ class HomeTVC: UITableViewController, SegueHandlerType {
             performSegue(.movieDetails, sender: self)
         }
     }
-    
-    private let network = NetworkEngine()
     
     private lazy var searchController: UISearchController? = {
         guard let searchTVC: SearchTVC = Storyboard.search.viewController() else {
@@ -78,32 +46,18 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         return controller
     }()
     
+    lazy var vm = HomeViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchAllSections()
+        vm.fetchAllSections { [weak self] in
+            self?.refreshTableView()
+        }
         
         // Adding the search bar and hiding it behind the nav bar
         tableView.tableHeaderView = searchController?.searchBar
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.scrollToRow(at: indexPath, at: .top, animated: false)
-    }
-    
-    private func fetchAllSections() {
-        movies(type: .upcoming) { MovieSection.upcomingMovies = $0.value?.filter { $0.posterPath != nil } }
-        movies(type: .toprated) { MovieSection.topRatedMovies = $0.value?.filter { $0.backdropPath != nil } }
-        movies(type: .popular)  { MovieSection.popularMovies  = $0.value?.filter { $0.backdropPath != nil } }
-    }
-    
-    private func movies(type: MovieSectionType, completion: @escaping ResultCompletionMovies) {
-        network.movies(type: type) { [weak self] result in
-            switch result {
-            case .success(let search):
-                completion(.success(search.results))
-                self?.refreshTableView()
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
     }
     
     private func refreshTableView() {
@@ -144,29 +98,22 @@ class HomeTVC: UITableViewController, SegueHandlerType {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MovieSection.all.count
+        return vm.numberOfSections
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let section = MovieSection(rawValue: indexPath.row)
+        
+        let movies = vm.movies(at: indexPath)
         
         guard indexPath.row > 0 else {
             let cell = tableView.dequeueReusableCell(for: indexPath) as FeaturedMoviesTableCell
-            
-            if let movies = section?.movies {
-                cell.configure(with: movies, presentor: self)
-            }
-            
+            cell.configure(with: movies, presentor: self)
             return cell
         }
         
         // prepare the rest
         let cell = tableView.dequeueReusableCell(for: indexPath) as MovieSectionTableCell
-        
-        if let movies = section?.movies, let title = section?.title {
-            cell.configure(with: movies, title: title, presentor: self)
-        }
-        
+        cell.configure(with: movies, title: vm.title(at: indexPath), presentor: self)
         return cell
     }
     
