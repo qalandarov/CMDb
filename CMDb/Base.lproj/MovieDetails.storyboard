@@ -13,7 +13,7 @@
         <scene sceneID="iFs-Jp-66M">
             <objects>
                 <tableViewController storyboardIdentifier="MovieDetailsTVC" id="Sek-DT-Z7O" customClass="MovieDetailsTVC" customModule="CMDb" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ELz-ih-ION">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="16" sectionFooterHeight="16" id="ELz-ih-ION">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,7 +73,7 @@
                             <tableViewSection headerTitle=" " id="nKB-23-2uV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="151" id="gCl-iT-nt7">
-                                        <rect key="frame" x="0.0" y="263" width="320" height="151"/>
+                                        <rect key="frame" x="0.0" y="251" width="320" height="151"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gCl-iT-nt7" id="08U-s6-tTk">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="151"/>
@@ -112,7 +112,7 @@
                             <tableViewSection headerTitle=" " id="VTV-TV-1jF">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="227" id="3Kj-tF-rJ8">
-                                        <rect key="frame" x="0.0" y="442" width="320" height="227"/>
+                                        <rect key="frame" x="0.0" y="418" width="320" height="227"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Kj-tF-rJ8" id="Mv4-4N-dpJ">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="227"/>
