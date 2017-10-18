@@ -17,6 +17,7 @@ class MovieSectionDownloadOperation: AsyncOperation {
     
     required init(section: MovieSectionType) {
         self.section = section
+        super.init()
     }
     
     override func start() {
