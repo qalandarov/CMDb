@@ -28,7 +28,6 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     @IBOutlet weak var textView: UITextView!
     
     var movie: Movie?
-    private let network = NetworkEngine()
     private var castCollectionVC: ProfilesCollectionVC?
     private var originalOffsetY: CGFloat = 0
     private var originalImageFrame: CGRect = .zero
@@ -36,9 +35,7 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
-        if movie?.credits?.cast == nil {
-            fetchDetails()
-        }
+        fetchDetailsIfNeeded()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,20 +67,18 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         }
     }
     
-    private func fetchDetails() {
-        guard let id = movie?.id else { return }
-        
-        network.movieDetails(id: id) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let movie):
-                    self?.movie = movie
-                    self?.prepareUI()
-                case .failure(let error):
-                    print(error)
-                }
+    private func fetchDetailsIfNeeded() {
+        guard let movie = movie, movie.credits?.cast == nil else { return }
+
+        let op = MovieDetailsDownloadOperation(movieID: movie.id)
+        op.completionBlock = {
+            OperationQueue.main.addOperation {
+                self.movie = op.movie
+                self.prepareUI()
             }
         }
+        
+        op.start()
     }
     
     // MARK: - Navigation
