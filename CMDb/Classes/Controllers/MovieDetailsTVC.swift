@@ -9,16 +9,6 @@
 import UIKit
 import TMDb
 
-enum TableSections: Int {
-    case titleAndYear
-    case overview
-    case cast
-    
-    var rows: Int {
-        return 1
-    }
-}
-
 class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     
     @IBOutlet weak var imageView: UIImageView!
@@ -60,11 +50,14 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         
         if let casts = movie.credits?.cast, !casts.isEmpty {
             castCollectionVC?.casts = casts
-            tableView.beginUpdates()
-            let indexSet = IndexSet(integer: TableSections.cast.rawValue)
-            tableView.insertSections(indexSet, with: .bottom)
-            tableView.endUpdates()
+            insertCastSection()
         }
+    }
+    
+    private func insertCastSection() {
+        tableView.beginUpdates()
+        tableView.insertSections(IndexSet(integer: 2), with: .bottom)
+        tableView.endUpdates()
     }
     
     private func fetchDetailsIfNeeded() {
@@ -107,10 +100,6 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     override func numberOfSections(in tableView: UITableView) -> Int {
         let hasCast = movie?.credits?.cast != nil
         return hasCast ? 3 : 2
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return TableSections(rawValue: section)?.rows ?? 0
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
