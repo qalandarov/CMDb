@@ -11,12 +11,12 @@ import TMDb
 import Kingfisher
 
 extension UIImageView {
-    func setPosterImage(with movie: Movie, width: ImageWidth = .w185) {
-        setImage(with: movie.posterURL(width: width))
+    func setPosterImage(with downloadable: ImageDownloadable, width: ImageWidth = .w185) {
+        setImage(with: downloadable.posterURL(width: width))
     }
     
-    func setBackdropImage(with movie: Movie, width: ImageWidth = .w500) {
-        setImage(with: movie.backdropURL(width: width))
+    func setBackdropImage(with downloadable: ImageDownloadable, width: ImageWidth = .w500) {
+        setImage(with: downloadable.backdropURL(width: width))
     }
     
     func setImage(with url: URL?) {
