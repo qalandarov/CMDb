@@ -11,7 +11,7 @@ import Foundation
 
 class AsyncOperation: Operation {
     enum State: String {
-        case ready, executing, finished
+        case ready, executing, finished, cancelled
         
         fileprivate var keyPath: String {
             return "is" + rawValue.capitalized
@@ -41,7 +41,7 @@ extension AsyncOperation {
     }
     
     override func cancel() {
-        state = .finished
+        state = .cancelled
     }
     
     func finish() {
@@ -60,6 +60,10 @@ extension AsyncOperation {
     
     override var isFinished: Bool {
         return state == .finished
+    }
+    
+    override var isCancelled: Bool {
+        return state == .cancelled
     }
     
     override var isConcurrent: Bool {
