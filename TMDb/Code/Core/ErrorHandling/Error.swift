@@ -16,9 +16,14 @@ public enum Error: ErrorType {
     case general(errorMsg: String)
     case incorrectResponse
     case incorrectRequest
+    case unexpected
     
-    init(_ errorMsg: String) {
-        self = Error.general(errorMsg: errorMsg)
+    init(_ errorMsg: String?) {
+        if let msg = errorMsg {
+            self = .general(errorMsg: msg)
+        } else {
+            self = .unexpected
+        }
     }
     
     public var string: String {
@@ -29,6 +34,8 @@ public enum Error: ErrorType {
             return "Unexpected response received from the server"
         case .incorrectRequest:
             return "Something is wrong with the configurations"
+        case .unexpected:
+            return "Unexpected error"
         }
     }
 }
