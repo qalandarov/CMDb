@@ -10,7 +10,7 @@
 import Foundation
 
 class AsyncOperation: Operation {
-    enum State: String {
+    private enum State: String {
         case ready, executing, finished, cancelled
         
         fileprivate var keyPath: String {
@@ -18,7 +18,7 @@ class AsyncOperation: Operation {
         }
     }
     
-    var state: State = .ready {
+    private var state: State = .ready {
         willSet {
             willChangeValue(forKey: state.keyPath)
             willChangeValue(forKey: newValue.keyPath)
