@@ -25,7 +25,7 @@ class MovieSectionDownloadOperation: AsyncOperation {
         
         network.movies(type: section) { [weak self] result in
             self?.result = result
-            self?.state = .finished
+            self?.finish()
         }
     }
 }
