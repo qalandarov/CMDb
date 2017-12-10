@@ -10,68 +10,98 @@ import Foundation
 
 public typealias VoidCompletion = () -> Void
 public typealias ResultCompletionGeneric<T> = (Result<T>) -> Void
+public typealias ResultCompletionData = (Result<Data>) -> Void
 public typealias ResultCompletionMovie = (Result<Movie>) -> Void
 public typealias ResultCompletionMovies = (Result<[Movie]>) -> Void
 public typealias ResultCompletionSearchMovie = (Result<Search<Movie>>) -> Void
 public typealias ResultCompletionGenericSearch<T: Decodable & Equatable> = (Result<Search<T>>) -> Void
 
 public class NetworkEngine {
-    
-    var currentTask: URLSessionDataTask?
-    
     public init() {}
+    private var currentTask: URLSessionDataTask?
+    deinit { currentTask?.cancel() }
+}
     
-    deinit {
-        currentTask?.cancel()
-    }
+// MARK: - Public API
 
-    public func searchMovie(query: String, page: Int = 1, completion: @escaping ResultCompletionGenericSearch<Movie>) {
+public extension NetworkEngine {
+    
+    func searchMovie(query: String, page: Int = 1, completion: @escaping ResultCompletionGenericSearch<Movie>) {
         guard !query.isEmpty else {
             completion(.failure(.general(errorMsg: "Query must be provided")))
             return
         }
-        fetch(resource: .searchMovie(query: query, page: page), completion: completion)
+        fetch(.searchMovie(query: query, page: page), completion: completion)
     }
     
-    public func movies(type: MovieSectionType, completion: @escaping ResultCompletionSearchMovie) {
-        fetch(resource: .movies(type: type), completion: completion)
+    func movies(type: MovieSectionType, completion: @escaping ResultCompletionSearchMovie) {
+        fetch(.movies(type: type), completion: completion)
     }
     
-    public func movieDetails(id: Int, completion: @escaping ResultCompletionMovie) {
+    func movieDetails(id: Int, completion: @escaping ResultCompletionMovie) {
         let detailTypes: [DetailType] = [.credits, .images, .videos]
-        fetch(resource: .movieDetails(id: id, detailTypes: detailTypes), completion: completion)
+        fetch(.movieDetails(id: id, detailTypes: detailTypes), completion: completion)
     }
     
-    func fetch<T: Decodable>(resource: Router, completion: @escaping ResultCompletionGeneric<T>) {
-        guard let request = resource.request else {
-            completion(.failure(.incorrectRequest))
-            return
+}
+
+// MARK: - Private Implementation
+
+private extension NetworkEngine {
+    
+    func fetch<T: Decodable>(_ resource: Router, completion: @escaping ResultCompletionGeneric<T>) {
+        currentTask = fetch(resource) { [weak self] result in
+            guard let strongSelf = self else { return }
+            completion(result.flatMap(strongSelf.decode))
         }
-        
-        currentTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            if let error = error {
-                completion(.failure(.general(errorMsg: error.localizedDescription)))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(.incorrectResponse))
-                return
-            }
-            
-            guard let result = try? JSONDecoder().decode(T.self, from: data) else {
-                if let contentError = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                    completion(.failure(.general(errorMsg: contentError.message)))
-                } else {
-                    completion(.failure(.incorrectResponse))
-                }
-                return
-            }
-            
-            completion(.success(result))
-        }
-        
         currentTask?.resume()
     }
     
+    func fetch(_ router: Router, completion: @escaping ResultCompletionData) -> URLSessionDataTask? {
+        guard let request = router.request else {
+            assertionFailure("Incorrect request")
+            completion(.failure(.incorrectRequest))
+            return nil
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard error == nil, let data = data else {
+                let errorObject = Error(error?.localizedDescription)
+                completion(.failure(errorObject))
+                return
+            }
+            completion(.success(data))
+        }
+        
+        task.resume()
+        return task
+    }
+    
+    func decode<T: Decodable>(_ data: Data) -> Result<T> {
+        if let decoded = data.decoded(as: T.self) {
+            return .success(decoded)
+        }
+        
+        if let contentError = data.decodedError {
+            debugPrint("Error while decoding: \(contentError)")
+            return .failure(.general(errorMsg: contentError.message))
+        }
+        
+        return .failure(.incorrectResponse)
+    }
+    
+}
+
+private extension Data {
+    var decodedError: ErrorResponse? {
+        return decoded()
+    }
+    
+    func decoded<T: Decodable>(as type: T.Type) -> T? {
+        return decoded()
+    }
+    
+    private func decoded<T: Decodable>() -> T? {
+        return try? JSONDecoder().decode(T.self, from: self)
+    }
 }
