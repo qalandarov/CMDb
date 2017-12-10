@@ -25,13 +25,13 @@ private enum MovieSection: Int {
 
 struct HomeViewModel {
     
-    fileprivate lazy var movieSections: [MovieSection : [Movie]] = [:]
+    fileprivate lazy var movieSections: [MovieSection : [MovieViewModel]] = [:]
     
     var numberOfSections: Int {
         return [MovieSection.upcoming, .topRated, .popular].count
     }
     
-    mutating func movies(at indexPath: IndexPath) -> [Movie] {
+    mutating func movieViewModels(at indexPath: IndexPath) -> [MovieViewModel] {
         guard let section = MovieSection(rawValue: indexPath.row) else {
             return []
         }

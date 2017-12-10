@@ -11,7 +11,7 @@ import TMDb
 
 protocol SearchTVCDelegate: class {
     func didSelect(_ query: String)
-    func didSelect(_ movie: Movie)
+    func didSelect(_ viewModel: MovieViewModel)
 }
 
 class SearchTVC: UITableViewController {
@@ -167,7 +167,7 @@ class SearchTVC: UITableViewController {
             return
         }
         
-        delegate?.didSelect(movie)
+        delegate?.didSelect(MovieViewModel(with: movie))
     }
 }
 

@@ -8,21 +8,20 @@
 
 import UIKit
 import iCarousel
-import TMDb
 
 protocol MoviePresentable {
-    func didSelectMovie(_ movie: Movie)
+    func didSelectMovie(_ viewModel: MovieViewModel)
 }
 
 extension HomeTVC: MoviePresentable {
-    func didSelectMovie(_ movie: Movie) {
-        selectedMovie = movie
+    func didSelectMovie(_ viewModel: MovieViewModel) {
+        selectedVM = viewModel
     }
 }
 
 class HomeTVC: UITableViewController, SegueHandlerType {
     
-    private var selectedMovie: Movie? {
+    private var selectedVM: MovieViewModel? {
         didSet {
             performSegue(.movieDetails, sender: self)
         }
@@ -85,13 +84,13 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         switch segueID {
         case .movieDetails:
             guard
-                let movie = selectedMovie,
+                let vm = selectedVM,
                 let detailsVC = segueID.destination(from: segue, as: MovieDetailsTVC.self)
                 else {
                     return
             }
 
-            detailsVC.movie = movie
+            detailsVC.vm = vm
         }
     }
 
@@ -103,17 +102,17 @@ class HomeTVC: UITableViewController, SegueHandlerType {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let movies = vm.movies(at: indexPath)
+        let movieViewModels = vm.movieViewModels(at: indexPath)
         
         guard indexPath.row > 0 else {
             let cell = tableView.dequeueReusableCell(for: indexPath) as FeaturedMoviesTableCell
-            cell.configure(with: movies, presentor: self)
+            cell.configure(with: movieViewModels, presentor: self)
             return cell
         }
         
         // prepare the rest
         let cell = tableView.dequeueReusableCell(for: indexPath) as MovieSectionTableCell
-        cell.configure(with: movies, title: vm.title(at: indexPath), presentor: self)
+        cell.configure(with: movieViewModels, title: vm.title(at: indexPath), presentor: self)
         return cell
     }
     
@@ -126,8 +125,8 @@ extension HomeTVC: SearchTVCDelegate {
         searchTVC.query = query
     }
     
-    func didSelect(_ movie: Movie) {
-        selectedMovie = movie
+    func didSelect(_ viewModel: MovieViewModel) {
+        selectedVM = viewModel
     }
 }
 

@@ -7,11 +7,10 @@
 //
 
 import UIKit
-import TMDb
 
 class ProfilesCollectionVC: UICollectionViewController {
     
-    var casts: [Cast]? {
+    var casts: [CastViewModel]? {
         didSet {
             collectionView?.reloadData()
         }
@@ -30,7 +29,7 @@ class ProfilesCollectionVC: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfileCollectionCell", for: indexPath) as! ProfileCollectionCell
         
-        if castsCount > indexPath.item, let cast = casts?[indexPath.item] {
+        if let cast = casts?[indexPath.item] {
             cell.profileImageView.setImage(with: cast.profileURL())
             cell.nameLabel.text = cast.name
             cell.characterLabel.text = cast.character

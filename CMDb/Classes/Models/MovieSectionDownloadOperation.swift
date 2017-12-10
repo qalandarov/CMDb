@@ -31,8 +31,8 @@ class MovieSectionDownloadOperation: AsyncOperation {
 }
 
 extension MovieSectionDownloadOperation {
-    var movies: [Movie]? {
-        return result?.value?.results
+    var movies: [MovieViewModel]? {
+        return result?.value?.results.map(MovieViewModel.init)
     }
     
     var error: TMDb.Error? {

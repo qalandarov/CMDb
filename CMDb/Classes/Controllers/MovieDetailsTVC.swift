@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TMDb
 
 class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     
@@ -17,7 +16,7 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     @IBOutlet weak var posterImageView: UIImageView!
     @IBOutlet weak var textView: UITextView!
     
-    var movie: Movie?
+    var vm: MovieViewModel?
     private var castCollectionVC: ProfilesCollectionVC?
     private var originalOffsetY: CGFloat = 0
     private var originalImageFrame: CGRect = .zero
@@ -25,7 +24,12 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareUI()
-        fetchDetailsIfNeeded()
+        
+        if vm?.casts == nil {
+            vm?.fetchDetails { [weak self] in
+                self?.prepareUI()
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -35,43 +39,24 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     }
     
     private func prepareUI() {
-        guard let movie = movie else { return }
+        guard let vm = vm else { return }
         
-        let url = movie.backdropURL() ?? movie.posterURL()
+        let url = vm.backdropURL() ?? vm.posterURL()
         imageView.setImage(with: url)
         
-        posterImageView.setPosterImage(with: movie, width: .w92)
+        posterImageView.setPosterImage(with: vm, width: .w92)
         
-        titleLabel.text = movie.title + " (\(movie.releaseYear))" // title + (YYYY)
-        genreLabel.text = movie.genres?.map({ $0.name }).joined(separator: ", ")
+        titleLabel.text = vm.titleAndYear
+        genreLabel.text = vm.genres
         
         textView.textContainerInset = .zero
-        textView.text = movie.overview
+        textView.text = vm.overview
         
-        if let casts = movie.credits?.cast, !casts.isEmpty {
-            castCollectionVC?.casts = casts
-            insertCastSection()
+        if vm.hasCast {
+            castCollectionVC?.casts = vm.casts
+            tableView.beginUpdates()
+            tableView.endUpdates()
         }
-    }
-    
-    private func insertCastSection() {
-        tableView.beginUpdates()
-        tableView.insertSections(IndexSet(integer: 2), with: .bottom)
-        tableView.endUpdates()
-    }
-    
-    private func fetchDetailsIfNeeded() {
-        guard let movie = movie, movie.credits?.cast == nil else { return }
-
-        let op = MovieDetailsDownloadOperation(movieID: movie.id)
-        op.completionBlock = {
-            OperationQueue.main.addOperation {
-                self.movie = op.movie
-                self.prepareUI()
-            }
-        }
-        
-        op.start()
     }
     
     // MARK: - Navigation
@@ -98,8 +83,7 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        let hasCast = movie?.credits?.cast != nil
-        return hasCast ? 3 : 2
+        return (vm?.hasCast == true) ? 3 : 2
     }
     
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

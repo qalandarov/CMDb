@@ -18,11 +18,11 @@ class FeaturedMoviesTableCell: UITableViewCell {
     
     var moviePresentor: MoviePresentable?
     
-    private var movies: [Movie] = [] {
+    private var vms: [MovieViewModel] = [] {
         didSet {
             carousel.reloadData()
             bgCarousel.reloadData()
-            carousel.currentItemIndex = movies.count / 2
+            carousel.currentItemIndex = vms.count / 2
         }
     }
     
@@ -40,8 +40,8 @@ class FeaturedMoviesTableCell: UITableViewCell {
         placeholderView.backgroundColor = .clear
     }
     
-    func configure(with movies: [Movie], presentor: MoviePresentable) {
-        self.movies = movies
+    func configure(with vms: [MovieViewModel], presentor: MoviePresentable) {
+        self.vms = vms
         moviePresentor = presentor
     }
     
@@ -49,14 +49,14 @@ class FeaturedMoviesTableCell: UITableViewCell {
 
 extension FeaturedMoviesTableCell: iCarouselDataSource {
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return movies.count
+        return vms.count
     }
     
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
         let bg = carousel == bgCarousel
         let frame = bg ? carousel.frame : placeholderView.frame
         let posterView = view as? UIImageView ?? UIImageView(frame: frame)
-        posterView.setPosterImage(with: movies[index])
+        posterView.setPosterImage(with: vms[index])
         return posterView
     }
 }
@@ -68,6 +68,6 @@ extension FeaturedMoviesTableCell: iCarouselDelegate {
     
     func carousel(_ carousel: iCarousel, didSelectItemAt index: Int) {
         guard index == carousel.currentItemIndex else { return }
-        moviePresentor?.didSelectMovie(movies[index])
+        moviePresentor?.didSelectMovie(vms[index])
     }
 }
