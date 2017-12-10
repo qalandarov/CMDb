@@ -30,7 +30,7 @@ class MovieDetailsDownloadOperation: AsyncOperation {
     override func start() {
         network.movieDetails(id: movieID) { [weak self] result in
             self?.result = result
-            self?.state = .finished
+            self?.finish()
         }
     }
 }

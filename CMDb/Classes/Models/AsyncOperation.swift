@@ -43,6 +43,10 @@ extension AsyncOperation {
     override func cancel() {
         state = .finished
     }
+    
+    func finish() {
+        state = .finished
+    }
 }
 
 extension AsyncOperation {
