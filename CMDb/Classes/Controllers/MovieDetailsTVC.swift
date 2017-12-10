@@ -27,7 +27,7 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         
         if vm?.casts == nil {
             vm?.fetchDetails { [weak self] in
-                self?.prepareUI()
+                self?.insertCastsIfNeeded()
             }
         }
     }
@@ -52,11 +52,18 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         textView.textContainerInset = .zero
         textView.text = vm.overview
         
-        if vm.hasCast {
-            castCollectionVC?.casts = vm.casts
-            tableView.beginUpdates()
-            tableView.endUpdates()
-        }
+        insertCastsIfNeeded()
+    }
+    
+    private func insertCastsIfNeeded() {
+        guard vm?.hasCast == true else { return }
+        
+        castCollectionVC?.casts = vm?.casts
+        
+        tableView.beginUpdates()
+        let indexSet = IndexSet(integer: 2)
+        tableView.insertSections(indexSet, with: .bottom)
+        tableView.endUpdates()
     }
     
     // MARK: - Navigation
