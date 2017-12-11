@@ -28,10 +28,18 @@ class MovieDetailsDownloadOperation: AsyncOperation {
     }
     
     override func start() {
+        guard !isCancelled else { return }
+        super.start()
         network.movieDetails(id: movieID) { [weak self] result in
-            self?.result = result
-            self?.finish()
+            guard let `self` = self, !self.isCancelled else { return }
+            self.result = result
+            self.finish()
         }
+    }
+
+    override func cancel() {
+        network.cancel()
+        super.cancel()
     }
 }
 
