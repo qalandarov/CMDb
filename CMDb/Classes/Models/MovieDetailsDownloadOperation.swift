@@ -9,9 +9,9 @@
 import UIKit
 import TMDb
 
-class MovieDetailsDownloadOperation: AsyncOperation {
-    private lazy var network = NetworkEngine()
-    private var result: Result<Movie>?
+class MovieDetailsDownloadOperation: NetworkOperation<Movie> {
+    
+    var movie: Movie? { return result?.value }
     
     private var movieID = 0
     
@@ -35,20 +35,5 @@ class MovieDetailsDownloadOperation: AsyncOperation {
             self.result = result
             self.finish()
         }
-    }
-
-    override func cancel() {
-        network.cancel()
-        super.cancel()
-    }
-}
-
-extension MovieDetailsDownloadOperation {
-    var movie: Movie? {
-        return result?.value
-    }
-    
-    var error: TMDb.Error? {
-        return result?.error
     }
 }
