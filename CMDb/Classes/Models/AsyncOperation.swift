@@ -11,7 +11,7 @@ import Foundation
 
 class AsyncOperation: Operation {
     private enum State: String {
-        case ready, executing, finished, cancelled
+        case ready, executing, finished
         
         fileprivate var keyPath: String {
             return "is" + rawValue.capitalized
@@ -32,16 +32,15 @@ class AsyncOperation: Operation {
 
 extension AsyncOperation {
     override func start() {
-        if isCancelled {
-            state = .finished
-            return
-        }
-        
+        guard state == .ready else { return }
         state = .executing
     }
     
     override func cancel() {
-        state = .cancelled
+        // Need to call super.cancel() FIRST to update cancelled state
+        super.cancel()
+        // Then mark it as finished
+        state = .finished
     }
     
     func finish() {
@@ -60,14 +59,6 @@ extension AsyncOperation {
     
     override var isFinished: Bool {
         return state == .finished
-    }
-    
-    override var isCancelled: Bool {
-        return state == .cancelled
-    }
-    
-    override var isConcurrent: Bool {
-        return true
     }
     
     override var isAsynchronous: Bool {
