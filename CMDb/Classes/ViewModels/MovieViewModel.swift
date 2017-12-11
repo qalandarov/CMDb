@@ -63,7 +63,7 @@ extension MovieViewModel {
         
         blockOp.addDependency(op)
         
-        OperationQueue().addOperations([op], waitUntilFinished: false)
+        OperationQueue().addOperation(op)
         OperationQueue.main.addOperation(blockOp)
     }
 }
