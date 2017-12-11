@@ -17,13 +17,6 @@ class MovieDetailsDownloadOperation: NetworkOperation<Movie> {
     
     required init(movieID: Int) {
         super.init()
-        
-        guard movieID > 0 else {
-            assertionFailure("Invalid movie id is passed")
-            cancel()
-            return
-        }
-        
         self.movieID = movieID
     }
     
