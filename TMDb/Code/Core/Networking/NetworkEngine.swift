@@ -19,7 +19,11 @@ public typealias ResultCompletionGenericSearch<T: Decodable & Equatable> = (Resu
 public class NetworkEngine {
     public init() {}
     private var currentTask: URLSessionDataTask?
-    deinit { currentTask?.cancel() }
+    deinit { cancel() }
+    
+    public func cancel() {
+        currentTask?.cancel()
+    }
 }
     
 // MARK: - Public API
