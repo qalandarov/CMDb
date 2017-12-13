@@ -19,4 +19,10 @@ class NetworkOperation<T>: AsyncOperation {
         network.cancel()
         super.cancel()
     }
+    
+    func handleCompletion(_ result: Result<T>) {
+        guard !isCancelled else { return }
+        self.result = result
+        finish()
+    }
 }
