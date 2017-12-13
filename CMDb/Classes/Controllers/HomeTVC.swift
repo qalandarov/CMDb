@@ -59,6 +59,11 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         tableView.scrollToRow(at: indexPath, at: .top, animated: false)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        refreshTableView()
+    }
+    
     private func refreshTableView() {
         let indexSet = IndexSet(integer: 0)
         tableView.beginUpdates()
