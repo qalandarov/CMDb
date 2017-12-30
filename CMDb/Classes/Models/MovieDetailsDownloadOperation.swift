@@ -23,10 +23,6 @@ class MovieDetailsDownloadOperation: NetworkOperation<Movie> {
     override func start() {
         guard !isCancelled else { return }
         super.start()
-        network.movieDetails(id: movieID) { [weak self] result in
-            guard let `self` = self, !self.isCancelled else { return }
-            self.result = result
-            self.finish()
-        }
+        network.movieDetails(id: movieID, completion: handleCompletion)
     }
 }
