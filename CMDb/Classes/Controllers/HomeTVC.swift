@@ -61,7 +61,11 @@ class HomeTVC: UITableViewController, SegueHandlerType {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        refreshTableView()
+        
+        // Do it only the first time
+        if isMovingToParentViewController {
+            refreshTableView()
+        }
     }
     
     private func refreshTableView() {
