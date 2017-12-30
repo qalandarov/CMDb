@@ -9,11 +9,13 @@
 import Foundation
 import TMDb
 
-class MovieSectionDownloadOperation: AsyncOperation {
-    private lazy var network = NetworkEngine()
-    private var result: Result<Search<Movie>>?
+class MovieSectionDownloadOperation: NetworkOperation<Search<Movie>> {
     
-    var section: MovieSectionType
+    var movies: [MovieViewModel]? {
+        return result?.value?.results.map(MovieViewModel.init)
+    }
+    
+    private var section: MovieSectionType
     
     required init(section: MovieSectionType) {
         self.section = section
@@ -21,21 +23,8 @@ class MovieSectionDownloadOperation: AsyncOperation {
     }
     
     override func start() {
+        guard !isCancelled else { return }
         super.start()
-        
-        network.movies(type: section) { [weak self] result in
-            self?.result = result
-            self?.finish()
-        }
-    }
-}
-
-extension MovieSectionDownloadOperation {
-    var movies: [MovieViewModel]? {
-        return result?.value?.results.map(MovieViewModel.init)
-    }
-    
-    var error: TMDb.Error? {
-        return result?.error
+        network.movies(type: section, completion: handleCompletion)
     }
 }
