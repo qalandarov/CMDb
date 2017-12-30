@@ -23,7 +23,7 @@ private enum MovieSection: Int {
     }
 }
 
-struct HomeViewModel {
+class HomeViewModel {
     
     fileprivate lazy var movieSections: [MovieSection : [MovieViewModel]] = [:]
     
@@ -31,7 +31,7 @@ struct HomeViewModel {
         return [MovieSection.upcoming, .topRated, .popular].count
     }
     
-    mutating func movieViewModels(at indexPath: IndexPath) -> [MovieViewModel] {
+    func movieViewModels(at indexPath: IndexPath) -> [MovieViewModel] {
         guard let section = MovieSection(rawValue: indexPath.row) else {
             return []
         }
@@ -46,7 +46,7 @@ struct HomeViewModel {
 
 // Networking
 extension HomeViewModel {
-    mutating func fetchAllSections(completion: @escaping (() -> ())) {
+    func fetchAllSections(completion: @escaping (() -> ())) {
         let upcomingOp = MovieSectionDownloadOperation(section: .upcoming)
         let topRatedOp = MovieSectionDownloadOperation(section: .toprated)
         let popularOp  = MovieSectionDownloadOperation(section: .popular)
