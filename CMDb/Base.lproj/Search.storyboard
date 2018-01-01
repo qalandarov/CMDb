@@ -121,7 +121,7 @@
                                     <outlet property="spinner" destination="GJq-ba-hfg" id="fCF-qq-xql"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviousSearchCell" textLabel="6iQ-DA-K4V" rowHeight="44" style="IBUITableViewCellStyleDefault" id="nAG-zk-lY3">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PreviousSearchCell" textLabel="6iQ-DA-K4V" rowHeight="44" style="IBUITableViewCellStyleDefault" id="nAG-zk-lY3" customClass="PreviousSearchCell" customModule="CMDb" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="330" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nAG-zk-lY3" id="Iyt-te-nYY">
