@@ -130,8 +130,7 @@ class HomeTVC: UITableViewController, SegueHandlerType {
 extension HomeTVC: SearchTVCDelegate {
     func didSelect(_ query: String) {
         searchController?.searchBar.text = query
-        guard let searchTVC = searchController?.searchResultsController as? SearchTVC else { return }
-        searchTVC.query = query
+        searchController?.searchBar.resignFirstResponder()
     }
     
     func didSelect(_ viewModel: MovieViewModel) {
