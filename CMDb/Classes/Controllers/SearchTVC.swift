@@ -16,178 +16,119 @@ protocol SearchTVCDelegate: class {
 
 class SearchTVC: UITableViewController {
     
+    private lazy var viewModel = SearchViewModel()
     weak var delegate: SearchTVCDelegate?
-    
-    var query = "" {
-        didSet {
-            if oldValue != query {
-                searchIfNeeded()
-            }
-        }
-    }
-    
-    private lazy var searchResults: [String : Search<Movie>] = [:]
-    
-    private var movies: [Movie]? {
-        return searchResults[query]?.results
-    }
-    
-    private var previousSearches: [String] {
-        return searchResults.keys.map { $0 }
-    }
-    
-    private var shouldShowLoading = false
-    
-    private lazy var network = NetworkEngine()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
         
-        // Hide extra gap under the search bar
-        tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
-        
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-        
-        tableView.prefetchDataSource = self
-        
-        // Hide the empty cells
-        tableView.tableFooterView = UIView()
+        viewModel.refreshUI = tableView.reloadData
+        viewModel.errorAction = { [weak self] errorMsg in
+            self?.tableView.reloadData()
+            self?.alert(errorMsg)
+        }
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        query = "" // clear search
+        viewModel.resetSearch()
     }
     
-    private func searchIfNeeded() {
-        shouldShowLoading = !query.isEmpty
+    func setupUI() {
+        // Hide extra gap under the search bar
+        tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         
-        if !query.isEmpty {
-            searchNext()
-        }
+        // Hide the empty cells
+        tableView.tableFooterView = UIView()
         
-        tableView.reloadData()
-    }
-    
-    private func searchNext() {
-        let currentPage = searchResults[query]?.page ?? 0
-        let nextPage = currentPage + 1
-        search(query, page: nextPage)
-    }
-    
-    private func search(_ query: String, page: Int) {
-        network.searchMovie(query: query, page: page) { [weak self] result in
-            switch result {
-            case .success(let search):
-                self?.process(search, for: query)
-            case .failure(let error):
-                self?.process(error)
-            }
-        }
-    }
-    
-    private func process(_ error: TMDb.Error) {
-        deleteLoadingCell()
-        alert(error.string)
-    }
-    
-    private func process(_ search: Search<Movie>, for query: String) {
-        if !search.isValid || !search.hasNextPage {
-            deleteLoadingCell()
-            
-            if !search.isValid {
-                alert("No movies found for: \(query)")
-            }
-        }
+        tableView.prefetchDataSource = self
         
-        let existingSearch = searchResults[query]?.combined(with: search) ?? search
-        searchResults[query] = existingSearch
-        tableView.reloadData()
+        // Prevent autolayout bugs
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    private func deleteLoadingCell() {
-        shouldShowLoading = false
-        tableView.reloadData()
-    }
-    
-    private func alert(_ msg: String) {
-        let alertController = UIAlertController(title: "Error", message: msg, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alertController, animated: true)
-    }
-    
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !query.isEmpty else {
-            return previousSearches.count
-        }
-        
-        let movieRows = movies?.count ?? 0
-        let loadingRows = shouldShowLoading ? 1 : 0
-        return movieRows + loadingRows
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return processedCell(from: tableView, at: indexPath)
-    }
-    
-    @discardableResult
-    private func processedCell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        guard !query.isEmpty else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PreviousSearchCell", for: indexPath)
-            cell.textLabel?.text = previousSearches[indexPath.row]
-            return cell
-        }
-        
-        guard let movies = self.movies, indexPath.row < movies.count else {
-            searchNext()
-            return tableView.dequeueReusableCell(for: indexPath) as LoadingTableCell
-        }
-        
-        let cell = tableView.dequeueReusableCell(for: indexPath) as MovieTableCell
-        cell.configure(with: movies[indexPath.row])
-        return cell
-    }
-    
-    
-    // MARK: - Table view delegate
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        guard !query.isEmpty else {
-            let cell = tableView.cellForRow(at: indexPath)
-            delegate?.didSelect(cell?.textLabel?.text ?? "")
-            return
-        }
-        
-        guard let movie = movies?[indexPath.row] else {
-            return
-        }
-        
-        delegate?.didSelect(MovieViewModel(with: movie))
-    }
 }
 
-extension SearchTVC: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        indexPaths.forEach {
-            processedCell(from: tableView, at: $0)
-        }
-    }
-}
+// MARK: - Search bar delegate
 
 extension SearchTVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         view.isHidden = false
-        query = searchBar.text ?? ""
+        viewModel.query = searchBar.text ?? ""
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            query = ""
+            viewModel.query = ""
         }
+    }
+}
+
+// MARK: - Table view data source
+
+extension SearchTVC {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRows
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return processedCell(from: tableView, at: indexPath)
+    }
+}
+
+// MARK: - Table view delegate
+
+extension SearchTVC {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let type = viewModel.cellSelectionType(for: indexPath)
+        
+        switch type {
+        case .movieVM(let movieVM): delegate?.didSelect(movieVM)
+        case .string(let string):   delegate?.didSelect(string)
+        case .void:                 break
+        }
+    }
+}
+
+// MARK: - Prefetching data source
+
+extension SearchTVC: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.forEach { processedCell(from: tableView, at: $0) }
+    }
+}
+
+// MARK: - Cell generation helpers
+
+extension SearchTVC {
+    @discardableResult
+    private func processedCell(from tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+        let type = viewModel.cellType(for: indexPath)
+        
+        switch type {
+        case .loading:                      return loadingCell(for: indexPath)
+        case .movie(let movie):             return movieCell(for: indexPath, with: movie)
+        case .prevSearch(let searchText):   return prevSearchCell(for: indexPath, with: searchText)
+        }
+    }
+    
+    private func prevSearchCell(for indexPath: IndexPath, with searchText: String) -> PreviousSearchCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath) as PreviousSearchCell
+        cell.searchText = searchText
+        return cell
+    }
+    
+    private func loadingCell(for indexPath: IndexPath) -> LoadingTableCell {
+        return tableView.dequeueReusableCell(for: indexPath)
+    }
+    
+    private func movieCell(for indexPath: IndexPath, with movie: Movie) -> MovieTableCell {
+        let cell = tableView.dequeueReusableCell(for: indexPath) as MovieTableCell
+        cell.configure(with: movie)
+        return cell
     }
 }
