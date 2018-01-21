@@ -51,14 +51,28 @@ extension HomeViewModel {
         let topRatedOp = MovieSectionDownloadOperation(section: .toprated)
         let popularOp  = MovieSectionDownloadOperation(section: .popular)
         
-        OperationQueue().addOperations([upcomingOp, topRatedOp, popularOp], waitUntilFinished: true)
-        
-        movieSections[.upcoming] = upcomingOp.movies
-        movieSections[.topRated] = topRatedOp.movies
-        movieSections[.popular]  = popularOp.movies
-        
-        OperationQueue.main.addOperation {
+        let blockOp = BlockOperation {
+            guard
+                let upcoming = upcomingOp.movies,
+                let topRated = topRatedOp.movies,
+                let popular  = popularOp.movies
+                else {
+                    debugPrint("There's an error")
+                    completion()
+                    return
+            }
+            
+            self.movieSections[.upcoming] = upcoming
+            self.movieSections[.topRated] = topRated
+            self.movieSections[.popular]  = popular
             completion()
         }
+        
+        blockOp.addDependency(upcomingOp)
+        blockOp.addDependency(topRatedOp)
+        blockOp.addDependency(popularOp)
+        
+        OperationQueue().addOperations([upcomingOp, topRatedOp, popularOp], waitUntilFinished: false)
+        OperationQueue.main.addOperation(blockOp)
     }
 }
