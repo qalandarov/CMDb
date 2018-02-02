@@ -13,11 +13,11 @@ class MovieDetailsDownloadOperation: NetworkOperation<Movie> {
     
     var movie: Movie? { return result?.value }
     
-    private var movieID = 0
+    private var movieID: Int
     
     required init(movieID: Int) {
-        super.init()
         self.movieID = movieID
+        super.init()
     }
     
     override func start() {
