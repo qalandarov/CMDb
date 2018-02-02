@@ -11,8 +11,6 @@ import TMDb
 
 class SearchViewModel {
     
-    private lazy var network = NetworkEngine()
-    
     var refreshUI: (() -> ())?
     var errorAction: ((String) -> ())?
     
@@ -54,18 +52,35 @@ class SearchViewModel {
         search(query, page: nextPage)
     }
     
+    func resetSearch() {
+        query = ""
+        OperationQueue().cancelAllOperations()
+    }
+}
+
+// MARK: - Networking
+
+extension SearchViewModel {
+    
     private func search(_ query: String, page: Int = 0) {
-        network.searchMovie(query: query, page: page) { [weak self] result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let search):
-                    self?.process(search, for: query)
-                case .failure(let error):
-                    self?.shouldShowLoading = false
-                    self?.errorAction?(error.string)
-                }
+        let op = SearchMovieOperation(query: query, page: page)
+        
+        let blockOp = BlockOperation {
+            guard !op.isCancelled, let result = op.result else { return }
+            
+            switch result {
+            case .success(let search):
+                self.process(search, for: query)
+            case .failure(let error):
+                self.shouldShowLoading = false
+                self.errorAction?(error.string)
             }
         }
+        
+        blockOp.addDependency(op)
+        
+        OperationQueue().addOperation(op)
+        OperationQueue.main.addOperation(blockOp)
     }
     
     private func process(_ search: Search<Movie>, for query: String) {
@@ -79,10 +94,6 @@ class SearchViewModel {
         refreshUI?()
     }
     
-    func resetSearch() {
-        query = ""
-        network.cancel()
-    }
 }
 
 // MARK: - Table view helpers
