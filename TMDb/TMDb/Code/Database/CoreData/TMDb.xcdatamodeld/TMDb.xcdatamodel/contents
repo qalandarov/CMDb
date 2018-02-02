@@ -1,12 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1114" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ArtworkMO" representedClassName="ArtworkMO" syncable="YES" codeGenerationType="class">
+        <attribute name="backdrops" attributeType="Transformable" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="posters" attributeType="Transformable" syncable="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovieMO" inverseName="images" inverseEntity="MovieMO" syncable="YES"/>
+    </entity>
+    <entity name="CastMO" representedClassName="CastMO" syncable="YES" codeGenerationType="class">
+        <attribute name="character" attributeType="String" syncable="YES"/>
+        <attribute name="creditID" attributeType="String" syncable="YES"/>
+        <attribute name="gender" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="order" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="profilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="credits" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CreditsMO" inverseName="cast" inverseEntity="CreditsMO" syncable="YES"/>
+    </entity>
+    <entity name="CreditsMO" representedClassName="CreditsMO" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="cast" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CastMO" inverseName="credits" inverseEntity="CastMO" syncable="YES"/>
+        <relationship name="crew" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CrewMO" inverseName="credits" inverseEntity="CrewMO" syncable="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovieMO" inverseName="credits" inverseEntity="MovieMO" syncable="YES"/>
+    </entity>
+    <entity name="CrewMO" representedClassName="CrewMO" syncable="YES" codeGenerationType="class">
+        <attribute name="creditID" attributeType="String" syncable="YES"/>
+        <attribute name="department" attributeType="String" syncable="YES"/>
+        <attribute name="gender" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="job" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="profilePath" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="credits" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CreditsMO" inverseName="crew" inverseEntity="CreditsMO" syncable="YES"/>
+    </entity>
+    <entity name="MovieMO" representedClassName="MovieMO" syncable="YES" codeGenerationType="class">
+        <attribute name="backdropPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="isVideo" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="originalTitle" attributeType="String" syncable="YES"/>
+        <attribute name="overview" attributeType="String" syncable="YES"/>
+        <attribute name="popularity" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="releaseDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="voteAvg" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="voteCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="credits" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CreditsMO" inverseName="movie" inverseEntity="CreditsMO" syncable="YES"/>
+        <relationship name="images" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ArtworkMO" inverseName="movie" inverseEntity="ArtworkMO" syncable="YES"/>
+        <relationship name="search" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchMO" inverseName="movies" inverseEntity="SearchMO" syncable="YES"/>
+    </entity>
     <entity name="SearchMO" representedClassName="SearchMO" syncable="YES" codeGenerationType="class">
         <attribute name="page" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="query" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="totalPages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalResults" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="movies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MovieMO" inverseName="search" inverseEntity="MovieMO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SearchMO" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="SearchMO" positionX="-108" positionY="-18" width="128" height="118"/>
+        <element name="MovieMO" positionX="97" positionY="-17" width="128" height="253"/>
+        <element name="CreditsMO" positionX="324" positionY="83" width="128" height="103"/>
+        <element name="CastMO" positionX="529" positionY="-45" width="128" height="163"/>
+        <element name="CrewMO" positionX="529" positionY="144" width="128" height="163"/>
+        <element name="ArtworkMO" positionX="322" positionY="234" width="128" height="103"/>
     </elements>
 </model>
