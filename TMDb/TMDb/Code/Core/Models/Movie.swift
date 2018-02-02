@@ -6,6 +6,8 @@
 //  Copyright © 2017 Qalandarov. All rights reserved.
 //
 
+let dateFormatter = DateFormatter() // creating a global one as it's too expensive to create
+
 import Foundation
 
 /*
@@ -23,7 +25,7 @@ public struct Movie: Decodable, ImageDownloadable {
     public let id: Int
     public let title: String
     public let originalTitle: String
-    public let releaseDate: String
+    public let releaseDate: Date
     public let posterPath: String?
     public let backdropPath: String?
     public let voteCount: Int
@@ -45,9 +47,9 @@ public struct Movie: Decodable, ImageDownloadable {
         return ids.flatMap { MovieGenre(rawValue: $0) }
     }
     
-    // Temp solution, release date should be date
     public var releaseYear: String {
-        return String(releaseDate.prefix(4))
+        dateFormatter.dateFormat = "YYYY"
+        return dateFormatter.string(from: releaseDate)
     }
 
     enum CodingKeys: String, CodingKey {

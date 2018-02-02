@@ -106,6 +106,9 @@ private extension Data {
     }
     
     private func decoded<T: Decodable>() -> T? {
-        return try? JSONDecoder().decode(T.self, from: self)
+        let decoder = JSONDecoder()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        return try! decoder.decode(T.self, from: self)
     }
 }

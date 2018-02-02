@@ -12,7 +12,6 @@ import TMDb
 class MovieViewModel: ImageDownloadable {
     let id: Int
     let title: String
-    let releaseDate: String
     let releaseYear: String
     let posterPath: String?
     let backdropPath: String?
@@ -35,7 +34,6 @@ class MovieViewModel: ImageDownloadable {
     init(with movie: Movie) {
         id              = movie.id
         title           = movie.title
-        releaseDate     = movie.releaseDate
         releaseYear     = movie.releaseYear
         posterPath      = movie.posterPath
         backdropPath    = movie.backdropPath
