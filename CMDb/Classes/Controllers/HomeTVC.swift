@@ -41,6 +41,7 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         controller.searchBar.delegate = searchTVC
         controller.searchBar.tintColor = .white
         controller.searchBar.barStyle = .black
+        controller.searchBar.keyboardAppearance = .dark
 
         return controller
     }()
