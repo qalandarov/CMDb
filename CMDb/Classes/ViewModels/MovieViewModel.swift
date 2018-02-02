@@ -48,7 +48,7 @@ class MovieViewModel: ImageDownloadable {
 // MARK: - Networking
 
 extension MovieViewModel {
-    func fetchDetails(completion: @escaping VoidCompletion) {
+    func fetchDetailsIfNeeded(completion: @escaping VoidCompletion) {
         guard casts == nil else {
             completion()
             return

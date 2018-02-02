@@ -25,10 +25,8 @@ class MovieDetailsTVC: UITableViewController, SegueHandlerType {
         super.viewDidLoad()
         prepareUI()
         
-        if vm?.casts == nil {
-            vm?.fetchDetails { [weak self] in
-                self?.insertCastsIfNeeded()
-            }
+        vm?.fetchDetailsIfNeeded { [weak self] in
+            self?.insertCastsIfNeeded()
         }
     }
     
