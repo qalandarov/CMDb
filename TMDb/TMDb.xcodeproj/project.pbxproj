@@ -140,15 +140,23 @@
 			isa = PBXGroup;
 			children = (
 				3B768EDC2024DD2600817366 /* DBManager.swift */,
-				3B768EDA2024DC8C00817366 /* CoreDataStack.swift */,
+				3B768EDE2024E0F000817366 /* CoreData */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		3B768EDE2024E0F000817366 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3B768ED62024DC0A00817366 /* TMDb.xcdatamodeld */,
+				3B768EDA2024DC8C00817366 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		3B7777561FF811DE00062558 = {
 			isa = PBXGroup;
 			children = (
-				3B768ED62024DC0A00817366 /* TMDb.xcdatamodeld */,
 				3B7777621FF811DE00062558 /* TMDb */,
 				3B77776D1FF811DE00062558 /* TMDbTests */,
 				3B7777611FF811DE00062558 /* Products */,
