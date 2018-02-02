@@ -103,6 +103,12 @@ class HomeTVC: UITableViewController, SegueHandlerType {
         }
     }
     
+    // MARK: IBActions
+    
+    @IBAction func search(_ sender: UIBarButtonItem) {
+        searchController?.searchBar.becomeFirstResponder()
+    }
+    
 }
 
 // MARK: - Table view data source
