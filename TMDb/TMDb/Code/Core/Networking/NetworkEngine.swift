@@ -109,6 +109,6 @@ private extension Data {
         let decoder = JSONDecoder()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
-        return try! decoder.decode(T.self, from: self)
+        return try? decoder.decode(T.self, from: self)
     }
 }
