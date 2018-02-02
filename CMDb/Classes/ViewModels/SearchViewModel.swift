@@ -56,12 +56,14 @@ class SearchViewModel {
     
     private func search(_ query: String, page: Int = 0) {
         network.searchMovie(query: query, page: page) { [weak self] result in
-            switch result {
-            case .success(let search):
-                self?.process(search, for: query)
-            case .failure(let error):
-                self?.shouldShowLoading = false
-                self?.errorAction?(error.string)
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let search):
+                    self?.process(search, for: query)
+                case .failure(let error):
+                    self?.shouldShowLoading = false
+                    self?.errorAction?(error.string)
+                }
             }
         }
     }
