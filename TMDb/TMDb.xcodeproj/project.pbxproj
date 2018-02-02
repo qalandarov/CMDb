@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B768ED82024DC0A00817366 /* TMDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3B768ED62024DC0A00817366 /* TMDb.xcdatamodeld */; };
+		3B768EDB2024DC8C00817366 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B768EDA2024DC8C00817366 /* CoreDataStack.swift */; };
+		3B768EDD2024DD2600817366 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B768EDC2024DD2600817366 /* DBManager.swift */; };
 		3B77776A1FF811DE00062558 /* TMDb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B7777601FF811DE00062558 /* TMDb.framework */; };
 		3B77776F1FF811DE00062558 /* TMDbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B77776E1FF811DE00062558 /* TMDbTests.swift */; };
 		3B7777711FF811DE00062558 /* TMDb.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B7777631FF811DE00062558 /* TMDb.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -63,6 +66,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B768ED72024DC0A00817366 /* TMDb.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TMDb.xcdatamodel; sourceTree = "<group>"; };
+		3B768EDA2024DC8C00817366 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		3B768EDC2024DD2600817366 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		3B7777601FF811DE00062558 /* TMDb.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TMDb.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B7777631FF811DE00062558 /* TMDb.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TMDb.h; sourceTree = "<group>"; };
 		3B7777641FF811DE00062558 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -130,9 +136,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B768ED92024DC6600817366 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				3B768EDC2024DD2600817366 /* DBManager.swift */,
+				3B768EDA2024DC8C00817366 /* CoreDataStack.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		3B7777561FF811DE00062558 = {
 			isa = PBXGroup;
 			children = (
+				3B768ED62024DC0A00817366 /* TMDb.xcdatamodeld */,
 				3B7777621FF811DE00062558 /* TMDb */,
 				3B77776D1FF811DE00062558 /* TMDbTests */,
 				3B7777611FF811DE00062558 /* Products */,
@@ -175,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				3B77777B1FF8124E00062558 /* Core */,
+				3B768ED92024DC6600817366 /* Database */,
 				3B7777921FF8124E00062558 /* Helpers */,
 			);
 			path = Code;
@@ -449,6 +466,7 @@
 				3B7777AB1FF8124E00062558 /* ImageWidth.swift in Sources */,
 				3B7777A01FF8124E00062558 /* GenreObject.swift in Sources */,
 				3B7777991FF8124E00062558 /* Cast.swift in Sources */,
+				3B768EDD2024DD2600817366 /* DBManager.swift in Sources */,
 				3B7777A91FF8124E00062558 /* C.swift in Sources */,
 				3B7777A21FF8124E00062558 /* MovieGenre.swift in Sources */,
 				3B77779E1FF8124E00062558 /* Trailer.swift in Sources */,
@@ -456,8 +474,10 @@
 				3B7777A31FF8124E00062558 /* MovieSectionType.swift in Sources */,
 				3B77779A1FF8124E00062558 /* Credits.swift in Sources */,
 				3B7777971FF8124E00062558 /* Error.swift in Sources */,
+				3B768ED82024DC0A00817366 /* TMDb.xcdatamodeld in Sources */,
 				3B7777A71FF8124E00062558 /* Router.swift in Sources */,
 				3B77779F1FF8124E00062558 /* ErrorResponse.swift in Sources */,
+				3B768EDB2024DC8C00817366 /* CoreDataStack.swift in Sources */,
 				3B7777A81FF8124E00062558 /* URLEncoder.swift in Sources */,
 				3B77779B1FF8124E00062558 /* Crew.swift in Sources */,
 				3B7777A51FF8124E00062558 /* NetworkEngine.swift in Sources */,
@@ -710,6 +730,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3B768ED62024DC0A00817366 /* TMDb.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3B768ED72024DC0A00817366 /* TMDb.xcdatamodel */,
+			);
+			currentVersion = 3B768ED72024DC0A00817366 /* TMDb.xcdatamodel */;
+			path = TMDb.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3B7777571FF811DE00062558 /* Project object */;
 }
