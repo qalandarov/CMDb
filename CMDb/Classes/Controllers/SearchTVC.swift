@@ -45,7 +45,7 @@ class SearchTVC: UITableViewController {
         tableView.prefetchDataSource = self
         
         // Prevent autolayout bugs
-        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.estimatedRowHeight = 44
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
