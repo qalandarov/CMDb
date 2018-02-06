@@ -24,10 +24,7 @@ class SearchTVC: UITableViewController {
         setupUI()
         
         viewModel.refreshUI = tableView.reloadData
-        viewModel.errorAction = { [weak self] errorMsg in
-            self?.tableView.reloadData()
-            self?.alert(errorMsg)
-        }
+        viewModel.errorAction = alert
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -61,7 +58,7 @@ extension SearchTVC: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            viewModel.query = ""
+            viewModel.resetSearch()
         }
     }
 }
@@ -87,9 +84,15 @@ extension SearchTVC {
         let type = viewModel.cellSelectionType(for: indexPath)
         
         switch type {
-        case .movieVM(let movieVM): delegate?.didSelect(movieVM)
-        case .string(let string):   delegate?.didSelect(string)
-        case .void:                 break
+        case .void:
+            break
+            
+        case .movieVM(let movieVM):
+            delegate?.didSelect(movieVM)
+            
+        case .string(let query):
+            viewModel.query = query
+            delegate?.didSelect(query)
         }
     }
 }
@@ -110,9 +113,13 @@ extension SearchTVC {
         let type = viewModel.cellType(for: indexPath)
         
         switch type {
-        case .loading:                      return loadingCell(for: indexPath)
-        case .movie(let movie):             return movieCell(for: indexPath, with: movie)
-        case .prevSearch(let searchText):   return prevSearchCell(for: indexPath, with: searchText)
+        case .loading:
+            viewModel.searchNextPage()
+            return loadingCell(for: indexPath)
+        case .movie(let movie):
+            return movieCell(for: indexPath, with: movie)
+        case .prevSearch(let searchText):
+            return prevSearchCell(for: indexPath, with: searchText)
         }
     }
     
