@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import TMDb
 
 class MovieTableCell: UITableViewCell {
     
@@ -24,11 +23,11 @@ class MovieTableCell: UITableViewCell {
         overviewLabel.text = nil
     }
     
-    func configure(with movie: Movie) {
-        posterImageView.setImage(with: movie.posterURL(width: .w92))
-        titleLabel.text = movie.title
-        yearLabel.text = movie.releaseYear
-        overviewLabel.text = movie.overview
+    func configure(with movieVM: MovieViewModel) {
+        posterImageView.setImage(with: movieVM.posterURL(width: .w92))
+        titleLabel.text = movieVM.title
+        yearLabel.text = movieVM.releaseYear
+        overviewLabel.text = movieVM.overview
     }
     
 }

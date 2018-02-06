@@ -126,14 +126,8 @@ extension SearchViewModel {
 
 enum CellType {
     case loading
-    case movie(Movie)
-    case prevSearch(String)
-}
-
-enum CellSelectionType {
-    case void
-    case string(String)
     case movieVM(MovieViewModel)
+    case prevSearch(String)
 }
 
 extension SearchViewModel {
@@ -156,20 +150,11 @@ extension SearchViewModel {
             return .prevSearch(previousSearches[indexPath.row])
         default:
             if let movies = self.movies, indexPath.row < movies.count {
-                return .movie(movies[indexPath.row])
+                let movie = movies[indexPath.row]
+                return .movieVM(MovieViewModel(with: movie))
             }
             
             return .loading
-        }
-    }
-    
-    func cellSelectionType(for indexPath: IndexPath) -> CellSelectionType {
-        let cell = cellType(for: indexPath)
-        
-        switch cell {
-        case .loading:                  return .void
-        case .movie(let movie):         return .movieVM(MovieViewModel(with: movie))
-        case .prevSearch(let query):    return .string(query)
         }
     }
     

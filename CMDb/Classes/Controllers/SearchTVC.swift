@@ -81,16 +81,16 @@ extension SearchTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let type = viewModel.cellSelectionType(for: indexPath)
+        let type = viewModel.cellType(for: indexPath)
         
         switch type {
-        case .void:
+        case .loading:
             break
             
         case .movieVM(let movieVM):
             delegate?.didSelect(movieVM)
             
-        case .string(let query):
+        case .prevSearch(let query):
             viewModel.query = query
             delegate?.didSelect(query)
         }
@@ -116,8 +116,8 @@ extension SearchTVC {
         case .loading:
             viewModel.searchNextPage()
             return loadingCell(for: indexPath)
-        case .movie(let movie):
-            return movieCell(for: indexPath, with: movie)
+        case .movieVM(let movieVM):
+            return movieCell(for: indexPath, with: movieVM)
         case .prevSearch(let searchText):
             return prevSearchCell(for: indexPath, with: searchText)
         }
@@ -133,9 +133,9 @@ extension SearchTVC {
         return tableView.dequeueReusableCell(for: indexPath)
     }
     
-    private func movieCell(for indexPath: IndexPath, with movie: Movie) -> MovieTableCell {
+    private func movieCell(for indexPath: IndexPath, with movieVM: MovieViewModel) -> MovieTableCell {
         let cell = tableView.dequeueReusableCell(for: indexPath) as MovieTableCell
-        cell.configure(with: movie)
+        cell.configure(with: movieVM)
         return cell
     }
 }
