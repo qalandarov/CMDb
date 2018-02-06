@@ -32,7 +32,7 @@ class SearchTVC: UITableViewController {
         viewModel.resetSearch()
     }
     
-    func setupUI() {
+    private func setupUI() {
         // Hide extra gap under the search bar
         tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
         
