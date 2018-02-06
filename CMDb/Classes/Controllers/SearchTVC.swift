@@ -46,26 +46,8 @@ class SearchTVC: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-}
-
-// MARK: - Search bar delegate
-
-extension SearchTVC: UISearchBarDelegate {
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        view.isHidden = false
-        viewModel.query = searchBar.text ?? ""
-    }
+    // MARK: - Table view data source
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            viewModel.resetSearch()
-        }
-    }
-}
-
-// MARK: - Table view data source
-
-extension SearchTVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfRows
     }
@@ -73,11 +55,9 @@ extension SearchTVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return processedCell(from: tableView, at: indexPath)
     }
-}
-
-// MARK: - Table view delegate
-
-extension SearchTVC {
+    
+    // MARK: - Table view delegate
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
@@ -95,6 +75,7 @@ extension SearchTVC {
             delegate?.didSelect(query)
         }
     }
+    
 }
 
 // MARK: - Prefetching data source
@@ -102,6 +83,21 @@ extension SearchTVC {
 extension SearchTVC: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         indexPaths.forEach { processedCell(from: tableView, at: $0) }
+    }
+}
+
+// MARK: - Search bar delegate
+
+extension SearchTVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        view.isHidden = false
+        viewModel.query = searchBar.text ?? ""
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            viewModel.resetSearch()
+        }
     }
 }
 
