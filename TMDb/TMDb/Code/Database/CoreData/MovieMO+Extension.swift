@@ -21,7 +21,7 @@ extension MovieMO {
     }
     
     private static func existing(with id: Int, in context: NSManagedObjectContext) -> MovieMO? {
-        let predicate = NSPredicate(format: "id == %@", id)
+        let predicate = NSPredicate(format: "id == %d", id)
         let movies = MovieMO.fetch(predicate: predicate, from: context)
         return movies?.first
     }
