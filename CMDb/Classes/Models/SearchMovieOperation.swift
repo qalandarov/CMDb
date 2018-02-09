@@ -25,7 +25,13 @@ class SearchMovieOperation: NetworkOperation<Search<Movie>> {
     override func start() {
         guard !isCancelled else { return }
         super.start()
-        network.searchMovie(query: query, page: page, completion: handleCompletion)
+        let query = self.query
+        network.searchMovie(query: query, page: page) { [weak self] result in
+            if let search = result.value, search.isValid {
+                DBManager.shared.insertOrUpdate(search, for: query)
+            }
+            self?.handleCompletion(result)
+        }
     }
     
 }
