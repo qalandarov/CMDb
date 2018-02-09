@@ -24,7 +24,6 @@
 		3B9F5BEA1F5FA581008AAF65 /* SegueValidatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B9F5BE91F5FA581008AAF65 /* SegueValidatable.swift */; };
 		3BBE812A1F57CD3000042E14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81291F57CD3000042E14 /* AppDelegate.swift */; };
 		3BBE812F1F57CD3000042E14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE812D1F57CD3000042E14 /* Main.storyboard */; };
-		3BBE81321F57CD3000042E14 /* CMDb.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81301F57CD3000042E14 /* CMDb.xcdatamodeld */; };
 		3BBE81341F57CD3000042E14 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE81331F57CD3000042E14 /* Assets.xcassets */; };
 		3BBE81371F57CD3000042E14 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BBE81351F57CD3000042E14 /* LaunchScreen.storyboard */; };
 		3BBE81421F57CD3000042E14 /* CMDbTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBE81411F57CD3000042E14 /* CMDbTests.swift */; };
@@ -116,7 +115,6 @@
 		3BBE81261F57CD3000042E14 /* CMDb.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CMDb.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BBE81291F57CD3000042E14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BBE812E1F57CD3000042E14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3BBE81311F57CD3000042E14 /* CMDb.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CMDb.xcdatamodel; sourceTree = "<group>"; };
 		3BBE81331F57CD3000042E14 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3BBE81361F57CD3000042E14 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3BBE81381F57CD3000042E14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -271,7 +269,6 @@
 				3B6A93461F9668800024C8F2 /* MovieSectionDownloadOperation.swift */,
 				3BF306B71F96941A00AE7748 /* MovieDetailsDownloadOperation.swift */,
 				3B70F6452024F5870088357A /* SearchMovieOperation.swift */,
-				3BBE81511F57DA0000042E14 /* CoreData */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,14 +295,6 @@
 				3B9E26FC1FFA4E1200E30A5F /* PreviousSearchCell.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		3BBE81511F57DA0000042E14 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				3BBE81301F57CD3000042E14 /* CMDb.xcdatamodeld */,
-			);
-			path = CoreData;
 			sourceTree = "<group>";
 		};
 		3BBE81531F57DA7D00042E14 /* SupportingFiles */ = {
@@ -582,7 +571,6 @@
 				3BF521CE1F855A2400BDB7BD /* SearchTVC.swift in Sources */,
 				3B6A93431F964F8A0024C8F2 /* HomeViewModel.swift in Sources */,
 				3B8244401F638C9400949C4B /* MovieDetailsTVC.swift in Sources */,
-				3BBE81321F57CD3000042E14 /* CMDb.xcdatamodeld in Sources */,
 				3BF521D01F855A3100BDB7BD /* Storyboard.swift in Sources */,
 				3BC993A11F98446D006FCBE3 /* CastViewModel.swift in Sources */,
 				3BF521CC1F84C7A300BDB7BD /* FeaturedMoviesTableCell.swift in Sources */,
@@ -872,19 +860,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3BBE81301F57CD3000042E14 /* CMDb.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3BBE81311F57CD3000042E14 /* CMDb.xcdatamodel */,
-			);
-			currentVersion = 3BBE81311F57CD3000042E14 /* CMDb.xcdatamodel */;
-			path = CMDb.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3BBE811E1F57CD3000042E14 /* Project object */;
 }
