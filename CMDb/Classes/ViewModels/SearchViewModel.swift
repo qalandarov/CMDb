@@ -35,9 +35,7 @@ class SearchViewModel {
     
     private lazy var searchResults: [String: Search<Movie>] = [:]
     
-    private var previousSearches: [String] {
-        return searchResults.keys.map { $0 }
-    }
+    private lazy var previousSearches = DBManager.shared.latestSearchQueries()
     
     private var currentSearch: Search<Movie>? {
         get { return searchResults[query] }
@@ -65,6 +63,7 @@ class SearchViewModel {
             case .finished(let search):
                 // Combine "search" with the "currentSearch" or if nil set it as the "currentSearch"
                 currentSearch = currentSearch?.combined(with: search) ?? search
+                previousSearches = DBManager.shared.latestSearchQueries()
             }
             
             refreshUI?()
