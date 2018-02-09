@@ -8,20 +8,44 @@
 
 import Foundation
 
-class DBManager {
+protocol DBManagable {
+    // DB Actions
+    func save()
+    
+    // Search Actions
+    func insertOrUpdate(_ search: Search<Movie>, for query: String)
+    /// Returns the last 10 successful search queries
+    func latestSearchQueries() -> [String]?
+}
+
+public class DBManager {
     
     public static let shared = DBManager()
     
-    private let coreDataStack: CoreDataStack
+    private let db: DBManagable
     
-    private init () {
-        coreDataStack = CoreDataStack()
+    init (with dbManagable: DBManagable = CoreDataStack()) {
+        db = dbManagable
     }
     
-    // MARK: Public functions
-    
+}
+
+// MARK: - Public API
+
+// DB Actions
+extension DBManager {
     public func save() {
-        coreDataStack.saveContext()
+        db.save()
+    }
+}
+
+// Search Actions
+extension DBManager {
+    public func insertOrUpdate(_ search: Search<Movie>, for query: String) {
+        db.insertOrUpdate(search, for: query)
     }
     
+    public func latestSearchQueries() -> [String]? {
+        return db.latestSearchQueries()
+    }
 }
