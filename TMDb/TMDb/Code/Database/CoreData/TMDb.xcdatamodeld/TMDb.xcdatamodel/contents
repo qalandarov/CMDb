@@ -40,7 +40,7 @@
         <attribute name="overview" attributeType="String" syncable="YES"/>
         <attribute name="popularity" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="releaseDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="voteAvg" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="voteCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -50,17 +50,18 @@
     </entity>
     <entity name="SearchMO" representedClassName="SearchMO" syncable="YES" codeGenerationType="class">
         <attribute name="page" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="query" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="query" attributeType="String" syncable="YES"/>
         <attribute name="totalPages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="totalResults" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="movies" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="MovieMO" inverseName="search" inverseEntity="MovieMO" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SearchMO" positionX="-108" positionY="-18" width="128" height="118"/>
-        <element name="MovieMO" positionX="97" positionY="-17" width="128" height="253"/>
-        <element name="CreditsMO" positionX="324" positionY="83" width="128" height="103"/>
-        <element name="CastMO" positionX="529" positionY="-45" width="128" height="163"/>
-        <element name="CrewMO" positionX="529" positionY="144" width="128" height="163"/>
         <element name="ArtworkMO" positionX="322" positionY="234" width="128" height="103"/>
+        <element name="CastMO" positionX="529" positionY="-45" width="128" height="163"/>
+        <element name="CreditsMO" positionX="324" positionY="83" width="128" height="103"/>
+        <element name="CrewMO" positionX="529" positionY="144" width="128" height="163"/>
+        <element name="MovieMO" positionX="97" positionY="-17" width="128" height="255"/>
+        <element name="SearchMO" positionX="-108" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
