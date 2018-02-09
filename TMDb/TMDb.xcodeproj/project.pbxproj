@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B68B146202A02190088A9B7 /* CoreDataStack+DBManagable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B145202A02190088A9B7 /* CoreDataStack+DBManagable.swift */; };
 		3B68B148202A0E5F0088A9B7 /* MovieMO+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B147202A0E5F0088A9B7 /* MovieMO+Extension.swift */; };
 		3B68B152202C9DBD0088A9B7 /* SearchMO+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B151202C9DBD0088A9B7 /* SearchMO+Extension.swift */; };
 		3B68B154202D53AE0088A9B7 /* EasyFetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B68B153202D53AE0088A9B7 /* EasyFetchable.swift */; };
@@ -69,6 +70,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3B68B145202A02190088A9B7 /* CoreDataStack+DBManagable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataStack+DBManagable.swift"; sourceTree = "<group>"; };
 		3B68B147202A0E5F0088A9B7 /* MovieMO+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieMO+Extension.swift"; sourceTree = "<group>"; };
 		3B68B151202C9DBD0088A9B7 /* SearchMO+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchMO+Extension.swift"; sourceTree = "<group>"; };
 		3B68B153202D53AE0088A9B7 /* EasyFetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyFetchable.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			children = (
 				3B768ED62024DC0A00817366 /* TMDb.xcdatamodeld */,
 				3B768EDA2024DC8C00817366 /* CoreDataStack.swift */,
+				3B68B145202A02190088A9B7 /* CoreDataStack+DBManagable.swift */,
 				3B68B153202D53AE0088A9B7 /* EasyFetchable.swift */,
 				3B68B151202C9DBD0088A9B7 /* SearchMO+Extension.swift */,
 				3B68B147202A0E5F0088A9B7 /* MovieMO+Extension.swift */,
@@ -495,6 +498,7 @@
 				3B768ED82024DC0A00817366 /* TMDb.xcdatamodeld in Sources */,
 				3B7777A71FF8124E00062558 /* Router.swift in Sources */,
 				3B77779F1FF8124E00062558 /* ErrorResponse.swift in Sources */,
+				3B68B146202A02190088A9B7 /* CoreDataStack+DBManagable.swift in Sources */,
 				3B768EDB2024DC8C00817366 /* CoreDataStack.swift in Sources */,
 				3B7777A81FF8124E00062558 /* URLEncoder.swift in Sources */,
 				3B77779B1FF8124E00062558 /* Crew.swift in Sources */,
