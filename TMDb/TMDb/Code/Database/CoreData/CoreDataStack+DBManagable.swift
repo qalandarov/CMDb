@@ -32,13 +32,13 @@ extension CoreDataStack {
         workerContext.saveIfNeeded()
     }
     
-    func latestSearchQueries() -> [String]? {
+    func latestSearchQueries() -> [String] {
         let request = SearchMO.fetchRequest
         request.fetchLimit = 10
         request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
         
         let searches = SearchMO.fetch(request, from: mainContext)
-        return searches?.flatMap({ $0.query })
+        return searches?.flatMap({ $0.query }) ?? []
     }
     
 }
