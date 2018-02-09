@@ -35,12 +35,10 @@ extension CoreDataStack {
     func latestSearchQueries() -> [String]? {
         let request = SearchMO.fetchRequest
         request.fetchLimit = 10
-        request.propertiesToFetch = ["query"]
-        request.resultType = .dictionaryResultType
         request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
         
-        let dict = SearchMO.fetchDict(request, from: mainContext)
-        return dict?.flatMap { $0.values }
+        let searches = SearchMO.fetch(request, from: mainContext)
+        return searches?.flatMap({ $0.query })
     }
     
 }
