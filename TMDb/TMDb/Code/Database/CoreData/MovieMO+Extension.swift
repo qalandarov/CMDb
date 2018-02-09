@@ -33,6 +33,7 @@ extension MovieMO {
     }
     
     private func modify(with movie: Movie, in context: NSManagedObjectContext) {
+        updatedAt       = Date()
         
         title           = movie.title
         originalTitle   = movie.originalTitle

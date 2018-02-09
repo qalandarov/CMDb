@@ -42,6 +42,7 @@
         <attribute name="posterPath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="releaseDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="voteAvg" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="voteCount" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="credits" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CreditsMO" inverseName="movie" inverseEntity="CreditsMO" syncable="YES"/>
@@ -61,7 +62,7 @@
         <element name="CastMO" positionX="529" positionY="-45" width="128" height="163"/>
         <element name="CreditsMO" positionX="324" positionY="83" width="128" height="103"/>
         <element name="CrewMO" positionX="529" positionY="144" width="128" height="163"/>
-        <element name="MovieMO" positionX="97" positionY="-17" width="128" height="255"/>
+        <element name="MovieMO" positionX="97" positionY="-17" width="128" height="270"/>
         <element name="SearchMO" positionX="-108" positionY="-18" width="128" height="135"/>
     </elements>
 </model>
