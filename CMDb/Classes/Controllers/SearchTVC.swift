@@ -16,15 +16,15 @@ protocol SearchTVCDelegate: class {
 
 class SearchTVC: UITableViewController {
     
-    private lazy var viewModel = SearchViewModel()
     weak var delegate: SearchTVCDelegate?
+    
+    private lazy var viewModel: SearchViewModel = {
+        return SearchViewModel(refreshUI: tableView.reloadData, errorAction: alert)
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
-        viewModel.refreshUI = tableView.reloadData
-        viewModel.errorAction = alert
     }
     
     override func viewDidDisappear(_ animated: Bool) {

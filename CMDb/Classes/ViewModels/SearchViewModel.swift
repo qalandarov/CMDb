@@ -18,8 +18,13 @@ enum SearchState {
 
 class SearchViewModel {
     
-    var refreshUI: (() -> ())?
-    var errorAction: ((String) -> ())?
+    let refreshUI: (() -> ())
+    let errorAction: ((String) -> ())
+    
+    init(refreshUI: @escaping (() -> ()), errorAction: @escaping ((String) -> ())) {
+        self.refreshUI = refreshUI
+        self.errorAction = errorAction
+    }
     
     var query = "" {
         didSet {
@@ -59,14 +64,14 @@ class SearchViewModel {
             case .searching(let query):
                 search(query)
             case .error(let errorMsg):
-                errorAction?(errorMsg)
+                errorAction(errorMsg)
             case .finished(let search):
                 // Combine "search" with the "currentSearch" or if nil set it as the "currentSearch"
                 currentSearch = currentSearch?.combined(with: search) ?? search
                 previousSearches = DBManager.shared.latestSearchQueries()
             }
             
-            refreshUI?()
+            refreshUI()
         }
     }
     
