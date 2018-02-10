@@ -28,6 +28,9 @@ extension EasyFetchable where Self: NSManagedObject {
     
     // A fetch processor with a request
     static func fetch(_ request: NSFetchRequest<Self>, from context: NSManagedObjectContext) -> [Self]? {
+        // Prevent faulting - not an ideal way, but can help in the demo app
+        request.returnsObjectsAsFaults = false
+        
         do {
             return try context.fetch(request)
         } catch let error as NSError {
