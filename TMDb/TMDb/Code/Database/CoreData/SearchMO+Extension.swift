@@ -20,9 +20,11 @@ extension SearchMO {
         return SearchMO(with: search, for: query, in: context)
     }
     
-    private static func existing(with query: String, in context: NSManagedObjectContext) -> SearchMO? {
-        let predicate = NSPredicate(format: "query == [c] %@", query)
-        let searches = SearchMO.fetch(predicate: predicate, from: context)
+    static func existing(with query: String, in context: NSManagedObjectContext) -> SearchMO? {
+        let request = SearchMO.fetchRequest
+        request.fetchLimit = 1
+        request.predicate = NSPredicate(format: "query == [c] %@", query)
+        let searches = SearchMO.fetch(request, from: context)
         return searches?.first
     }
     
