@@ -41,6 +41,17 @@ class MovieViewModel: ImageDownloadable {
         genres          = movie.genres?.map({ $0.name }).joined(separator: ", ")
         casts           = movie.credits?.cast.flatMap(CastViewModel.init)
     }
+    
+    init(with movie: MovieMO) {
+        id              = Int(movie.id)
+        title           = movie.title!
+        releaseYear     = movie.releaseYear
+        posterPath      = movie.posterPath
+        backdropPath    = movie.backdropPath
+        overview        = movie.overview!
+        genres          = nil // ignoring for now
+        casts           = nil // ignoring for now
+    }
 }
 
 // MARK: - Networking
