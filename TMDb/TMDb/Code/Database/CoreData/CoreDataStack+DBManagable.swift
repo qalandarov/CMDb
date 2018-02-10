@@ -45,4 +45,8 @@ extension CoreDataStack {
         return searches?.flatMap({ $0.query }) ?? []
     }
     
+    func search(for query: String) -> SearchMO? {
+        return SearchMO.existing(with: query, in: mainContext)
+    }
+    
 }
