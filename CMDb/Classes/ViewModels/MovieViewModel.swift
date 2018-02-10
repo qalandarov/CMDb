@@ -44,7 +44,7 @@ class MovieViewModel: ImageDownloadable {
     
     init(with movie: MovieMO) {
         id              = Int(movie.id)
-        title           = movie.title!
+        title           = movie.title ?? "Unknown Title"
         releaseYear     = movie.releaseYear
         posterPath      = movie.posterPath
         backdropPath    = movie.backdropPath
