@@ -13,18 +13,10 @@ enum SearchState {
     case reset
     case searching(String)
     case error(String)
-    case finished(Search<Movie>)
+    case finished(SearchMO)
 }
 
 class SearchViewModel {
-    
-    let refreshUI: (() -> ())
-    let errorAction: ((String) -> ())
-    
-    init(refreshUI: @escaping (() -> ()), errorAction: @escaping ((String) -> ())) {
-        self.refreshUI = refreshUI
-        self.errorAction = errorAction
-    }
     
     var query = "" {
         didSet {
@@ -36,46 +28,34 @@ class SearchViewModel {
         }
     }
     
+    let refreshUI: (() -> ())
+    let errorAction: ((String) -> ())
+    
+    private var previousSearches: [String] = []
+    private var currentSearch: SearchMO? = nil
     private lazy var workerQueue = OperationQueue()
     
-    private lazy var searchResults: [String: Search<Movie>] = [:]
-    
-    private lazy var previousSearches = DBManager.shared.latestSearchQueries()
-    
-    private var currentSearch: Search<Movie>? {
-        get { return searchResults[query] }
-        set { searchResults[query] = newValue }
+    private var movies: [MovieMO]? {
+        return currentSearch?.allMovies
     }
     
-    // pages start from 1, so if the currentSearch is nil the page still starts from 1
-    private var nextPage: Int {
-        return (currentSearch?.page ?? 0) + 1
+    init(refreshUI: @escaping (() -> ()), errorAction: @escaping ((String) -> ())) {
+        self.refreshUI = refreshUI
+        self.errorAction = errorAction
+        previousSearches = DBManager.shared.latestSearchQueries()
+    }
+    
+    
+    private func nextPage(for query: String) -> Int {
+        // If we started a new search start from 1
+        guard let search = currentSearch, search.query == query else {
+            return 1
+        }
+        return Int(search.page) + 1
     }
 
-    private var movies: [Movie]? {
-        return currentSearch?.results
-    }
     
-    private var state: SearchState = .reset {
-        didSet {
-            switch state {
-            case .reset:
-                workerQueue.cancelAllOperations()
-            case .searching(let query):
-                search(query)
-            case .error(let errorMsg):
-                errorAction(errorMsg)
-            case .finished(let search):
-                // Combine "search" with the "currentSearch" or if nil set it as the "currentSearch"
-                currentSearch = currentSearch?.combined(with: search) ?? search
-                previousSearches = DBManager.shared.latestSearchQueries()
-            }
-            
-            refreshUI()
-        }
-    }
-    
-    // MARK: - Functions
+    // MARK: - State manipulations
     
     func searchNextPage() {
         searchIfAble(query)
@@ -84,9 +64,27 @@ class SearchViewModel {
     func resetSearch() {
         state = .reset
     }
+    private var state: SearchState = .reset {
+        didSet {
+            switch state {
+            case .reset:
+                currentSearch = nil
+                workerQueue.cancelAllOperations()
+            case .searching(let query):
+                search(query)
+            case .error(let errorMsg):
+                errorAction(errorMsg)
+            case .finished(let search):
+                currentSearch = search
+                previousSearches = DBManager.shared.latestSearchQueries()
+            }
+            
+            refreshUI()
+        }
+    }
 }
 
-// MARK: - Networking
+// MARK: - Networking / DB
 
 extension SearchViewModel {
     
@@ -98,30 +96,32 @@ extension SearchViewModel {
     }
     
     private func search(_ query: String) {
+        let nextPage = self.nextPage(for: query)
+        
+        if let searchObject = DBManager.shared.search(for: query) {
+            if currentSearch?.query == searchObject.query, searchObject.page >= nextPage {
+                state = .finished(searchObject)
+                return
+            }
+        }
+        
         let op = SearchMovieOperation(query: query, page: nextPage)
         
         let blockOp = BlockOperation { [weak self] in
             guard !op.isCancelled, let searchResult = op.result else { return }
-            self?.process(searchResult, for: query)
+            
+            switch searchResult {
+            case .success(let search):
+                self?.state = .finished(search)
+            case .failure(let error):
+                self?.state = .error(error.string)
+            }
         }
         
         blockOp.addDependency(op)
         
         workerQueue.addOperation(op)
         OperationQueue.main.addOperation(blockOp)
-    }
-    
-    private func process(_ searchResult: Result<Search<Movie>>, for query: String) {
-        switch searchResult {
-        case .success(let search):
-            if search.isValid {
-                state = .finished(search)
-            } else {
-                state = .error("No movies found for: \(query)")
-            }
-        case .failure(let error):
-            state = .error(error.string)
-        }
     }
     
 }

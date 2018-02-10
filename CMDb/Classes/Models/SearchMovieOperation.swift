@@ -9,9 +9,9 @@
 import Foundation
 import TMDb
 
-class SearchMovieOperation: NetworkOperation<Search<Movie>> {
+class SearchMovieOperation: NetworkOperation<SearchMO> {
     
-    var searchResult: Search<Movie>? { return result?.value }
+    var searchResult: SearchMO? { return result?.value }
     
     private var query: String
     private var page: Int
@@ -25,12 +25,21 @@ class SearchMovieOperation: NetworkOperation<Search<Movie>> {
     override func start() {
         guard !isCancelled else { return }
         super.start()
-        let query = self.query
-        network.searchMovie(query: query, page: page) { [weak self] result in
-            if let search = result.value, search.isValid {
-                DBManager.shared.insertOrUpdate(search, for: query)
+        network.searchMovie(query: query, page: page, completion: complete)
+    }
+    
+    private func complete(with result: Result<Search<Movie>>) {
+        switch result {
+        case .success(let search):
+            if search.isValid {
+                let searchObject = DBManager.shared.insertOrUpdate(search, for: query)
+                handleCompletion(.success(searchObject))
+            } else {
+                let error = Error.general(errorMsg: "No movies found for: \(query)")
+                handleCompletion(.failure(error))
             }
-            self?.handleCompletion(result)
+        case .failure(let error):
+            handleCompletion(.failure(error))
         }
     }
     
