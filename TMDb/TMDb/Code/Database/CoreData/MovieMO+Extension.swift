@@ -8,6 +8,15 @@
 
 import CoreData
 
+// Helper variables
+extension MovieMO {
+    public var releaseYear: String {
+        guard let date = releaseDate else { return "Unknown Year" }
+        dateFormatter.dateFormat = "YYYY"
+        return dateFormatter.string(from: date)
+    }
+}
+
 extension MovieMO {
     
     @discardableResult

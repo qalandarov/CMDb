@@ -9,6 +9,21 @@
 import CoreData
 
 extension SearchMO {
+    public var allMovies: [MovieMO]? {
+        guard let context = managedObjectContext else { return nil }
+        
+        let request = MovieMO.fetchRequest
+        request.predicate = NSPredicate(format: "search == %@", self)
+        request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: true)]
+        return MovieMO.fetch(request, from: context)
+    }
+    
+    public var hasNextPage: Bool {
+        return page < totalPages
+    }
+}
+
+extension SearchMO {
     
     @discardableResult
     static func insertOrUpdate(_ search: Search<Movie>, for query: String, in context: NSManagedObjectContext) -> SearchMO {
