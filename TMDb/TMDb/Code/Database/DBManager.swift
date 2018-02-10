@@ -13,7 +13,7 @@ protocol DBManagable {
     func save()
     
     // Search Actions
-    func insertOrUpdate(_ search: Search<Movie>, for query: String)
+    func insertOrUpdate(_ search: Search<Movie>, for query: String) -> SearchMO
     /// Returns the last 10 successful search queries
     func latestSearchQueries() -> [String]
 }
@@ -41,8 +41,8 @@ extension DBManager {
 
 // Search Actions
 extension DBManager {
-    public func insertOrUpdate(_ search: Search<Movie>, for query: String) {
-        db.insertOrUpdate(search, for: query)
+    public func insertOrUpdate(_ search: Search<Movie>, for query: String) -> SearchMO {
+        return db.insertOrUpdate(search, for: query)
     }
     
     public func latestSearchQueries() -> [String] {

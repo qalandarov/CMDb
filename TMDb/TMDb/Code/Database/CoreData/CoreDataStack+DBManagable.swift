@@ -26,10 +26,14 @@ extension CoreDataStack {
 
 extension CoreDataStack {
     
-    func insertOrUpdate(_ search: Search<Movie>, for query: String) {
+    func insertOrUpdate(_ search: Search<Movie>, for query: String) -> SearchMO {
         let workerContext = tempWorkerContext()
         SearchMO.insertOrUpdate(search, for: query, in: workerContext)
         workerContext.saveIfNeeded()
+        
+        // When worker saves the mainContext should definitely have this search object
+        // It's not an ideal way of handling, but doing it for the demo purposes
+        return self.search(for: query)!
     }
     
     func latestSearchQueries() -> [String] {
